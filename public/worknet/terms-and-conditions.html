@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms & Conditions | Worknet by Orbitra Tech</title>
+    <meta
+      name="description"
+      content="Terms and Conditions for Worknet - Read about our service overview, user eligibility, account responsibilities, and legal disclaimers." />
+    <link rel="icon" type="image/png" href="/orbitra_logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --accent: #0ea5e9;
+        --border: #e2e8f0;
+        --gradient-from: #0ea5e9;
+        --gradient-to: #9333ea;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+      }
+
+      .bg-glow {
+        position: fixed;
+        top: -10%;
+        left: -5%;
+        width: 40%;
+        height: 40%;
+        background: radial-gradient(
+          circle,
+          rgba(147, 51, 234, 0.05) 0%,
+          transparent 70%
+        );
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 80px 24px;
+        position: relative;
+      }
+
+      .nav-back {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 600;
+        margin-bottom: 48px;
+        transition: all 0.3s;
+        gap: 8px;
+        background: white;
+        padding: 10px 20px;
+        border-radius: 99px;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+      }
+
+      .nav-back:hover {
+        color: var(--accent);
+        transform: translateX(-4px);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      }
+
+      header {
+        text-align: left;
+        margin-bottom: 80px;
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 40px;
+      }
+
+      header h1 {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+        margin-bottom: 16px;
+        color: var(--text);
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          to right,
+          var(--gradient-from),
+          var(--gradient-to)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      header p {
+        color: var(--muted);
+        font-size: 1.25rem;
+        font-weight: 500;
+        max-width: 700px;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 60px;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 40px;
+        height: min-content;
+      }
+
+      .sidebar h3 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        margin-bottom: 24px;
+        font-weight: 800;
+      }
+
+      .toc {
+        list-style: none;
+      }
+
+      .toc li {
+        margin-bottom: 16px;
+      }
+
+      .toc a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: block;
+      }
+
+      .toc a:hover {
+        color: var(--accent);
+        padding-left: 8px;
+      }
+
+      section {
+        margin-bottom: 64px;
+        scroll-margin-top: 40px;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 24px;
+        color: var(--text);
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      section p {
+        margin-bottom: 20px;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .highlight-box {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 24px;
+        margin: 24px 0;
+        box-shadow: 0 4px 12px -2px rgb(0 0 0 / 0.05);
+      }
+
+      .highlight-box h4 {
+        margin-bottom: 12px;
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .data-list {
+        list-style: none;
+        margin: 16px 0;
+      }
+
+      .data-list li {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .data-list li::before {
+        content: '✓';
+        color: var(--accent);
+        font-weight: 900;
+      }
+
+      .warning-box {
+        background: #fffafa;
+        border: 1px solid #fee2e2;
+        border-left: 4px solid #ef4444;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 24px 0;
+        color: #991b1b;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 100px;
+        padding: 60px 0;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      @media (max-width: 900px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          display: none;
+        }
+        header h1 {
+          font-size: 3rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg-glow"></div>
+    <div class="container">
+      <a href="/" class="nav-back">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Home
+      </a>
+
+      <header>
+        <div class="badge">Last Updated: April 1, 2026</div>
+        <h1>Terms & <br /><span class="gradient-text">Conditions</span></h1>
+        <p>
+          Please read these terms carefully before using Worknet. By using the
+          platform, you agree to these legally binding terms.
+        </p>
+      </header>
+
+      <div class="content-grid">
+        <aside class="sidebar">
+          <h3>Agreement Sections</h3>
+          <ul class="toc">
+            <li><a href="#overview">1. Service Overview</a></li>
+            <li><a href="#eligibility">2. User Eligibility</a></li>
+            <li><a href="#accounts">3. User Accounts</a></li>
+            <li><a href="#providers">4. Provider Responsibilities</a></li>
+            <li><a href="#conduct">5. User Conduct</a></li>
+            <li><a href="#reviews">6. Reviews & Ratings</a></li>
+            <li><a href="#disclaimer">7. Contact Disclaimer</a></li>
+            <li><a href="#liability">8. No Liability for Services</a></li>
+            <li><a href="#property">9. Intellectual Property</a></li>
+            <li><a href="#contact">10. Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <main>
+          <section id="overview">
+            <h2>1. Overview of the Service</h2>
+            <p>
+              Worknet is a localized service discovery platform operated by
+              <strong>Orbitra Tech</strong>. Our primary role is enabling
+              connections between service providers and those seeking help.
+            </p>
+            <div class="highlight-box">
+              <h4>What We Do</h4>
+              <ul class="data-list">
+                <li>Facilitate discovery of nearby experts.</li>
+                <li>Support transparent reviewing and rating systems.</li>
+                <li>Enable direct contact via phone or WhatsApp.</li>
+              </ul>
+            </div>
+            <div class="warning-box">
+              <strong>What We Do NOT Do:</strong> We do not provide services
+              ourselves, employ providers, or facilitate payments/bookings
+              within the app. All contracts are between the users.
+            </div>
+          </section>
+
+          <section id="eligibility">
+            <h2>2. Eligibility</h2>
+            <p>
+              To access or use Worknet, you must be at least 18 years of age. If
+              you are under 18, you may only use the app under the direct
+              supervision of a legal guardian. You agree to provide accurate,
+              current, and complete information during registration.
+            </p>
+          </section>
+
+          <section id="accounts">
+            <h2>3. User Accounts</h2>
+            <p>
+              While browsing is available without an account, certain features
+              require registration:
+            </p>
+            <ul class="data-list">
+              <li>Listing yourself as a professional service provider.</li>
+              <li>Leaving reviews and submitting ratings.</li>
+              <li>Saving favorite providers and reporting misconduct.</li>
+            </ul>
+            <p>
+              You are solely responsible for all activity that occurs under your
+              account and for maintaining the confidentiality of your login
+              credentials.
+            </p>
+          </section>
+
+          <section id="providers">
+            <h2>4. Service Provider Responsibilities</h2>
+            <p>Providers listing services on Worknet agree to:</p>
+            <ul class="data-list">
+              <li>
+                Possess all necessary licenses and permits for their services.
+              </li>
+              <li>
+                Provide honest descriptions of their skills and experience.
+              </li>
+              <li>Charge fair prices and honor agreed-upon commitments.</li>
+            </ul>
+            <p>
+              Worknet does not verify the credentials of providers and makes no
+              warranties regarding the quality of their work.
+            </p>
+          </section>
+
+          <section id="conduct">
+            <h2>5. User Responsibilities & Conduct</h2>
+            <p>By using the platform, you agree not to:</p>
+            <ul class="data-list">
+              <li>Post fraudulent, misleading, or illegal content.</li>
+              <li>Harass, stalk, or abuse other community members.</li>
+              <li>
+                Scrape data or attempt to reverse-engineer the application.
+              </li>
+            </ul>
+          </section>
+
+          <section id="reviews">
+            <h2>6. Reviews & Ratings</h2>
+            <p>
+              Reviews must be based on actual interactions. We reserve the right
+              to remove any review that is determined to be fake, offensive, or
+              irrelevant to the service provided. We do not edit user reviews
+              prior to posting.
+            </p>
+          </section>
+
+          <section id="disclaimer">
+            <h2>7. Direct Contact Disclaimer</h2>
+            <div class="warning-box">
+              <strong>Risk Disclosure:</strong> Worknet provides communication
+              tools (WhatsApp/Phone) but does not monitor private conversations.
+              You assume all risk when contacting and meeting users identified
+              through the app.
+            </div>
+          </section>
+
+          <section id="liability">
+            <h2>8. No Liability for Services</h2>
+            <p>
+              Orbitra Tech is not responsible for any damage, injury, financial
+              loss, or misconduct resulting from an interaction initiated on
+              Worknet. Any disputes regarding quality, pricing, or
+              professionalism must be resolved directly between the parties
+              involved.
+            </p>
+          </section>
+
+          <section id="property">
+            <h2>9. Intellectual Property</h2>
+            <p>
+              The "Worknet" name, branding, logo, and source code are the
+              exclusive property of Orbitra Tech. No part of the application may
+              be reproduced or commercially exploited without our written
+              consent.
+            </p>
+          </section>
+
+          <section id="contact">
+            <h2>10. Contact Information</h2>
+            <div
+              class="highlight-box"
+              style="border-left: 4px solid var(--gradient-to)">
+              <p>For legal inquiries or reporting violations:</p>
+              <p>
+                <strong>Orbitra Tech (Pvt) Ltd.</strong><br />
+                <strong>Email:</strong> admin@orbitratech.net<br />
+                <strong>Location:</strong> Beruwala, Sri Lanka
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer>
+        <p>&copy; 2026 Orbitra Tech. All rights reserved.</p>
+        <p style="margin-top: 12px; font-size: 0.85rem; opacity: 0.7">
+          Crafted with excellence in Sri Lanka.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

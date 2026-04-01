@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy | Worknet by Orbitra Tech</title>
+    <meta
+      name="description"
+      content="Privacy Policy for Worknet - Find local help fast. Learn how we collect, use, and protect your data." />
+    <link rel="icon" type="image/png" href="/orbitra_logo.png" />
+    <!-- Google Fonts: Poppins (matches core site) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      :root {
+        /* Aligning with Slate-50/Slate-900 theme from Hero.tsx */
+        --bg: #f8fafc; /* slate-50 */
+        --card: #ffffff;
+        --text: #0f172a; /* slate-900 */
+        --muted: #475569; /* slate-600 */
+        --accent: #0ea5e9; /* sky-500/cyan-500 */
+        --border: #e2e8f0; /* slate-200 */
+        --gradient-from: #0ea5e9;
+        --gradient-to: #9333ea;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Subtle background glow consistent with Hero */
+      .bg-glow {
+        position: fixed;
+        top: -10%;
+        right: -5%;
+        width: 40%;
+        height: 40%;
+        background: radial-gradient(
+          circle,
+          rgba(14, 165, 233, 0.08) 0%,
+          transparent 70%
+        );
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 80px 24px;
+        position: relative;
+      }
+
+      .nav-back {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 600;
+        margin-bottom: 48px;
+        transition: all 0.3s;
+        gap: 8px;
+        background: white;
+        padding: 10px 20px;
+        border-radius: 99px;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+      }
+
+      .nav-back:hover {
+        color: var(--accent);
+        transform: translateX(-4px);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      }
+
+      header {
+        text-align: left;
+        margin-bottom: 80px;
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 40px;
+      }
+
+      header h1 {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+        margin-bottom: 16px;
+        color: var(--text);
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          to right,
+          var(--gradient-from),
+          var(--gradient-to)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      header p {
+        color: var(--muted);
+        font-size: 1.25rem;
+        font-weight: 500;
+        max-width: 700px;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 60px;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 40px;
+        height: min-content;
+      }
+
+      .sidebar h3 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        margin-bottom: 24px;
+        font-weight: 800;
+      }
+
+      .toc {
+        list-style: none;
+      }
+
+      .toc li {
+        margin-bottom: 16px;
+      }
+
+      .toc a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        display: block;
+      }
+
+      .toc a:hover {
+        color: var(--accent);
+        padding-left: 8px;
+      }
+
+      section {
+        margin-bottom: 64px;
+        scroll-margin-top: 40px;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 24px;
+        color: var(--text);
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      section p {
+        margin-bottom: 20px;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .data-list {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 32px;
+        list-style: none;
+        margin: 24px 0;
+        box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05);
+      }
+
+      .data-list li {
+        margin-bottom: 14px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .data-list li::before {
+        content: '•';
+        color: var(--accent);
+        font-weight: 900;
+        font-size: 1.4rem;
+        line-height: 1;
+      }
+
+      .highlight {
+        color: var(--text);
+        font-weight: 700;
+        border-bottom: 2px solid rgba(14, 165, 233, 0.2);
+      }
+
+      .contact-card {
+        background: white;
+        border: 2px solid var(--border);
+        border-radius: 32px;
+        padding: 40px;
+        margin-top: 32px;
+        box-shadow: 0 20px 40px -10px rgb(0 0 0 / 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          var(--gradient-from),
+          var(--gradient-to)
+        );
+      }
+
+      .badge {
+        display: inline-block;
+        background: rgba(14, 165, 233, 0.1);
+        color: var(--accent);
+        padding: 6px 16px;
+        border-radius: 99px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 100px;
+        padding: 60px 0;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      @media (max-width: 900px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          display: none;
+        }
+        header h1 {
+          font-size: 3rem;
+        }
+        .container {
+          padding-top: 40px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg-glow"></div>
+    <div class="container">
+      <a href="/" class="nav-back">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Home
+      </a>
+
+      <header>
+        <div class="badge">Legal Documentation</div>
+        <h1>Privacy <br /><span class="gradient-text">Policy</span></h1>
+        <p>
+          Worknet &ndash; A product of Orbitra Tech. Your privacy is our
+          priority as we build the future of local services.
+        </p>
+      </header>
+
+      <div class="content-grid">
+        <aside class="sidebar">
+          <h3>In this policy</h3>
+          <ul class="toc">
+            <li><a href="#intro">1. Introduction</a></li>
+            <li><a href="#collect">2. Data Collection</a></li>
+            <li><a href="#usage">3. Usage & Purpose</a></li>
+            <li><a href="#location">4. Location Services</a></li>
+            <li><a href="#visibility">5. Profile Visibility</a></li>
+            <li><a href="#sharing">6. Third Parties</a></li>
+            <li><a href="#security">7. Data Protection</a></li>
+            <li><a href="#rights">8. Your Rights</a></li>
+            <li><a href="#contact">9. Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <main>
+          <section id="intro">
+            <h2>1. Introduction</h2>
+            <p>
+              Worknet is a localized service discovery platform operated by
+              <span class="highlight">Orbitra Tech</span>. We believe in
+              transparency and autonomy over your personal information. This
+              document outlines how we collect, process, and safeguard your
+              data.
+            </p>
+          </section>
+
+          <section id="collect">
+            <h2>2. Information We Collect</h2>
+            <p>
+              We only collect information essential for connecting you with
+              verified experts and clients:
+            </p>
+            <ul class="data-list">
+              <li>
+                <strong>Identity:</strong> Full name and professional profile
+                image.
+              </li>
+              <li>
+                <strong>Connectivity:</strong> Phone number and direct WhatsApp
+                integration.
+              </li>
+              <li>
+                <strong>Professional:</strong> Biography, experience level, and
+                community feedback.
+              </li>
+              <li>
+                <strong>Metadata:</strong> Device type, performance logs, and
+                interaction timestamps.
+              </li>
+            </ul>
+          </section>
+
+          <section id="usage">
+            <h2>3. How We Use Your Data</h2>
+            <p>
+              Your data is processed to ensure a safe and efficient marketplace:
+            </p>
+            <ul class="data-list">
+              <li>Real-time mapping of service providers to user requests.</li>
+              <li>
+                Personalized search results based on historical interactions.
+              </li>
+              <li>Fraud detection and account security verification.</li>
+              <li>Technical optimization to improve app responsiveness.</li>
+            </ul>
+          </section>
+
+          <section id="location">
+            <h2>4. Essential Location Usage</h2>
+            <p>
+              Worknet is a <span class="highlight">location-based engine</span>.
+              To function correctly, the app requests access to your precise
+              location to show services "around you."
+            </p>
+            <p>
+              We recommend the "While using the app" permission. This data is
+              never sold or used for off-platform advertising tracking.
+            </p>
+          </section>
+
+          <section id="visibility">
+            <h2>5. Service Provider Visibility</h2>
+            <p>
+              If you list a service on Worknet, your professional profile data
+              becomes public to the community. This includes your name, photo,
+              and primary contact number, enabling users to reach out for
+              bookings immediately.
+            </p>
+          </section>
+
+          <section id="sharing">
+            <h2>6. Commitment to Data Integrity</h2>
+            <p>
+              <span class="highlight"
+                >Orbitra Tech does not sell personal data to third
+                parties.</span
+              >
+            </p>
+            <p>Information is only shared under specific circumstances:</p>
+            <ul class="data-list">
+              <li>
+                Facilitating the direct connection between you and a local
+                provider/client.
+              </li>
+              <li>Mandatory legal compliance under Sri Lankan jurisdiction.</li>
+              <li>Secure encryption via verified infrastructure partners.</li>
+            </ul>
+          </section>
+
+          <section id="security">
+            <h2>7. Security Architecture</h2>
+            <p>
+              We utilize military-grade AES-256 encryption at rest and secure
+              SSL/TLS channels for all network traffic. Our engineers
+              periodically audit our systems to prevent unauthorized access.
+            </p>
+          </section>
+
+          <section id="rights">
+            <h2>8. Your Digital Rights</h2>
+            <p>At any time, you may:</p>
+            <ul class="data-list">
+              <li>Download or view your complete profile history.</li>
+              <li>Update professional credentials and contact details.</li>
+              <li>Request immediate account termination and data erasure.</li>
+            </ul>
+          </section>
+
+          <section id="contact">
+            <h2>9. Reach Out</h2>
+            <div class="contact-card">
+              <p>For data inquiries, legal requests, or feedback:</p>
+              <p>
+                <strong>Orbitra Tech (Pvt) Ltd.</strong><br />
+                <strong>Email:</strong> admin@orbitratech.net<br />
+                <strong>Headquarters:</strong> 198/41 Sheikh Jamaldeen Road,
+                Beruwala, Sri Lanka
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer>
+        <p>&copy; 2026 Orbitra Tech. All rights reserved.</p>
+        <p style="margin-top: 12px; font-size: 0.85rem; opacity: 0.7">
+          Crafted with excellence in Sri Lanka.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
