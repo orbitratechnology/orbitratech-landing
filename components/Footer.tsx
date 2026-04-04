@@ -122,7 +122,7 @@ export default function Footer() {
               <li className='flex items-center gap-4 text-slate-400'>
                 <MapPin className='w-5 h-5 text-white' />
 
-                <span className='font-medium'>Sri Lanka</span>
+                <span className='font-medium'>Beruwala, Sri Lanka</span>
               </li>
             </ul>
           </div>
