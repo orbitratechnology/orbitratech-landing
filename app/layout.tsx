@@ -46,6 +46,7 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  category: 'technology',
 };
 
 export default function RootLayout({
@@ -64,7 +65,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'Organization',
+              '@type': 'ProfessionalService',
               name: 'Orbitra Tech',
               url: 'https://orbitratech.net',
               logo: 'https://orbitratech.net/orbitra_logo.png',
@@ -77,6 +78,15 @@ export default function RootLayout({
                 areaServed: 'LK',
                 availableLanguage: ['English', 'Sinhala'],
               },
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'LK',
+              },
+              sameAs: [
+                'https://www.linkedin.com/in/orbitra-tech-org-7206523a6',
+                'https://www.facebook.com/profile.php?id=61586622600161',
+                'https://github.com/orbitratechnology',
+              ],
             }),
           }}
         />

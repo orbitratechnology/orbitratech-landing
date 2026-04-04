@@ -14,11 +14,6 @@ const founders = [
         label: 'LinkedIn',
       },
       {
-        icon: FaTwitter,
-        url: 'https://x.com/AdhhamDev',
-        label: 'Twitter',
-      },
-      {
         icon: Mail,
         url: 'mailto:ahamedbilal622@gmail.com',
         label: 'Email',
