@@ -1,0 +1,54 @@
+/* Hallmark · macrostructure: Marquee Hero · tone: utilitarian · theme: Quiet (modern-minimal)
+ * nav: N5 Floating pill · footer: Ft5 Statement · accent: ink-blue ~240°
+ * paper-band: dark · display-style: geometric-sans · accent-hue: cool
+ */
+
+:root {
+  --color-paper: oklch(14% 0.02 260);
+  --color-paper-2: oklch(18% 0.025 260);
+  --color-paper-3: oklch(22% 0.03 260);
+  --color-ink: oklch(96% 0.01 260);
+  --color-ink-muted: oklch(72% 0.02 260);
+  --color-ink-subtle: oklch(55% 0.025 260);
+  --color-accent: oklch(72% 0.14 220);
+  --color-accent-strong: oklch(78% 0.16 200);
+  --color-accent-muted: oklch(72% 0.14 220 / 0.15);
+  --color-focus: oklch(78% 0.16 200);
+  --color-rule: oklch(32% 0.03 260);
+  --color-success: oklch(72% 0.14 155);
+
+  --font-display: var(--font-syne), system-ui, sans-serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.82rem + 0.25vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);
+  --text-display: clamp(2.5rem, 1.8rem + 3.5vw, 4.25rem);
+  --text-display-s: clamp(2rem, 1.5rem + 2.5vw, 3.25rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  --dur-fast: 150ms;
+  --dur-base: 280ms;
+  --dur-slow: 520ms;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+}

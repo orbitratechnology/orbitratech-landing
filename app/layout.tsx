@@ -1,20 +1,31 @@
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
+import { DM_Sans, Syne, Geist } from 'next/font/google';
 import './globals.css';
+import { cn } from "@/lib/utils";
 
-const poppins = Poppins({
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
+const syne = Syne({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--font-poppins',
+  weight: ['600', '700', '800'],
+  variable: '--font-syne',
+  display: 'swap',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-dm-sans',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://orbitratech.net'),
   title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
   description:
-    'Empowering Sri Lankan SMEs with practical, affordable digital solutions. Web development, mobile apps, AI automation, and more.',
+    'Empowering Sri Lankan SMEs with practical, affordable digital solutions. Web development, mobile apps, e-commerce, and more.',
   keywords:
-    'digital transformation, Sri Lanka SMEs, web development Sri Lanka, mobile app development AI automation, business digitalization',
+    'digital transformation, Sri Lanka SMEs, web development Sri Lanka, mobile app development, business digitalization',
   authors: [{ name: 'Adhham Safwan', url: 'https://adhham.dev' }],
   alternates: {
     canonical: '/',
@@ -28,7 +39,7 @@ export const metadata: Metadata = {
     url: '/',
     title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
     description:
-      'Empowering Sri Lankan SMEs with practical, affordable digital solutions. Web development & AI automation.',
+      'Empowering Sri Lankan SMEs with practical, affordable digital solutions. Web & mobile development.',
     images: ['/orbitra_logo.png'],
   },
   twitter: {
@@ -55,11 +66,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className={`${poppins.className} h-full antialiased`}>
+    <html
+      lang='en'
+      className={cn("h-full", "antialiased", syne.variable, dmSans.variable, "font-sans", geist.variable)}>
       <head>
         <meta name='apple-mobile-web-app-title' content='Orbitra Tech' />
       </head>
-      <body className='min-h-full flex flex-col'>
+      <body className='flex min-h-full flex-col'>
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{

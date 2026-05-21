@@ -1,0 +1,33 @@
+'use client';
+
+import { type ReactNode } from 'react';
+import { cn } from '@/lib/utils';
+import { BorderBeam } from './border-beam';
+
+type BeamCardProps = {
+  children: ReactNode;
+  className?: string;
+  beamDelay?: number;
+  beamSize?: number;
+};
+
+export function BeamCard({
+  children,
+  className,
+  beamDelay = 0,
+  beamSize = 100,
+}: BeamCardProps) {
+  return (
+    <div className={cn('relative overflow-hidden rounded-2xl', className)}>
+      {children}
+      <BorderBeam
+        size={beamSize}
+        duration={7}
+        delay={beamDelay}
+        borderWidth={1.5}
+        colorFrom='var(--color-accent)'
+        colorTo='var(--color-accent-strong)'
+      />
+    </div>
+  );
+}

@@ -1,310 +1,148 @@
 'use client';
 
-import { ArrowRight, Menu, X } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion/react';
+import { ArrowRight, Check } from 'lucide-react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
 import Link from 'next/link';
-import { useState } from 'react';
-import { cn } from '../lib/utils';
-import { AnimatedGradientText } from './ui/animated-gradient-text';
+import { useRef } from 'react';
+import { WHATSAPP_URL } from '@/lib/constants';
+import { HeroBrandOrbits } from './HeroBrandOrbits';
+import { AnimatedShinyText } from './ui/animated-shiny-text';
 import { FlickeringGrid } from './ui/flickering-grid';
 import { Meteors } from './ui/meteors';
-import { Particles } from './ui/particles';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 
-const WHATSAPP_URL =
-  "https://wa.me/94702495311?text=Hi%20Orbitra%20Tech,%20I'm%20interested%20in%20learning%20more%20about%20your%20services.%20Could%20you%20help%20me%20digitize%20my%20business?";
+gsap.registerPlugin(useGSAP);
 
-const WebVisual = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 120 120'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'>
-    <rect
-      x='15'
-      y='25'
-      width='90'
-      height='65'
-      rx='6'
-      fill='currentColor'
-      fillOpacity='0.05'
-      stroke='currentColor'
-      strokeWidth='3'
-    />
-    <circle cx='27' cy='35' r='3' fill='currentColor' />
-    <circle cx='37' cy='35' r='3' fill='currentColor' fillOpacity='0.4' />
-    <circle cx='47' cy='35' r='3' fill='currentColor' fillOpacity='0.4' />
-    <path d='M15 45H105' stroke='currentColor' strokeWidth='3' />
-    <rect x='25' y='55' width='40' height='8' rx='4' fill='currentColor' />
-    <rect
-      x='25'
-      y='70'
-      width='25'
-      height='6'
-      rx='3'
-      fill='currentColor'
-      fillOpacity='0.4'
-    />
-    <path
-      d='M80 58L90 68L80 78'
-      stroke='currentColor'
-      strokeWidth='4'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-);
-
-const MobileVisual = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 120 120'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'>
-    <rect
-      x='35'
-      y='15'
-      width='50'
-      height='90'
-      rx='12'
-      fill='currentColor'
-      fillOpacity='0.05'
-      stroke='currentColor'
-      strokeWidth='3'
-    />
-    <rect x='50' y='23' width='20' height='4' rx='2' fill='currentColor' />
-    <rect x='45' y='40' width='30' height='25' rx='6' fill='currentColor' />
-    <circle cx='50' cy='85' r='4' fill='currentColor' fillOpacity='0.3' />
-    <circle cx='60' cy='85' r='4' fill='currentColor' fillOpacity='0.6' />
-    <circle cx='70' cy='85' r='4' fill='currentColor' fillOpacity='0.3' />
-    <path
-      d='M45 75H75'
-      stroke='currentColor'
-      strokeWidth='3'
-      strokeLinecap='round'
-    />
-  </svg>
-);
-
-const SystemVisual = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 120 120'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'>
-    <path
-      d='M60 20L95 40V80L60 100L25 80V40L60 20Z'
-      fill='currentColor'
-      fillOpacity='0.05'
-      stroke='currentColor'
-      strokeWidth='3'
-      strokeLinejoin='round'
-    />
-    <path
-      d='M60 20V60M60 60L95 40M60 60L25 40'
-      stroke='currentColor'
-      strokeWidth='3'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <circle cx='60' cy='60' r='6' fill='currentColor' />
-    <circle cx='60' cy='20' r='5' fill='currentColor' />
-    <circle cx='95' cy='40' r='5' fill='currentColor' />
-    <circle cx='25' cy='40' r='5' fill='currentColor' />
-    <circle cx='95' cy='80' r='5' fill='currentColor' />
-    <circle cx='25' cy='80' r='5' fill='currentColor' />
-    <circle cx='60' cy='100' r='5' fill='currentColor' />
-  </svg>
-);
+const TRUST_POINTS = [
+  'Fixed pricing for growing SMEs',
+  'Web and mobile under one team',
+  'Based in Beruwala — remote worldwide',
+] as const;
 
 export default function Hero() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#services', label: 'Services' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#contact', label: 'Contact' },
-  ];
+  useGSAP(
+    () => {
+      const q = gsap.utils.selector(sectionRef);
+      const mm = gsap.matchMedia();
+
+      mm.add('(prefers-reduced-motion: reduce)', () => {
+        gsap.set(q('.hero-eyebrow, .hero-title, .hero-lead, .hero-cta, .hero-trust, .hero-visual'), {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          clearProps: 'transform',
+        });
+      });
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+        tl.from(q('.hero-eyebrow'), { autoAlpha: 0, y: 16, duration: 0.5 })
+          .from(q('.hero-title'), { autoAlpha: 0, y: 28, duration: 0.7 }, '-=0.2')
+          .from(q('.hero-lead'), { autoAlpha: 0, y: 20, duration: 0.6 }, '-=0.35')
+          .from(q('.hero-cta'), { autoAlpha: 0, y: 16, duration: 0.5, stagger: 0.08 }, '-=0.25')
+          .from(q('.hero-trust'), { autoAlpha: 0, y: 12, duration: 0.45, stagger: 0.06 }, '-=0.2')
+          .from(q('.hero-visual'), { autoAlpha: 0, scale: 0.96, duration: 0.9 }, '-=0.5');
+      });
+
+      return () => mm.revert();
+    },
+    { scope: sectionRef },
+  );
 
   return (
-    <div className='relative min-h-screen overflow-hidden bg-slate-50 text-slate-900'>
-      {/* Dynamic Background */}
-      <div className='absolute inset-0 z-0'>
-        <FlickeringGrid
-          className='absolute inset-0 z-0 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]'
-          squareSize={4}
-          gridGap={6}
-          color='#0ea5e9'
-          maxOpacity={0.15}
-          flickerChance={0.3}
-        />
-        <Particles
-          className='absolute inset-0 z-0'
-          quantity={100}
-          ease={80}
-          color='#0ea5e9'
-          refresh
-        />
-        <Meteors number={15} />
+    <section
+      ref={sectionRef}
+      className='relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28'>
+      <FlickeringGrid
+        className='absolute inset-0 z-0 opacity-30'
+        color='oklch(72% 0.14 220)'
+        maxOpacity={0.18}
+        flickerChance={0.12}
+        squareSize={4}
+        gridGap={8}
+      />
+      <div
+        className='pointer-events-none absolute inset-0 z-[1] opacity-40'
+        aria-hidden
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 50% at 70% 20%, var(--color-accent-muted), transparent 60%), radial-gradient(ellipse 50% 40% at 10% 80%, oklch(22% 0.04 280 / 0.4), transparent 55%)',
+        }}
+      />
+      <div
+        className='pointer-events-none absolute inset-0 z-[1] opacity-[0.04]'
+        aria-hidden
+        style={{
+          backgroundImage:
+            'linear-gradient(var(--color-ink) 1px, transparent 1px), linear-gradient(90deg, var(--color-ink) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+      <div className='pointer-events-none absolute inset-0 z-[1] overflow-hidden' aria-hidden>
+        <Meteors number={12} minDuration={3} maxDuration={8} angle={215} />
       </div>
 
-      <nav className='container relative z-40 p-8 mx-auto'>
-        <div className='flex items-center justify-between'>
-          <div className='flex items-center gap-2'>
-            <Link
-              href='/'
-              className='relative z-10 w-auto transition-transform duration-300 hover:scale-105'>
-              <img
-                src='/orbitra_logo.png'
-                alt='Orbitra Tech'
-                className='relative z-10 w-auto h-20 transition-transform duration-300 hover:scale-105'
-              />
-            </Link>
-          </div>
-          <div className='items-center hidden gap-8 px-8 font-semibold transition-all duration-300 md:flex text-slate-600'>
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className='transition-colors duration-200 hover:text-cyan-600'>
-                {link.label}
-              </a>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className='p-2 transition-colors rounded-lg md:hidden text-slate-600 hover:text-cyan-600 hover:bg-cyan-50'>
-            {isMenuOpen ? (
-              <X className='w-8 h-8' />
-            ) : (
-              <Menu className='w-8 h-8' />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile menu content */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              className='absolute left-0 right-0 z-50 p-6 mx-6 mt-4 border shadow-2xl md:hidden top-24 bg-white/90 backdrop-blur-xl rounded-3xl border-slate-200'>
-              <div className='flex flex-col gap-6 text-center'>
-                {navLinks.map((link, idx) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 * idx }}
-                    onClick={() => setIsMenuOpen(false)}
-                    className='text-xl font-bold transition-all duration-200 text-slate-700 hover:text-cyan-600'>
-                    {link.label}
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-
-      <div className='container relative z-10 px-6 pb-32 mx-auto'>
-        <div className='flex flex-col items-center text-center'>
-          <img
-            src='/orbitra_logo_wide.png'
-            alt='Orbitra Tech'
-            className='w-auto h-32 mb-8 md:h-48 drop-shadow-xl'
-          />
-
-          <h1 className='max-w-5xl mb-8 text-6xl font-black tracking-tight leading-[1.1] md:text-8xl text-slate-900'>
-            Build your <br className='hidden md:block' />
-            <AnimatedGradientText
-              speed={2}
-              colorFrom='#0ea5e9'
-              colorTo='#9333ea'>
-              Digital Empire
-            </AnimatedGradientText>
-          </h1>
-
-          <p className='max-w-2xl mb-12 text-lg font-medium leading-relaxed md:text-xl text-slate-600'>
-            At <strong className='text-slate-900'>Orbitra Tech</strong>, we
-            don&apos;t just build software. We architect the future of Sri
-            Lankan businesses through high-performance digital solutions that
-            scale.
+      <div className='container relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16'>
+        <div className='min-w-0'>
+          <p className='hero-eyebrow mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--color-rule)] bg-[var(--color-paper-2)]/90 px-4 py-1.5 text-sm font-medium backdrop-blur-sm'>
+            <span className='h-2 w-2 rounded-full bg-[var(--color-success)]' aria-hidden />
+            <AnimatedShinyText shimmerWidth={120} className='text-sm font-medium'>
+              Digital studio for Sri Lankan SMEs
+            </AnimatedShinyText>
           </p>
 
-          <div className='flex flex-col items-center justify-center gap-6 mb-24 sm:flex-row'>
+          <h1 className='hero-title font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]'>
+            Ship the digital tools your business needs — without enterprise
+            budgets
+          </h1>
+
+          <p className='hero-lead mt-6 max-w-xl text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)]'>
+            <strong className='font-semibold text-[var(--color-ink)]'>
+              Orbitra Tech
+            </strong>{' '}
+            designs and builds websites and mobile apps that help local
+            businesses win customers and save hours every week.
+          </p>
+
+          <div className='hero-cta mt-8 flex flex-col gap-3 sm:flex-row sm:items-center'>
             <a
               href={WHATSAPP_URL}
               target='_blank'
               rel='noopener noreferrer'
-              className='relative w-full group sm:w-auto hover:scale-[1.02] transition-transform duration-300'>
-              <div className='relative flex items-center justify-center gap-3 px-10 py-5 text-lg font-bold text-white transition-all duration-300 bg-black rounded-full shadow-lg'>
-                <WhatsAppIcon className='w-6 h-6 text-white' />
-                <span>Start Transformation</span>
-                <ArrowRight className='w-5 h-5 text-white transition-transform group-hover:translate-x-1' />
-              </div>
+              className='group inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full bg-[var(--color-accent)] px-7 py-3.5 text-base font-semibold text-[var(--color-paper)] transition-[transform,background] duration-[var(--dur-base)] hover:scale-[1.02] hover:bg-[var(--color-accent-strong)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+              <WhatsAppIcon className='h-5 w-5' />
+              Get a free consult
+              <ArrowRight className='h-4 w-4 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5' />
             </a>
-            <a
+            <Link
               href='#services'
-              className='flex items-center justify-center w-full px-10 py-5 text-lg font-medium text-black transition-all duration-300 bg-white border border-gray-300 rounded-full shadow-sm hover:bg-gray-100 hover:shadow-md hover:-translate-y-1 sm:w-auto'>
-              Explore Services
-            </a>
+              className='inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--color-rule)] bg-[var(--color-paper-2)] px-7 py-3.5 text-base font-medium text-[var(--color-ink)] transition-[border-color,background] duration-[var(--dur-base)] hover:border-[var(--color-accent)] hover:bg-[var(--color-paper-3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+              See what we build
+            </Link>
           </div>
 
-          <div className='grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3'>
-            {[
-              {
-                visual: WebVisual,
-                title: 'Modern Web',
-                desc: 'Enterprise-grade fast web apps',
-                color: 'cyan',
-              },
-              {
-                visual: MobileVisual,
-                title: 'Native Mobile',
-                desc: 'Exquisite iOS & Android apps',
-                color: 'purple',
-              },
-              {
-                visual: SystemVisual,
-                title: 'Smart Systems',
-                desc: 'Next-gen AI Automation',
-                color: 'blue',
-              },
-            ].map((feature, idx) => (
-              <div
-                key={idx}
-                className='relative p-6 overflow-hidden text-center transition-all duration-500 border shadow-xl sm:p-8 bg-white/80 border-slate-200 backdrop-blur-xl group rounded-3xl hover:border-cyan-400/50 hover:shadow-2xl'>
-                <div className='absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-b from-slate-50 to-transparent group-hover:opacity-100' />
-
-                <div
-                  className={cn(
-                    'relative flex items-center justify-center mb-8 rounded-2xl w-full h-40 transition-transform duration-500 group-hover:scale-105 shadow-inner bg-gradient-to-br',
-                    feature.color === 'cyan'
-                      ? 'from-cyan-50 to-white text-cyan-500 border border-cyan-100'
-                      : feature.color === 'purple'
-                        ? 'from-purple-50 to-white text-purple-500 border border-purple-100'
-                        : 'from-blue-50 to-white text-blue-500 border border-blue-100',
-                  )}>
-                  <feature.visual className='w-24 h-24 drop-shadow-sm' />
-                </div>
-                <h3 className='relative mb-2 text-2xl font-bold tracking-wide text-slate-900'>
-                  {feature.title}
-                </h3>
-                <p className='relative font-medium text-slate-600'>
-                  {feature.desc}
-                </p>
-              </div>
+          <ul className='hero-trust mt-10 flex flex-col gap-3 sm:gap-2'>
+            {TRUST_POINTS.map((point) => (
+              <li
+                key={point}
+                className='flex min-w-0 items-start gap-2.5 text-sm text-[var(--color-ink-muted)] md:text-[length:var(--text-sm)]'>
+                <Check
+                  className='mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent-strong)]'
+                  aria-hidden
+                />
+                <span>{point}</span>
+              </li>
             ))}
-          </div>
+          </ul>
+        </div>
+
+        <div className='hero-visual mx-auto w-full max-w-md overflow-visible lg:max-w-none'>
+          <HeroBrandOrbits />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

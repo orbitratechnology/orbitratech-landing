@@ -1,11 +1,14 @@
 import { Globe, Mail } from 'lucide-react';
+import Image from 'next/image';
 import { FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { ScrollReveal } from './motion/ScrollReveal';
+import { BeamCard } from './ui/beam-card';
 
-const founders = [
+const FOUNDERS = [
   {
     name: 'Bilal',
     role: 'Founder & CEO',
-    bio: "Leads Orbitra Tech's client strategy, commercial development, and project delivery. Built the company from zero capital into a full-service digital engineering firm, closing enterprise-level engagements",
+    bio: 'Leads client strategy, commercial development, and delivery — building Orbitra from zero into a full-service digital engineering firm.',
     image: '/bilal.jpg',
     socials: [
       {
@@ -23,103 +26,83 @@ const founders = [
   {
     name: 'Adhham',
     role: 'Founder & CTO',
-    bio: 'An expert software architect specializing in native mobile apps and modern web ecosystems. Adhham drives the technical innovation at Orbitra Tech, ensuring every line of code meets enterprise standards.',
+    bio: 'Architects native mobile and modern web systems — every build meets the bar we would ship for our own products.',
     image: '/adhham.jpg',
     website: 'https://adhham.dev',
     socials: [
-      {
-        icon: FaTwitter,
-        url: 'https://x.com/AdhhamDev',
-        label: 'Twitter',
-      },
+      { icon: FaTwitter, url: 'https://x.com/AdhhamDev', label: 'Twitter' },
       {
         icon: FaLinkedin,
         url: 'https://www.linkedin.com/in/adhham',
         label: 'LinkedIn',
       },
-      {
-        icon: Mail,
-        url: 'mailto:msmadhhamg@gmail.com',
-        label: 'Email',
-      },
-      {
-        icon: Globe,
-        url: 'https://adhham.dev',
-        label: 'Website',
-      },
+      { icon: Mail, url: 'mailto:msmadhhamg@gmail.com', label: 'Email' },
+      { icon: Globe, url: 'https://adhham.dev', label: 'Website' },
     ],
   },
-];
+] as const;
 
 export default function Founders() {
   return (
     <section
       id='founders'
-      className='relative py-32 bg-[#ffffff] overflow-hidden'>
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-900/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen' />
+      className='border-t border-[var(--color-rule)] py-20 md:py-28'>
+      <div className='container mx-auto max-w-6xl px-6'>
+        <ScrollReveal className='mx-auto mb-14 max-w-2xl text-center'>
+          <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>
+            The team behind your build
+          </h2>
+          <p className='mt-4 text-[length:var(--text-lg)] text-[var(--color-ink-muted)]'>
+            Two founders, one standard: software that earns trust with your
+            customers and your books.
+          </p>
+        </ScrollReveal>
 
-      <div className='container relative z-10 px-6 mx-auto'>
-        <div className='max-w-5xl mx-auto'>
-          <div className='mb-20 text-center'>
-            <h2 className='mb-6 text-4xl font-black tracking-tight text-black md:text-5xl'>
-              Meet the{' '}
-              <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-purple-500'>
-                Founders
-              </span>
-            </h2>
-            <p className='max-w-2xl mx-auto text-xl font-medium text-slate-400'>
-              The <strong>Orbitra Tech</strong> visionaries driving digital
-              transformation for businesses in Sri Lanka and beyond.
-            </p>
-          </div>
-
-          <div className='grid max-w-4xl gap-8 mx-auto md:grid-cols-2'>
-            {founders.map((founder, index) => (
-              <div key={index} className='h-full'>
-                <div className='flex flex-col items-center h-full p-10 text-center border shadow-xl rounded-3xl'>
-                  <div className='relative mb-6'>
-                    <img
-                      src={founder.image}
-                      alt={founder.name}
-                      className='relative object-cover w-40 h-40 transition-transform duration-500 rounded-full shadow-lg border-slate-700 group-hover:scale-105'
-                    />
-                  </div>
-
-                  <h3 className='mb-2 text-3xl font-black tracking-wide text-black'>
-                    {founder.name}
-                  </h3>
-                  <p className='mb-4 text-lg font-bold text-slate-500'>
-                    {founder.role}
-                  </p>
-                  <p className='max-w-xs mb-8 font-medium leading-relaxed text-slate-400'>
-                    {founder.bio}
-                  </p>
-
-                  <div className='flex items-center gap-4 mt-auto'>
-                    {founder.socials.map((social, idx) => {
-                      const Icon = social.icon;
-                      const isWebsite = social.label === 'Website';
-                      return (
-                        <a
-                          key={idx}
-                          href={
-                            isWebsite && founder.website
-                              ? founder.website
-                              : social.url
-                          }
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          className='p-3 transition-colors border rounded-full bg-white/5 border-slate-200 text-slate-500 hover:text-black hover:border-slate-400 hover:bg-slate-100'
-                          title={social.label}>
-                          <Icon className='w-5 h-5' />
-                        </a>
-                      );
-                    })}
-                  </div>
+        <div className='mx-auto grid max-w-4xl gap-6 md:grid-cols-2'>
+          {FOUNDERS.map((founder, i) => (
+            <ScrollReveal key={founder.name} delay={i * 0.1}>
+              <BeamCard beamDelay={i * 1.3} className='h-full'>
+                <article className='flex h-full min-w-0 flex-col items-center rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-8 text-center'>
+                <Image
+                  src={founder.image}
+                  alt={founder.name}
+                  width={160}
+                  height={160}
+                  className='mb-6 h-36 w-36 rounded-full object-cover ring-2 ring-[var(--color-rule)]'
+                />
+                <h3 className='font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--color-ink)]'>
+                  {founder.name}
+                </h3>
+                <p className='mt-1 text-sm font-semibold text-[var(--color-accent)]'>
+                  {founder.role}
+                </p>
+                <p className='mt-4 max-w-xs text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)]'>
+                  {founder.bio}
+                </p>
+                <div className='mt-6 flex flex-wrap justify-center gap-3'>
+                  {founder.socials.map((social) => {
+                    const Icon = social.icon;
+                    const href =
+                      social.label === 'Website' && 'website' in founder
+                        ? founder.website
+                        : social.url;
+                    return (
+                      <a
+                        key={social.label}
+                        href={href}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        title={social.label}
+                        className='rounded-full border border-[var(--color-rule)] p-3 text-[var(--color-ink-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+                        <Icon className='h-5 w-5' aria-hidden />
+                      </a>
+                    );
+                  })}
                 </div>
-              </div>
-            ))}
-          </div>
+                </article>
+              </BeamCard>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>

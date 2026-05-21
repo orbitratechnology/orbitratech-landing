@@ -1,0 +1,10 @@
+{
+  "plugins": {
+    "gsap-skills": {
+      "enabled": true
+    },
+    "shadcn": {
+      "enabled": true
+    }
+  }
+}
