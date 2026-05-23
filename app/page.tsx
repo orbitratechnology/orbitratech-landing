@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <PageMotion />
       <Nav />
-      <main className='min-w-0'>
+      <main id='content' tabIndex={-1} className='min-w-0 outline-none'>
         <Hero />
         <DeviceShowcase />
         <Process />

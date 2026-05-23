@@ -8,7 +8,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className='relative z-20 border-t border-[var(--color-rule)] bg-[var(--color-paper)] py-16'>
+    <footer className='deferred-section relative z-20 border-t border-[var(--color-rule)] bg-[var(--color-paper)] py-16'>
       <div className='container mx-auto max-w-6xl px-6'>
         <div className='flex flex-col gap-10 md:flex-row md:items-start md:justify-between'>
           <div className='max-w-md min-w-0'>
@@ -18,6 +18,7 @@ export default function Footer() {
               width={56}
               height={56}
               className='mb-4 h-14 w-auto'
+              loading='lazy'
             />
             <p className='text-[length:var(--text-base)] leading-relaxed text-[var(--color-ink-muted)]'>
               Practical digital products for Sri Lankan SMEs — web, mobile, and

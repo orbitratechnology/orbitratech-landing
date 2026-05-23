@@ -34,7 +34,6 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
   const memoizedColor = useMemo(() => {
@@ -123,20 +122,16 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
     let resizeObserver: ResizeObserver | null = null;
     let intersectionObserver: IntersectionObserver | null = null;
     let gridParams: ReturnType<typeof setupCanvas> | null = null;
+    let isRendering = false;
+    let intersecting = false;
+    let contentSkipped = false;
 
-    if (canvas && container && ctx) {
-      const updateCanvasSize = () => {
-        const newWidth = width || container.clientWidth;
-        const newHeight = height || container.clientHeight;
-        setCanvasSize({ width: newWidth, height: newHeight });
-        gridParams = setupCanvas(canvas, newWidth, newHeight);
-      };
-
-      updateCanvasSize();
+    const startAnimation = () => {
+      if (!canvas || !ctx || !gridParams || animationFrameId !== null) return;
 
       let lastTime = 0;
       const animate = (time: number) => {
-        if (!isInView || !gridParams) return;
+        if (!isRendering || !gridParams) return;
 
         const deltaTime = (time - lastTime) / 1000;
         lastTime = time;
@@ -154,6 +149,41 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
         animationFrameId = requestAnimationFrame(animate);
       };
 
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const stopAnimation = () => {
+      isRendering = false;
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    };
+
+    const setRendering = (next: boolean) => {
+      if (next === isRendering) return;
+      isRendering = next;
+      if (isRendering) {
+        startAnimation();
+      } else {
+        stopAnimation();
+      }
+    };
+
+    const updateRendering = () => {
+      setRendering(intersecting && !contentSkipped);
+    };
+
+    if (canvas && container && ctx) {
+      const updateCanvasSize = () => {
+        const newWidth = width || container.clientWidth;
+        const newHeight = height || container.clientHeight;
+        setCanvasSize({ width: newWidth, height: newHeight });
+        gridParams = setupCanvas(canvas, newWidth, newHeight);
+      };
+
+      updateCanvasSize();
+
       resizeObserver = new ResizeObserver(() => {
         updateCanvasSize();
       });
@@ -161,29 +191,42 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 
       intersectionObserver = new IntersectionObserver(
         ([entry]) => {
-          setIsInView(entry.isIntersecting);
+          intersecting = entry.isIntersecting;
+          updateRendering();
         },
         { threshold: 0 },
       );
       intersectionObserver.observe(canvas);
 
-      if (isInView) {
-        animationFrameId = requestAnimationFrame(animate);
-      }
+      const handleVisibilityChange = (event: Event) => {
+        contentSkipped = (event as ContentVisibilityAutoStateChangeEvent).skipped;
+        updateRendering();
+      };
+
+      container.addEventListener(
+        'contentvisibilityautostatechange',
+        handleVisibilityChange,
+      );
+
+      return () => {
+        stopAnimation();
+        if (resizeObserver) {
+          resizeObserver.disconnect();
+        }
+        if (intersectionObserver) {
+          intersectionObserver.disconnect();
+        }
+        container.removeEventListener(
+          'contentvisibilityautostatechange',
+          handleVisibilityChange,
+        );
+      };
     }
 
     return () => {
-      if (animationFrameId !== null) {
-        cancelAnimationFrame(animationFrameId);
-      }
-      if (resizeObserver) {
-        resizeObserver.disconnect();
-      }
-      if (intersectionObserver) {
-        intersectionObserver.disconnect();
-      }
+      stopAnimation();
     };
-  }, [setupCanvas, updateSquares, drawGrid, width, height, isInView]);
+  }, [setupCanvas, updateSquares, drawGrid, width, height]);
 
   return (
     <div

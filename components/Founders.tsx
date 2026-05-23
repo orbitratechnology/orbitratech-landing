@@ -46,7 +46,7 @@ export default function Founders() {
   return (
     <section
       id='founders'
-      className='border-t border-[var(--color-rule)] py-20 md:py-28'>
+      className='deferred-section border-t border-[var(--color-rule)] py-20 md:py-28'>
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto mb-14 max-w-2xl text-center'>
           <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>
@@ -69,6 +69,7 @@ export default function Founders() {
                   width={160}
                   height={160}
                   className='mb-6 h-36 w-36 rounded-full object-cover ring-2 ring-[var(--color-rule)]'
+                  loading='lazy'
                 />
                 <h3 className='font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--color-ink)]'>
                   {founder.name}

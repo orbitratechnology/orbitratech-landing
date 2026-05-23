@@ -4,7 +4,7 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { ServiceVisual } from '@/components/services/service-visuals';
 import { Button } from '@/components/ui/button';
@@ -108,6 +108,7 @@ export default function Services() {
   const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const visualRefs = useRef<(HTMLDivElement | null)[]>([]);
   const dotRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const servicesScrollTriggerRef = useRef<ScrollTrigger | null>(null);
 
   useGSAP(
     () => {
@@ -148,7 +149,7 @@ export default function Services() {
           scrollTrigger: {
             trigger: track,
             start: 'top top',
-            end: () => `+=${window.innerHeight * (count - 1)}`,
+            end: () => `+=${track.offsetHeight - window.innerHeight}`,
             pin: stage,
             scrub: 0.65,
             anticipatePin: 1,
@@ -178,6 +179,9 @@ export default function Services() {
             },
           },
         });
+
+        servicesScrollTriggerRef.current = tl.scrollTrigger ?? null;
+        ScrollTrigger.refresh();
 
         tl.to(timelineFillRef.current, {
           scaleY: 1,
@@ -232,19 +236,41 @@ export default function Services() {
         });
       });
 
-      return () => mm.revert();
+      return () => {
+        servicesScrollTriggerRef.current = null;
+        mm.revert();
+      };
     },
     { scope: sectionRef, dependencies: [] },
   );
 
+  useEffect(() => {
+    const refresh = () => ScrollTrigger.refresh();
+
+    refresh();
+    window.addEventListener('resize', refresh, { passive: true });
+    window.addEventListener('load', refresh);
+
+    return () => {
+      window.removeEventListener('resize', refresh);
+      window.removeEventListener('load', refresh);
+    };
+  }, []);
+
   const scrollToService = (index: number) => {
-    const track = trackRef.current;
-    if (!track || window.innerWidth < 1024) return;
+    if (window.innerWidth < 1024) return;
 
-    const segment = track.offsetHeight / SERVICES.length;
-    const top = track.offsetTop + segment * index;
+    const st = servicesScrollTriggerRef.current;
+    if (!st || SERVICES.length <= 1) return;
 
-    window.scrollTo({ top, behavior: 'smooth' });
+    const progress = index / (SERVICES.length - 1);
+    const top = st.start + (st.end - st.start) * progress;
+
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ? 'auto'
+      : 'smooth';
+
+    window.scrollTo({ top, behavior });
   };
 
   return (
@@ -283,7 +309,7 @@ export default function Services() {
         style={{ height: `${SERVICES.length * 100}vh` }}>
         <div
           ref={stageRef}
-          className='services-stage sticky top-0 flex h-screen items-center overflow-hidden bg-[var(--color-paper)]'
+          className='services-stage flex h-screen items-center overflow-hidden bg-[var(--color-paper)]'
           data-active-service='0'>
           <div className='container mx-auto grid h-full max-w-6xl grid-cols-[auto_minmax(0,1fr)_minmax(0,1fr)] items-center gap-10 px-6 py-12 xl:gap-14'>
             {/* Timeline */}

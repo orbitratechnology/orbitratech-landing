@@ -63,6 +63,10 @@ export function Iphone({
           <img
             src={src}
             alt=""
+            width={Math.round(SCREEN_WIDTH)}
+            height={Math.round(SCREEN_HEIGHT)}
+            loading="lazy"
+            decoding="async"
             className="block size-full object-contain p-[3px]"
           />
         </div>

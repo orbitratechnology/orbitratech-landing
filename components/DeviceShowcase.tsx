@@ -45,7 +45,7 @@ export default function DeviceShowcase() {
     <section
       ref={sectionRef}
       id='showcase'
-      className='bg-[color-mix(in_oklch,var(--color-surface-tint)_35%,var(--color-paper-2))] py-20 md:py-28'>
+      className='deferred-section bg-[color-mix(in_oklch,var(--color-surface-tint)_35%,var(--color-paper-2))] py-20 md:py-28'>
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto max-w-2xl text-center'>
           <p className='section-eyebrow mb-3'>What we ship</p>
@@ -83,6 +83,7 @@ export default function DeviceShowcase() {
               width={56}
               height={56}
               className='h-14 w-14 shrink-0 sm:h-16 sm:w-16'
+              loading='lazy'
               aria-hidden
             />
             <div className='min-w-0'>

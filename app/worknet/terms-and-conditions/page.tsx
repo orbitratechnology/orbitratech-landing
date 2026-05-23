@@ -78,7 +78,7 @@ export default function TermsAndConditions() {
             </ul>
           </aside>
 
-          <main>
+          <main id='content' tabIndex={-1} className='outline-none'>
             <section id='overview' className='mb-16 scroll-mt-10'>
               <h2 className='text-2xl font-extrabold mb-6 text-slate-900 tracking-tight flex items-center gap-4'>
                 1. Overview of the Service

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { cn } from "@/lib/utils";
@@ -8,6 +8,7 @@ const poppins = Poppins({
   weight: ['600', '700'],
   variable: '--font-poppins',
   display: 'swap',
+  adjustFontFallback: true,
 });
 
 const inter = Inter({
@@ -15,7 +16,14 @@ const inter = Inter({
   weight: ['500', '600', '700'],
   variable: '--font-inter',
   display: 'swap',
+  adjustFontFallback: true,
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#fafbfd',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://orbitratech.net'),
@@ -71,6 +79,9 @@ export default function RootLayout({
         <meta name='apple-mobile-web-app-title' content='Orbitra Tech' />
       </head>
       <body className='flex min-h-full flex-col'>
+        <a href='#content' className='skip-link'>
+          Skip to main content
+        </a>
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{

@@ -66,7 +66,7 @@ export default function About() {
     <section
       id='about'
       ref={sectionRef}
-      className='relative border-y border-[var(--color-rule)] bg-[var(--color-paper-2)]/50 py-20 md:py-28'>
+      className='deferred-section relative border-y border-[var(--color-rule)] bg-[var(--color-paper-2)]/50 py-20 md:py-28'>
       <div className='container relative z-10 mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto mb-12 max-w-2xl text-center md:mb-14'>
           <p className='section-eyebrow mb-3'>About</p>

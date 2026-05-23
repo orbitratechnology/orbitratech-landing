@@ -88,6 +88,10 @@ export function Safari({
           <img
             src={imageSrc}
             alt=""
+            width={SCREEN_WIDTH}
+            height={SCREEN_HEIGHT}
+            loading="lazy"
+            decoding="async"
             className="block size-full object-cover object-top"
           />
         </div>

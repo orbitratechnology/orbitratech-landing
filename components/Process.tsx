@@ -94,7 +94,7 @@ export default function Process() {
   return (
     <section
       ref={sectionRef}
-      className='relative border-y border-[var(--color-rule)] bg-[var(--color-paper-2)] py-16 md:py-20'>
+      className='deferred-section relative border-y border-[var(--color-rule)] bg-[var(--color-paper-2)] py-16 md:py-20'>
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto mb-12 max-w-2xl text-center'>
           <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)]'>

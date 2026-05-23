@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  scroll-behavior: smooth;
+  color-scheme: light;
   --background: var(--color-paper);
   --foreground: var(--color-ink);
   --card: var(--color-paper-2);
@@ -151,8 +151,73 @@ body {
   color: var(--color-ink);
   font-family: var(--font-body);
   font-weight: 500;
+  font-size-adjust: from-font;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+.deferred-section--tall {
+  contain-intrinsic-size: auto 1400px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+  padding: 0.625rem 1rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  box-shadow: 0 4px 16px var(--color-shadow-soft);
+  text-decoration: none;
+}
+
+.skip-link:not(:focus-visible) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.skip-link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.mobile-nav-dialog {
+  margin: 0;
+  padding: 1rem 1rem 0;
+  border: none;
+  background: transparent;
+  max-width: 100%;
+  width: 100%;
+  position: fixed;
+  inset: 4.5rem 0 auto;
+  height: fit-content;
+}
+
+.mobile-nav-dialog::backdrop {
+  background: oklch(24% 0.04 260 / 0.12);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 .section-eyebrow {
@@ -231,6 +296,7 @@ h4 {
   min-width: 0;
   font-family: var(--font-display);
   font-weight: 700;
+  font-size-adjust: cap-height from-font;
 }
 
 .service-visual-wrap {
