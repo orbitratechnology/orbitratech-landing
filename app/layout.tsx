@@ -1,21 +1,19 @@
 import type { Metadata } from 'next';
-import { DM_Sans, Syne, Geist } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const syne = Syne({
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['600', '700', '800'],
-  variable: '--font-syne',
+  weight: ['600', '700'],
+  variable: '--font-poppins',
   display: 'swap',
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-dm-sans',
+  weight: ['500', '600', '700'],
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -68,7 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={cn("h-full", "antialiased", syne.variable, dmSans.variable, "font-sans", geist.variable)}>
+      className={cn('h-full antialiased font-sans', poppins.variable, inter.variable)}>
       <head>
         <meta name='apple-mobile-web-app-title' content='Orbitra Tech' />
       </head>

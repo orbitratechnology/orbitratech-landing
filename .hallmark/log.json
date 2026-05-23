@@ -2,6 +2,13 @@
   {
     "date": "2026-05-21",
     "macrostructure": "Marquee Hero",
+    "theme": "Plain (light SME)",
+    "enrichment": "none (typography + orbit illustration)",
+    "brief": "Orbitra Tech · light theme redesign · reference-inspired minimal professional"
+  },
+  {
+    "date": "2026-05-21",
+    "macrostructure": "Marquee Hero",
     "theme": "Quiet",
     "enrichment": "E5 hand-built SVG (OrbitHeroIllustration)",
     "brief": "Orbitra Tech landing · SME digital studio · conversion-focused redesign"

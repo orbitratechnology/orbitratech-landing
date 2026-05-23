@@ -22,11 +22,11 @@ export function BeamCard({
       {children}
       <BorderBeam
         size={beamSize}
-        duration={7}
+        duration={10}
         delay={beamDelay}
-        borderWidth={1.5}
-        colorFrom='var(--color-accent)'
-        colorTo='var(--color-accent-strong)'
+        borderWidth={1}
+        colorFrom='var(--color-accent-muted)'
+        colorTo='var(--color-accent)'
       />
     </div>
   );

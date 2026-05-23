@@ -1,24 +1,30 @@
-/* Hallmark · macrostructure: Marquee Hero · tone: utilitarian · theme: Quiet (modern-minimal)
- * nav: N5 Floating pill · footer: Ft5 Statement · accent: ink-blue ~240°
- * paper-band: dark · display-style: geometric-sans · accent-hue: cool
+/* Hallmark · macrostructure: Marquee Hero · tone: utilitarian · theme: Plain (light SME)
+ * nav: N5 Floating pill · footer: Ft5 Statement · accent: brand-blue ~240°
+ * paper-band: light · display-style: geometric-sans · accent-hue: cool
  */
 
 :root {
-  --color-paper: oklch(14% 0.02 260);
-  --color-paper-2: oklch(18% 0.025 260);
-  --color-paper-3: oklch(22% 0.03 260);
-  --color-ink: oklch(96% 0.01 260);
-  --color-ink-muted: oklch(72% 0.02 260);
-  --color-ink-subtle: oklch(55% 0.025 260);
-  --color-accent: oklch(72% 0.14 220);
-  --color-accent-strong: oklch(78% 0.16 200);
-  --color-accent-muted: oklch(72% 0.14 220 / 0.15);
-  --color-focus: oklch(78% 0.16 200);
-  --color-rule: oklch(32% 0.03 260);
-  --color-success: oklch(72% 0.14 155);
+  --color-paper: oklch(99.2% 0.006 240);
+  --color-paper-2: oklch(100% 0 0);
+  --color-paper-3: oklch(96.5% 0.012 240);
+  --color-surface-tint: oklch(96% 0.025 235);
+  --color-ink: oklch(24% 0.04 260);
+  --color-ink-muted: oklch(48% 0.02 260);
+  --color-ink-subtle: oklch(62% 0.015 260);
+  --color-accent: oklch(52% 0.16 240);
+  --color-accent-strong: oklch(45% 0.17 240);
+  --color-accent-muted: oklch(52% 0.16 240 / 0.1);
+  --color-focus: oklch(52% 0.16 240);
+  --color-rule: oklch(91% 0.012 240);
+  --color-success: oklch(52% 0.14 155);
+  --color-whatsapp: oklch(52% 0.14 155);
+  --color-whatsapp-strong: oklch(45% 0.15 155);
+  --color-whatsapp-muted: oklch(52% 0.14 155 / 0.12);
+  --color-shadow: oklch(24% 0.04 260 / 0.08);
+  --color-shadow-soft: oklch(24% 0.04 260 / 0.04);
 
-  --font-display: var(--font-syne), system-ui, sans-serif;
-  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+  --font-display: var(--font-poppins), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
 
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;

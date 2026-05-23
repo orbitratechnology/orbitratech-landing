@@ -47,9 +47,7 @@ export default function DeviceShowcase() {
       className='border-y border-[var(--color-rule)] bg-[var(--color-paper-2)]/40 py-20 md:py-28'>
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto max-w-2xl text-center'>
-          <p className='mb-3 text-sm font-semibold tracking-wide text-[var(--color-accent-strong)] uppercase'>
-            What we ship
-          </p>
+          <p className='section-eyebrow mb-3'>What we ship</p>
           <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)]'>
             Websites and apps your customers actually use
           </h2>
@@ -63,11 +61,11 @@ export default function DeviceShowcase() {
           <Safari
             url='orbitratech.net'
             imageSrc='/showcase/showcase-desktop.png'
-            className='relative z-0 w-full'
+            className='relative z-0 w-full rounded-xl shadow-[0_1px_2px_var(--color-shadow-soft),0_20px_56px_var(--color-shadow)]'
           />
 
           <div
-            className='absolute bottom-[-7%] -right-[7%] z-20 w-[22%] min-w-[108px] max-w-48 -translate-x-[8%] filter drop-shadow-[0_28px_52px_rgba(0,0,0,0.55)]'
+            className='absolute bottom-[-7%] -right-[7%] z-20 w-[22%] min-w-[108px] max-w-48 -translate-x-[8%] drop-shadow-[0_8px_24px_var(--color-shadow-soft)] drop-shadow-[0_24px_56px_var(--color-shadow)]'
             aria-hidden>
             <Iphone
               className='w-full'
@@ -75,7 +73,7 @@ export default function DeviceShowcase() {
             />
           </div>
 
-          <div className='absolute -left-[7%] -bottom-[7%] z-30 flex w-[min(100%,320px)] items-center gap-4 rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper)]/95 p-5 shadow-[0_20px_56px_oklch(0_0_0_/_0.4)] backdrop-blur-md sm:gap-5 sm:p-6'>
+          <div className='absolute -left-[7%] -bottom-[7%] z-30 flex w-[min(100%,320px)] items-center gap-4 rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-5 shadow-[0_1px_2px_var(--color-shadow-soft),0_16px_40px_var(--color-shadow)] sm:gap-5 sm:p-6'>
             <Image
               src='/orbitra_logo.png'
               alt=''

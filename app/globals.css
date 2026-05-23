@@ -7,24 +7,24 @@
 
 :root {
   scroll-behavior: smooth;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: var(--color-paper-2);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-paper-2);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-accent);
+  --primary-foreground: var(--color-paper-2);
+  --secondary: var(--color-paper-3);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-paper-3);
+  --muted-foreground: var(--color-ink-muted);
+  --accent: var(--color-paper-3);
+  --accent-foreground: var(--color-ink);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: var(--color-rule);
+  --input: var(--color-rule);
+  --ring: var(--color-focus);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -48,8 +48,8 @@
   --animate-meteor: meteor 5s linear infinite;
   --animate-gradient: gradient 8s linear infinite;
   --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
+  --font-heading: var(--font-poppins), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -147,11 +147,81 @@ body {
 }
 
 body {
-  background: var(--color-paper);
+  background:
+    radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      var(--color-surface-tint),
+      transparent 58%
+    ),
+    var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.section-eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.btn-whatsapp {
+  background: var(--color-whatsapp);
+  color: var(--color-paper-2);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    background var(--dur-base) var(--ease-out);
+}
+
+.btn-whatsapp:hover {
+  background: var(--color-whatsapp-strong);
+  transform: scale(1.01);
+}
+
+.btn-whatsapp:active {
+  transform: scale(0.99);
+}
+
+.btn-whatsapp:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.btn-brand {
+  background: var(--color-accent);
+  color: var(--color-paper-2);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    background var(--dur-base) var(--ease-out);
+}
+
+.btn-brand:hover {
+  background: var(--color-accent-strong);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-rule);
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    background var(--dur-base) var(--ease-out);
+}
+
+.btn-outline:hover {
+  border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-rule));
+  background: var(--color-paper-3);
+}
+
+.surface-card {
+  border: 1px solid var(--color-rule);
+  background: var(--color-paper-2);
+  box-shadow: 0 1px 2px var(--color-shadow-soft);
 }
 
 ::selection {
@@ -161,9 +231,12 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   overflow-wrap: anywhere;
   min-width: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
 }
 
 .service-visual-wrap {
@@ -172,11 +245,23 @@ h3 {
   border-radius: 0.75rem;
 }
 
+.service-visual-showcase {
+  height: min(22rem, 52vw);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-rule);
+  background: color-mix(in oklch, var(--color-paper-2) 60%, transparent);
+}
+
 .service-visual {
   height: 100%;
   width: 100%;
   opacity: 0.92;
-  transition: opacity var(--dur-base, 0.25s) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.service-visual--showcase {
+  opacity: 1;
 }
 
 .service-lottie {
@@ -186,6 +271,7 @@ h3 {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: var(--space-md);
 }
 
 .service-lottie__player {
@@ -195,25 +281,51 @@ h3 {
   max-width: 100%;
   transform: scale(var(--lottie-scale, 1));
   transform-origin: center center;
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .service-lottie__player svg {
   height: 100% !important;
   width: 100% !important;
+  object-fit: contain;
 }
 
-.group:hover .service-visual {
-  opacity: 1;
+.services-static-fallback {
+  display: block;
 }
 
-.group:hover .service-lottie__player {
-  transform: scale(calc(var(--lottie-scale, 1) * 1.03));
+@media (min-width: 1024px) {
+  .services-static-fallback {
+    display: none;
+  }
+}
+
+.services-scroll-track {
+  display: none;
+  margin-top: calc(var(--space-2xl) * -1);
+}
+
+@media (min-width: 1024px) {
+  .services-scroll-track {
+    display: block;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .services-scroll-track {
+    display: none !important;
+  }
+
+  .services-static-fallback {
+    display: block !important;
+  }
+
+  .service-panel,
+  .service-visual-panel {
+    will-change: auto;
   }
 
   *,
@@ -230,6 +342,38 @@ h3 {
       translateY(calc(var(--radius) * 1px))
       rotate(calc(var(--angle) * -1deg));
   }
+}
+
+.services-stage {
+  isolation: isolate;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 100% 50%,
+      var(--color-surface-tint),
+      transparent 65%
+    ),
+    var(--color-paper);
+}
+
+.services-timeline-fill {
+  will-change: transform;
+}
+
+.services-timeline-dot:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.service-panel,
+.service-visual-panel {
+  will-change: opacity, transform;
+}
+
+.service-visual-panel {
+  box-shadow:
+    0 1px 2px var(--color-shadow-soft),
+    0 12px 32px var(--color-shadow);
 }
 
 .dark {
@@ -271,7 +415,8 @@ h3 {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-medium;
+    font-family: var(--font-body);
   }
   html {
     @apply font-sans;

@@ -1,11 +1,11 @@
 'use client';
 
-import { ArrowRight, Check } from 'lucide-react';
+import { WHATSAPP_URL } from '@/lib/constants';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
+import { ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
 import { useRef } from 'react';
-import { WHATSAPP_URL } from '@/lib/constants';
 import { HeroBrandOrbits } from './HeroBrandOrbits';
 import { AnimatedShinyText } from './ui/animated-shiny-text';
 import { FlickeringGrid } from './ui/flickering-grid';
@@ -57,49 +57,51 @@ export default function Hero() {
       ref={sectionRef}
       className='relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28'>
       <FlickeringGrid
-        className='absolute inset-0 z-0 opacity-30'
-        color='oklch(72% 0.14 220)'
-        maxOpacity={0.18}
-        flickerChance={0.12}
+        className='absolute inset-0 z-0 opacity-20'
+        color='oklch(52% 0.16 240)'
+        maxOpacity={0.08}
+        flickerChance={0.08}
         squareSize={4}
         gridGap={8}
       />
       <div
-        className='pointer-events-none absolute inset-0 z-[1] opacity-40'
+        className='pointer-events-none absolute inset-0 z-[1]'
         aria-hidden
         style={{
           background:
-            'radial-gradient(ellipse 70% 50% at 70% 20%, var(--color-accent-muted), transparent 60%), radial-gradient(ellipse 50% 40% at 10% 80%, oklch(22% 0.04 280 / 0.4), transparent 55%)',
+            'radial-gradient(ellipse 80% 55% at 50% -10%, var(--color-surface-tint), transparent 62%)',
         }}
       />
       <div
-        className='pointer-events-none absolute inset-0 z-[1] opacity-[0.04]'
+        className='pointer-events-none absolute inset-0 z-[1] opacity-[0.035]'
         aria-hidden
         style={{
           backgroundImage:
-            'linear-gradient(var(--color-ink) 1px, transparent 1px), linear-gradient(90deg, var(--color-ink) 1px, transparent 1px)',
+            'linear-gradient(var(--color-rule) 1px, transparent 1px), linear-gradient(90deg, var(--color-rule) 1px, transparent 1px)',
           backgroundSize: '48px 48px',
         }}
       />
-      <div className='pointer-events-none absolute inset-0 z-[1] overflow-hidden' aria-hidden>
-        <Meteors number={12} minDuration={3} maxDuration={8} angle={215} />
+      <div className='pointer-events-none absolute inset-0 z-[1] overflow-hidden opacity-40' aria-hidden>
+        <Meteors number={8} minDuration={4} maxDuration={10} angle={215} />
       </div>
 
       <div className='container relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16'>
-        <div className='min-w-0'>
-          <p className='hero-eyebrow mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--color-rule)] bg-[var(--color-paper-2)]/90 px-4 py-1.5 text-sm font-medium backdrop-blur-sm'>
-            <span className='h-2 w-2 rounded-full bg-[var(--color-success)]' aria-hidden />
+        <div className='min-w-0 text-center lg:text-left'>
+          <p className='hero-eyebrow mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--color-rule)] bg-[var(--color-paper-2)] px-4 py-1.5 text-sm font-medium shadow-[0_1px_2px_var(--color-shadow-soft)]'>
+            <span className='h-2 w-2 rounded-full bg-[var(--color-accent)]' aria-hidden />
             <AnimatedShinyText shimmerWidth={120} className='text-sm font-medium'>
-              Digital studio for Sri Lankan SMEs
+              For Sri Lankan small & medium businesses
             </AnimatedShinyText>
           </p>
 
-          <h1 className='hero-title font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]'>
-            Ship the digital tools your business needs — without enterprise
-            budgets
+          <h1 className='hero-title font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.08] tracking-tight text-[var(--color-ink)]'>
+            Get more customers.{' '}
+            <span className='text-[var(--color-accent)]'>
+              Run your business smoother.
+            </span>
           </h1>
 
-          <p className='hero-lead mt-6 max-w-xl text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)]'>
+          <p className='hero-lead mx-auto mt-6 max-w-xl text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)] lg:mx-0'>
             <strong className='font-semibold text-[var(--color-ink)]'>
               Orbitra Tech
             </strong>{' '}
@@ -107,30 +109,34 @@ export default function Hero() {
             businesses win customers and save hours every week.
           </p>
 
-          <div className='hero-cta mt-8 flex flex-col gap-3 sm:flex-row sm:items-center'>
+          <div className='hero-cta mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start'>
             <a
               href={WHATSAPP_URL}
               target='_blank'
               rel='noopener noreferrer'
-              className='group inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full bg-[var(--color-accent)] px-7 py-3.5 text-base font-semibold text-[var(--color-paper)] transition-[transform,background] duration-[var(--dur-base)] hover:scale-[1.02] hover:bg-[var(--color-accent-strong)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+              className='btn-whatsapp group inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-full px-7 py-3.5 text-base font-semibold sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
               <WhatsAppIcon className='h-5 w-5' />
-              Get a free consult
-              <ArrowRight className='h-4 w-4 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5' />
+              Talk on WhatsApp
             </a>
             <Link
-              href='#services'
-              className='inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--color-rule)] bg-[var(--color-paper-2)] px-7 py-3.5 text-base font-medium text-[var(--color-ink)] transition-[border-color,background] duration-[var(--dur-base)] hover:border-[var(--color-accent)] hover:bg-[var(--color-paper-3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
-              See what we build
+              href='#contact'
+              className='btn-outline group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-base font-medium sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+              Book a free consultation
+              <ArrowRight className='h-4 w-4 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5' />
             </Link>
           </div>
 
-          <ul className='hero-trust mt-10 flex flex-col gap-3 sm:gap-2'>
+          <p className='hero-trust mt-4 text-sm text-[var(--color-ink-subtle)]'>
+            We reply within 2 hours (9am–8pm, Mon–Sat).
+          </p>
+
+          <ul className='hero-trust mt-8 flex flex-col gap-3 sm:gap-2'>
             {TRUST_POINTS.map((point) => (
               <li
                 key={point}
-                className='flex min-w-0 items-start gap-2.5 text-sm text-[var(--color-ink-muted)] md:text-[length:var(--text-sm)]'>
+                className='flex min-w-0 items-start justify-center gap-2.5 text-sm text-[var(--color-ink-muted)] md:text-[length:var(--text-sm)] lg:justify-start'>
                 <Check
-                  className='mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent-strong)]'
+                  className='mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]'
                   aria-hidden
                 />
                 <span>{point}</span>

@@ -42,16 +42,14 @@ export const Meteors = ({
   return (
     <>
       {[...meteorStyles].map((style, idx) => (
-        // Meteor Head
         <span
           key={idx}
           style={{ ...style }}
           className={cn(
-            'animate-meteor pointer-events-none absolute h-0.5 w-0.5 rotate-(--angle) rounded-full bg-slate-100 shadow-[0_0_0_1px_#ffffff10]',
+            'animate-meteor pointer-events-none absolute h-0.5 w-0.5 rotate-(--angle) rounded-full bg-[var(--color-ink-subtle)]',
             className,
           )}>
-          {/* Meteor Tail */}
-          <div className='pointer-events-none absolute top-1/2 -z-10 h-px w-[50px] -translate-y-1/2 bg-gradient-to-r from-slate-200 to-transparent' />
+          <div className='pointer-events-none absolute top-1/2 -z-10 h-px w-[40px] -translate-y-1/2 bg-gradient-to-r from-[var(--color-rule)] to-transparent' />
         </span>
       ))}
     </>

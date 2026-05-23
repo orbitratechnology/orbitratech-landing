@@ -16,16 +16,16 @@ import { OrbitingCircles } from './ui/orbiting-circles';
 
 const OUTER_ORBIT_ICONS = [
   { id: 'android', label: 'Android', Icon: FaAndroid, color: '#3DDC84' },
-  { id: 'ios', label: 'iOS', Icon: FaApple, color: '#F5F5F7' },
-  { id: 'appstore', label: 'App Store', Icon: SiAppstore, color: '#0D96FF' },
+  { id: 'ios', label: 'iOS', Icon: FaApple, color: 'var(--color-ink)' },
+  { id: 'appstore', label: 'App Store', Icon: SiAppstore, color: 'var(--color-accent)' },
   { id: 'playstore', label: 'Play Store', Icon: SiGoogleplay, color: '#00A173' },
   { id: 'google', label: 'Google', Icon: SiGoogle, color: '#4285F4' },
 ] as const;
 
 const INNER_ORBIT_ICONS = [
-  { id: 'website', label: 'Website', Icon: FaGlobe, color: '#60A5FA' },
-  { id: 'mobile', label: 'Mobile', Icon: FaMobileScreenButton, color: '#818CF8' },
-  { id: 'desktop', label: 'Desktop', Icon: FaDesktop, color: '#A78BFA' },
+  { id: 'website', label: 'Website', Icon: FaGlobe, color: 'var(--color-accent)' },
+  { id: 'mobile', label: 'Mobile', Icon: FaMobileScreenButton, color: 'var(--color-accent-strong)' },
+  { id: 'desktop', label: 'Desktop', Icon: FaDesktop, color: 'var(--color-ink-muted)' },
   { id: 'ipad', label: 'iPad', Icon: FaTabletScreenButton, color: '#FB923C' },
 ] as const;
 
@@ -42,7 +42,7 @@ function OrbitPlatformIcon({
     <div
       className='flex size-full items-center justify-center'
       title={label}>
-      <div className='flex size-full items-center justify-center rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)]/95 shadow-[0_8px_28px_oklch(0_0_0_/_0.35)] backdrop-blur-sm'>
+      <div className='flex size-full items-center justify-center rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] shadow-[0_4px_16px_var(--color-shadow-soft)]'>
         <Icon
           className='size-[58%]'
           style={{ color }}
@@ -95,17 +95,23 @@ export function HeroBrandOrbits({ className }: { className?: string }) {
 
       <div className='pointer-events-none absolute inset-0 z-10 flex items-center justify-center'>
         <div
-          className='absolute size-[38%] rounded-full bg-[var(--color-accent-muted)] blur-3xl'
+          className='absolute size-[52%] rounded-full'
+          style={{
+            background:
+              'radial-gradient(circle, var(--color-accent-muted) 0%, transparent 68%)',
+          }}
           aria-hidden
         />
-        <Image
-          src='/orbitra_logo.png'
-          alt=''
-          width={96}
-          height={96}
-          className='relative size-20 sm:size-24'
-          aria-hidden
-        />
+        <div className='relative flex size-[5.5rem] items-center justify-center rounded-full border border-[var(--color-rule)] bg-[var(--color-paper-2)] shadow-[0_4px_20px_var(--color-shadow-soft)] sm:size-[6.5rem]'>
+          <Image
+            src='/orbitra_logo.png'
+            alt=''
+            width={96}
+            height={96}
+            className='size-[68%] object-contain'
+            aria-hidden
+          />
+        </div>
       </div>
     </div>
   );

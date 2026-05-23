@@ -122,7 +122,7 @@ export default function About() {
             </div>
 
             <BeamCard beamDelay={2} className='mt-6'>
-              <div className='rounded-2xl border border-[var(--color-accent)]/30 bg-[var(--color-accent-muted)] p-5 md:p-6'>
+              <div className='surface-card rounded-2xl p-5 md:p-6'>
                 <p className='text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)]'>
                   <strong className='text-[var(--color-ink)]'>Mission:</strong>{' '}
                   Make high-end web and mobile accessible to every Sri Lankan

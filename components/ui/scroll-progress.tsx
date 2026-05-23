@@ -19,7 +19,7 @@ export function ScrollProgress({
     <motion.div
       ref={ref}
       className={cn(
-        'fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-linear-to-r from-[var(--color-accent)] via-[var(--color-accent-strong)] to-[var(--color-success)]',
+        'fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-[var(--color-accent)]',
         className,
       )}
       style={{ scaleX: scrollYProgress }}

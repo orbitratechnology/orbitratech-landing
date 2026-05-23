@@ -26,8 +26,8 @@ export default function Nav() {
         className={cn(
           'mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full border px-4 py-2.5 transition-[background,border-color,box-shadow] duration-[var(--dur-base)] md:px-5',
           scrolled
-            ? 'border-[var(--color-rule)] bg-[var(--color-paper)]/90 shadow-[0_8px_32px_oklch(0%_0_0/0.35)] backdrop-blur-xl'
-            : 'border-transparent bg-transparent',
+            ? 'border-[var(--color-rule)] bg-[var(--color-paper-2)]/95 shadow-[0_4px_24px_var(--color-shadow-soft)] backdrop-blur-xl'
+            : 'border-transparent bg-[var(--color-paper)]/70 backdrop-blur-sm',
         )}
         aria-label='Primary'>
         <Link href='/' className='flex shrink-0 items-center gap-2.5'>
@@ -49,7 +49,7 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className='rounded-full px-3.5 py-2 text-sm font-medium text-[var(--color-ink-muted)] transition-colors duration-[var(--dur-fast)] hover:bg-[var(--color-paper-3)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+              className='rounded-full px-3.5 py-2 text-sm font-semibold text-[var(--color-ink-muted)] transition-colors duration-[var(--dur-fast)] hover:bg-[var(--color-paper-3)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
               {link.label}
             </Link>
           ))}
@@ -59,9 +59,9 @@ export default function Nav() {
           href={WHATSAPP_URL}
           target='_blank'
           rel='noopener noreferrer'
-          className='hidden items-center gap-2 rounded-full bg-[var(--color-accent)] px-4 py-2.5 text-sm font-semibold text-[var(--color-paper)] transition-[transform,background] duration-[var(--dur-base)] hover:scale-[1.02] hover:bg-[var(--color-accent-strong)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)] md:inline-flex'>
+          className='btn-whatsapp hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold md:inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
           <WhatsAppIcon className='h-4 w-4' />
-          Book a call
+          Talk on WhatsApp
         </a>
 
         <button
@@ -82,14 +82,14 @@ export default function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className='mx-auto mt-2 max-w-6xl overflow-hidden rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-4 shadow-xl md:hidden'>
+            className='mx-auto mt-2 max-w-6xl overflow-hidden rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-4 shadow-[0_8px_32px_var(--color-shadow-soft)] md:hidden'>
             <div className='flex flex-col gap-1'>
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className='rounded-xl px-4 py-3 text-base font-medium text-[var(--color-ink)] hover:bg-[var(--color-paper-3)]'>
+                  className='rounded-xl px-4 py-3 text-base font-semibold text-[var(--color-ink)] hover:bg-[var(--color-paper-3)]'>
                   {link.label}
                 </Link>
               ))}
@@ -97,9 +97,9 @@ export default function Nav() {
                 href={WHATSAPP_URL}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='mt-2 flex items-center justify-center gap-2 rounded-full bg-[var(--color-accent)] px-4 py-3.5 text-base font-semibold text-[var(--color-paper)]'>
+                className='btn-whatsapp mt-2 flex items-center justify-center gap-2 rounded-full px-4 py-3.5 text-base font-semibold'>
                 <WhatsAppIcon className='h-5 w-5' />
-                Book a call
+                Talk on WhatsApp
               </a>
             </div>
           </motion.div>

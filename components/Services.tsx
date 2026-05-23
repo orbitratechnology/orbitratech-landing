@@ -3,35 +3,15 @@
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 import { useRef } from 'react';
-import type { IconType } from 'react-icons';
-import {
-  FaDesktop,
-  FaGlobe,
-  FaMobileScreenButton,
-} from 'react-icons/fa6';
-import { SiGoogle, SiGoogleplay } from 'react-icons/si';
 
+import { ServiceVisual } from '@/components/services/service-visuals';
+import { Button } from '@/components/ui/button';
+import { SERVICES, type ServiceData, type ServiceIcon } from '@/lib/services-data';
 import { cn } from '@/lib/utils';
-import {
-  ServiceVisual,
-  type ServiceVisualId,
-} from './services/service-visuals';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-type ServiceIcon = {
-  Icon: IconType;
-  color: string;
-  label: string;
-};
-
-type Service = {
-  name: string;
-  description: string;
-  visualId: ServiceVisualId;
-  icon: ServiceIcon;
-};
 
 function ServiceOrbitIcon({
   Icon,
@@ -42,7 +22,7 @@ function ServiceOrbitIcon({
   return (
     <div
       className={cn(
-        'flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[var(--color-rule)] bg-[var(--color-paper-2)]/95 shadow-[0_8px_28px_oklch(0_0_0_/_0.12)] backdrop-blur-sm',
+        'flex size-12 shrink-0 items-center justify-center rounded-xl border border-[var(--color-rule)] bg-[var(--color-paper-2)]/95 shadow-[0_8px_28px_oklch(0_0_0_/_0.12)] backdrop-blur-sm',
         className,
       )}
       title={label}>
@@ -51,148 +31,334 @@ function ServiceOrbitIcon({
   );
 }
 
-const SERVICES: Service[] = [
-  {
-    name: 'Website development',
-    description:
-      'Fast, conversion-focused sites that earn trust on first visit.',
-    visualId: 'website',
-    icon: { Icon: FaGlobe, color: '#60A5FA', label: 'Website' },
-  },
-  {
-    name: 'Mobile apps',
-    description:
-      'Native iOS and Android experiences your customers keep installed.',
-    visualId: 'mobile',
-    icon: { Icon: FaMobileScreenButton, color: '#818CF8', label: 'Mobile' },
-  },
-  {
-    name: 'Digital transformation',
-    description:
-      'Modernize operations with the right stack — not the trendiest one.',
-    visualId: 'transform',
-    icon: { Icon: FaDesktop, color: '#A78BFA', label: 'Desktop' },
-  },
-  {
-    name: 'E-commerce',
-    description:
-      'Stores with secure payments and inventory you can manage.',
-    visualId: 'ecommerce',
-    icon: { Icon: SiGoogleplay, color: '#00A173', label: 'Play Store' },
-  },
-  {
-    name: 'Cloud infrastructure',
-    description:
-      'Hosting and DevOps that stay up when your busiest season hits.',
-    visualId: 'cloud',
-    icon: { Icon: SiGoogle, color: '#4285F4', label: 'Google Cloud' },
-  },
-];
-
-function ServiceCard({
-  name,
-  description,
-  visualId,
-  icon,
-}: Service) {
+function ServiceCopy({
+  service,
+  index,
+  className,
+}: {
+  service: ServiceData;
+  index: number;
+  className?: string;
+}) {
   return (
-    <article className='service-card group relative flex h-full min-h-[18rem] flex-col overflow-hidden rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] shadow-[0_12px_40px_oklch(0_0_0_/_0.06)] transition-[border-color,transform] duration-[var(--dur-base)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]/35 hover:shadow-[0_16px_48px_oklch(0_0_0_/_0.08)]'>
-      <div className='flex flex-1 flex-col p-5'>
-        <div className='flex items-start gap-3'>
-          <ServiceOrbitIcon {...icon} className='mt-0.5' />
-          <div className='min-w-0 flex-1'>
-            <h3 className='font-[family-name:var(--font-display)] text-base font-semibold leading-snug text-[var(--color-ink)] sm:text-lg'>
-              {name}
-            </h3>
-            <p className='mt-1.5 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)]'>
-              {description}
-            </p>
-          </div>
-        </div>
-
-        <div className='service-visual-wrap mt-auto pt-4'>
-          <ServiceVisual id={visualId} />
+    <div className={cn('min-w-0', className)}>
+      <p className='font-[family-name:var(--font-display)] text-[length:var(--text-sm)] font-medium tracking-wide text-[var(--color-accent)]'>
+        {String(index + 1).padStart(2, '0')} · {service.tagline}
+      </p>
+      <div className='mt-4 flex items-start gap-4'>
+        <ServiceOrbitIcon {...service.icon} />
+        <div className='min-w-0 flex-1'>
+          <h3 className='font-[family-name:var(--font-display)] text-[length:var(--text-2xl)] font-bold leading-tight tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-3xl)]'>
+            {service.name}
+          </h3>
+          <p className='mt-4 max-w-prose text-[length:var(--text-base)] leading-relaxed text-[var(--color-ink-muted)] md:text-[length:var(--text-lg)]'>
+            {service.description}
+          </p>
+          <ul className='mt-6 flex flex-col gap-3'>
+            {service.details.map((detail) => (
+              <li
+                key={detail}
+                className='flex gap-3 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)] md:text-[length:var(--text-base)]'>
+                <span
+                  className='mt-2 size-1.5 shrink-0 rounded-full bg-[var(--color-accent)]'
+                  aria-hidden
+                />
+                <span>{detail}</span>
+              </li>
+            ))}
+          </ul>
+          <Button
+            nativeButton={false}
+            render={<Link href='#contact' />}
+            variant='outline'
+            size='lg'
+            className='mt-8 border-[var(--color-rule)] bg-[var(--color-paper-2)]/80 text-[var(--color-ink)] hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-accent-muted)]'>
+            Discuss this service
+          </Button>
         </div>
       </div>
+    </div>
+  );
+}
 
-      <div
-        className='pointer-events-none absolute inset-0 rounded-2xl transition-colors duration-[var(--dur-base)] group-hover:bg-[var(--color-accent-muted)]/10'
-        aria-hidden
-      />
+function MobileServiceSection({
+  service,
+  index,
+}: {
+  service: ServiceData;
+  index: number;
+}) {
+  return (
+    <article
+      className='service-mobile-section flex min-h-[100dvh] flex-col justify-center border-t border-[var(--color-rule)] py-16 first:border-t-0'
+      data-service-index={index}>
+      <ServiceCopy service={service} index={index} />
+      <div className='service-visual-showcase mt-10'>
+        <ServiceVisual id={service.id} variant='showcase' serviceIndex={index} />
+      </div>
     </article>
   );
 }
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const timelineFillRef = useRef<HTMLDivElement>(null);
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const visualRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const dotRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useGSAP(
     () => {
-      const cards = gsap.utils.toArray<HTMLElement>(
-        '.service-card',
-        sectionRef.current,
-      );
+      const section = sectionRef.current;
+      const track = trackRef.current;
+      const stage = stageRef.current;
+      if (!section || !track || !stage) return;
+
+      const panels = panelRefs.current.filter(Boolean) as HTMLDivElement[];
+      const visuals = visualRefs.current.filter(Boolean) as HTMLDivElement[];
+      const dots = dotRefs.current.filter(Boolean) as HTMLButtonElement[];
+      const count = panels.length;
 
       const mm = gsap.matchMedia();
 
       mm.add('(prefers-reduced-motion: reduce)', () => {
-        gsap.set(cards, { autoAlpha: 1, y: 0, clearProps: 'transform' });
+        gsap.set([panels, visuals], { clearProps: 'all' });
+        gsap.set(timelineFillRef.current, { clearProps: 'all' });
       });
 
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        const header = sectionRef.current?.querySelector('.services-header');
+      mm.add('(max-width: 1023px)', () => {
+        gsap.set([panels, visuals], { clearProps: 'all' });
+      });
+
+      mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+        gsap.set(panels, { autoAlpha: 0, y: 28 });
+        gsap.set(panels[0], { autoAlpha: 1, y: 0 });
+        gsap.set(visuals, { autoAlpha: 0, scale: 0.94 });
+        gsap.set(visuals[0], { autoAlpha: 1, scale: 1 });
+        gsap.set(dots, { scale: 1, autoAlpha: 0.45 });
+        gsap.set(dots[0], { scale: 1.12, autoAlpha: 1 });
+        gsap.set(timelineFillRef.current, { scaleY: 0, transformOrigin: 'top center' });
+
+        stage.setAttribute('data-active-service', '0');
 
         const tl = gsap.timeline({
+          defaults: { ease: 'power2.out' },
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 72%',
-            once: true,
+            trigger: track,
+            start: 'top top',
+            end: () => `+=${window.innerHeight * (count - 1)}`,
+            pin: stage,
+            scrub: 0.65,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const idx = Math.min(
+                count - 1,
+                Math.floor(self.progress * count + 0.0001),
+              );
+              stage.setAttribute('data-active-service', String(idx));
+              panels.forEach((panel, panelIndex) => {
+                panel.setAttribute(
+                  'aria-hidden',
+                  panelIndex === idx ? 'false' : 'true',
+                );
+              });
+              visuals.forEach((visual, visualIndex) => {
+                visual.setAttribute(
+                  'aria-hidden',
+                  visualIndex === idx ? 'false' : 'true',
+                );
+              });
+              dots.forEach((dot, dotIndex) => {
+                if (dotIndex === idx) dot.setAttribute('aria-current', 'step');
+                else dot.removeAttribute('aria-current');
+              });
+            },
           },
         });
 
-        if (header) {
-          tl.from(header, { autoAlpha: 0, y: 24, duration: 0.65 });
-        }
+        tl.to(timelineFillRef.current, {
+          scaleY: 1,
+          ease: 'none',
+          duration: count - 1,
+        });
 
-        tl.from(
-          cards,
-          {
-            autoAlpha: 0,
-            y: 28,
-            scale: 0.98,
-            duration: 0.65,
-            stagger: 0.08,
-            ease: 'power2.out',
+        for (let i = 1; i < count; i += 1) {
+          tl.to(
+            panels[i - 1],
+            { autoAlpha: 0, y: -20, duration: 0.85, ease: 'power2.in' },
+            i - 1,
+          )
+            .to(
+              panels[i],
+              { autoAlpha: 1, y: 0, duration: 0.85 },
+              i - 0.15,
+            )
+            .to(
+              visuals[i - 1],
+              { autoAlpha: 0, scale: 0.92, duration: 0.85, ease: 'power2.in' },
+              i - 1,
+            )
+            .to(visuals[i], { autoAlpha: 1, scale: 1, duration: 0.85 }, i - 0.15)
+            .to(
+              dots[i - 1],
+              { scale: 1, autoAlpha: 0.45, duration: 0.35 },
+              i - 0.2,
+            )
+            .to(
+              dots[i],
+              { scale: 1.12, autoAlpha: 1, duration: 0.35 },
+              i - 0.2,
+            );
+        }
+      });
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const header = section.querySelector('.services-header');
+        if (!header) return;
+
+        gsap.from(header, {
+          autoAlpha: 0,
+          y: 24,
+          duration: 0.65,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 78%',
+            once: true,
           },
-          header ? '-=0.25' : 0,
-        );
+        });
       });
 
       return () => mm.revert();
     },
-    { scope: sectionRef },
+    { scope: sectionRef, dependencies: [] },
   );
+
+  const scrollToService = (index: number) => {
+    const track = trackRef.current;
+    if (!track || window.innerWidth < 1024) return;
+
+    const segment = track.offsetHeight / SERVICES.length;
+    const top = track.offsetTop + segment * index;
+
+    window.scrollTo({ top, behavior: 'smooth' });
+  };
 
   return (
     <section
       id='services'
       ref={sectionRef}
-      className='relative border-t border-[var(--color-rule)] py-20 md:py-28'>
-      <div className='container mx-auto max-w-6xl px-6'>
-        <div className='services-header mx-auto mb-14 max-w-2xl text-center'>
+      className='relative border-t border-[var(--color-rule)]'>
+      <div className='container mx-auto max-w-6xl px-6 py-20 md:py-28'>
+        <div className='services-header mx-auto max-w-2xl text-center'>
+          <p className='section-eyebrow mb-3'>Services</p>
           <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>
-            One team for everything you need to go digital
+            Built for Sri Lankan SMEs. Priced for the outcome, not the hours.
           </h2>
-          <p className='mt-4 text-[length:var(--text-lg)] text-[var(--color-ink-muted)]'>
-            Pick a starting point — we often combine web, mobile, and cloud in a
-            single engagement so you are not juggling vendors.
+          <p className='mt-4 text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)]'>
+            Fixed-scope pricing so you know what you are paying for before we
+            start. Scroll through each capability below.
           </p>
         </div>
+      </div>
 
-        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5'>
-          {SERVICES.map((service) => (
-            <ServiceCard key={service.name} {...service} />
-          ))}
+      {/* Stacked sections — mobile always, desktop when reduced motion */}
+      <div className='services-static-fallback container mx-auto max-w-6xl px-6 pb-20'>
+        {SERVICES.map((service, index) => (
+          <MobileServiceSection
+            key={service.id}
+            service={service}
+            index={index}
+          />
+        ))}
+      </div>
+
+      {/* Desktop: pinned scroll-driven stage */}
+      <div
+        ref={trackRef}
+        className='services-scroll-track relative'
+        style={{ height: `${SERVICES.length * 100}vh` }}>
+        <div
+          ref={stageRef}
+          className='services-stage sticky top-0 flex h-screen items-center overflow-hidden bg-[var(--color-paper)]'
+          data-active-service='0'>
+          <div className='container mx-auto grid h-full max-w-6xl grid-cols-[auto_minmax(0,1fr)_minmax(0,1fr)] items-center gap-10 px-6 py-12 xl:gap-14'>
+            {/* Timeline */}
+            <nav
+              className='services-timeline relative flex h-[min(24rem,58vh)] flex-col justify-between py-2'
+              aria-label='Services progress'>
+              <div
+                className='absolute top-3 bottom-3 left-[0.6875rem] w-px bg-[var(--color-rule)]'
+                aria-hidden
+              />
+              <div
+                ref={timelineFillRef}
+                className='services-timeline-fill absolute top-3 left-[0.6875rem] w-px origin-top bg-[var(--color-accent)]'
+                style={{ height: 'calc(100% - 1.5rem)' }}
+                aria-hidden
+              />
+              {SERVICES.map((service, index) => (
+                <button
+                  key={service.id}
+                  ref={(el) => {
+                    dotRefs.current[index] = el;
+                  }}
+                  type='button'
+                  className={cn(
+                    'services-timeline-dot relative z-[1] flex items-center gap-3 text-left transition-[opacity,transform] duration-[var(--dur-base)]',
+                    index === 0 ? 'opacity-100' : 'opacity-45',
+                  )}
+                  aria-label={`Go to ${service.name}`}
+                  aria-current={index === 0 ? 'step' : undefined}
+                  onClick={() => scrollToService(index)}>
+                  <span className='flex size-[1.375rem] items-center justify-center rounded-full border border-[var(--color-rule)] bg-[var(--color-paper-2)] text-[0.625rem] font-semibold tabular-nums text-[var(--color-ink-muted)] ring-4 ring-[var(--color-paper)]'>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className='hidden max-w-[7rem] truncate font-[family-name:var(--font-display)] text-[length:var(--text-xs)] font-medium text-[var(--color-ink-muted)] xl:inline'>
+                    {service.name}
+                  </span>
+                </button>
+              ))}
+            </nav>
+
+            {/* Copy panels */}
+            <div className='relative h-[min(34rem,72vh)] min-w-0'>
+              {SERVICES.map((service, index) => (
+                <div
+                  key={service.id}
+                  ref={(el) => {
+                    panelRefs.current[index] = el;
+                  }}
+                  className='service-panel absolute inset-0 flex items-center'
+                  aria-hidden={index !== 0}>
+                  <ServiceCopy service={service} index={index} />
+                </div>
+              ))}
+            </div>
+
+            {/* Visual stage */}
+            <div className='relative h-[min(28rem,62vh)] min-w-0 xl:h-[min(32rem,68vh)]'>
+              {SERVICES.map((service, index) => (
+                <div
+                  key={service.id}
+                  ref={(el) => {
+                    visualRefs.current[index] = el;
+                  }}
+                  className='service-visual-panel absolute inset-0 overflow-hidden rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)]/60'
+                  data-service-index={index}
+                  aria-hidden={index !== 0}>
+                  <ServiceVisual
+                    id={service.id}
+                    variant='showcase'
+                    serviceIndex={index}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

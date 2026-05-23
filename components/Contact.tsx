@@ -77,10 +77,10 @@ export default function Contact() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <BeamCard beamDelay={0} beamSize={140}>
-              <div className='flex h-full flex-col justify-center rounded-2xl border border-[var(--color-accent)]/35 bg-[var(--color-accent-muted)] p-6 text-center md:p-10'>
-                <div className='mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-paper)]'>
-                  <WhatsAppIcon className='h-7 w-7 text-[var(--color-accent-strong)]' />
+            <BeamCard beamDelay={0} beamSize={120}>
+              <div className='flex h-full flex-col justify-center rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-6 text-center md:p-10'>
+                <div className='mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-whatsapp-muted)]'>
+                  <WhatsAppIcon className='h-7 w-7 text-[var(--color-whatsapp-strong)]' />
                 </div>
                 <h3 className='font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--color-ink)]'>
                   Start on WhatsApp
@@ -93,7 +93,7 @@ export default function Contact() {
                   href={WHATSAPP_SHORT}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='mt-8 inline-flex min-h-12 items-center justify-center gap-2 self-center rounded-full bg-[var(--color-accent)] px-8 py-3.5 text-base font-semibold text-[var(--color-paper)] transition-[transform,background] duration-[var(--dur-base)] hover:scale-[1.02] hover:bg-[var(--color-accent-strong)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+                  className='btn-whatsapp mt-8 inline-flex min-h-12 items-center justify-center gap-2 self-center rounded-full px-8 py-3.5 text-base font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
                   <WhatsAppIcon className='h-5 w-5' />
                   Open WhatsApp
                 </a>
