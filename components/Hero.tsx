@@ -55,7 +55,19 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className='relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28'>
+      className='relative overflow-hidden bg-[var(--color-paper)] pt-28 pb-20 md:pt-36 md:pb-28'>
+      <div
+        className='pointer-events-none absolute inset-0 z-0'
+        aria-hidden
+        style={{
+          background: `linear-gradient(
+            180deg,
+            var(--color-paper) 0%,
+            var(--color-paper) 42%,
+            color-mix(in oklch, var(--color-surface-tint) 28%, var(--color-paper)) 100%
+          )`,
+        }}
+      />
       <FlickeringGrid
         className='absolute inset-0 z-0 opacity-20'
         color='oklch(52% 0.16 240)'
@@ -69,7 +81,7 @@ export default function Hero() {
         aria-hidden
         style={{
           background:
-            'radial-gradient(ellipse 80% 55% at 50% -10%, var(--color-surface-tint), transparent 62%)',
+            'radial-gradient(ellipse 90% 45% at 50% 0%, color-mix(in oklch, var(--color-surface-tint) 55%, transparent), transparent 70%)',
         }}
       />
       <div
@@ -84,6 +96,14 @@ export default function Hero() {
       <div className='pointer-events-none absolute inset-0 z-[1] overflow-hidden opacity-40' aria-hidden>
         <Meteors number={8} minDuration={4} maxDuration={10} angle={215} />
       </div>
+      <div
+        className='pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-28 md:h-36'
+        aria-hidden
+        style={{
+          background:
+            'linear-gradient(to bottom, transparent, color-mix(in oklch, var(--color-surface-tint) 40%, var(--color-paper-3)))',
+        }}
+      />
 
       <div className='container relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16'>
         <div className='min-w-0 text-center lg:text-left'>

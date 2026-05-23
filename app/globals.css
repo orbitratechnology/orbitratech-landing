@@ -147,13 +147,7 @@ body {
 }
 
 body {
-  background:
-    radial-gradient(
-      ellipse 120% 80% at 50% -20%,
-      var(--color-surface-tint),
-      transparent 58%
-    ),
-    var(--color-paper);
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
   font-weight: 500;

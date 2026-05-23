@@ -9,7 +9,6 @@ import { PageMotion } from '@/components/PageMotion';
 import Process from '@/components/Process';
 import Projects from '@/components/Projects';
 import Services from '@/components/Services';
-import StickyCta from '@/components/StickyCta';
 
 export default function Home() {
   return (
@@ -27,7 +26,6 @@ export default function Home() {
         <Founders />
       </main>
       <Footer />
-      <StickyCta />
     </>
   );
 }

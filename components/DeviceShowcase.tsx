@@ -3,6 +3,7 @@
 import { ScrollReveal } from '@/components/motion/ScrollReveal';
 import { Iphone } from '@/components/ui/iphone';
 import { Safari } from '@/components/ui/safari';
+import { formatStatLine, SHOWCASE_STATS } from '@/lib/company-stats';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -44,7 +45,7 @@ export default function DeviceShowcase() {
     <section
       ref={sectionRef}
       id='showcase'
-      className='border-y border-[var(--color-rule)] bg-[var(--color-paper-2)]/40 py-20 md:py-28'>
+      className='bg-[color-mix(in_oklch,var(--color-surface-tint)_35%,var(--color-paper-2))] py-20 md:py-28'>
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto max-w-2xl text-center'>
           <p className='section-eyebrow mb-3'>What we ship</p>
@@ -73,7 +74,9 @@ export default function DeviceShowcase() {
             />
           </div>
 
-          <div className='absolute -left-[7%] -bottom-[7%] z-30 flex w-[min(100%,320px)] items-center gap-4 rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-5 shadow-[0_1px_2px_var(--color-shadow-soft),0_16px_40px_var(--color-shadow)] sm:gap-5 sm:p-6'>
+          <a
+            href='#about'
+            className='absolute -left-[7%] -bottom-[7%] z-30 flex w-[min(100%,320px)] items-center gap-4 rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-5 shadow-[0_1px_2px_var(--color-shadow-soft),0_16px_40px_var(--color-shadow)] transition-[border-color,box-shadow] duration-[var(--dur-base)] hover:border-[var(--color-accent)]/30 hover:shadow-[0_1px_2px_var(--color-shadow-soft),0_20px_48px_var(--color-shadow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)] sm:gap-5 sm:p-6'>
             <Image
               src='/orbitra_logo.png'
               alt=''
@@ -84,13 +87,13 @@ export default function DeviceShowcase() {
             />
             <div className='min-w-0'>
               <p className='text-base font-semibold text-[var(--color-ink)] sm:text-lg'>
-                5+ SMEs partnered
+                {formatStatLine(SHOWCASE_STATS[0], 'badge')}
               </p>
               <p className='mt-1 text-sm text-[var(--color-ink-subtle)] sm:text-base'>
-                7+ solutions shipped
+                {formatStatLine(SHOWCASE_STATS[1], 'badge')}
               </p>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
