@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { getCopyrightYear } from '@/lib/copyright-year';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Worknet by Orbitra Tech',
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
     'Privacy Policy for Worknet - Find local help fast. Learn how we collect, use, and protect your data.',
 };
 
-export default function PrivacyPolicy() {
+export default async function PrivacyPolicy() {
+  const year = await getCopyrightYear();
+
   return (
     <div
       className={`min-h-screen bg-slate-50 text-slate-900 overflow-x-hidden`}>
@@ -236,7 +239,7 @@ export default function PrivacyPolicy() {
 
         <footer className='text-center mt-24 py-16 border-t border-slate-200 text-slate-600 font-medium'>
           <p>
-            &copy; {new Date().getFullYear()} Orbitra Tech. All rights reserved.
+            &copy; {year} Orbitra Tech. All rights reserved.
           </p>
           <p className='mt-3 text-[0.85rem] opacity-70'>
             Crafted with excellence in Sri Lanka.

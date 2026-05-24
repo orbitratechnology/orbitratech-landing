@@ -1,30 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { LandingProduct } from '@/lib/cms';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
 
-const PROJECTS = [
-  {
-    image: '/worknet-logo.png',
-    title: 'Worknet',
-    status: 'In development',
-    description:
-      'Mobile app connecting workers with opportunities — job matching, profiles, and daily task management.',
-    features: ['Job matching', 'Worker profiles', 'Task management'],
-    legal: true,
-  },
-  {
-    image: '/gemnet-logo.png',
-    title: 'Gemnet',
-    status: 'Planned',
-    description:
-      'Secure B2B network for gem traders — discovery, trading, and market insights in one place.',
-    features: ['B2B trading', 'Verification', 'Market insights'],
-    legal: false,
-  },
-] as const;
+type ProjectsProps = {
+  products: LandingProduct[];
+};
 
-export default function Projects() {
+export default function Projects({ products }: ProjectsProps) {
   return (
     <section
       id='projects'
@@ -41,15 +25,15 @@ export default function Projects() {
         </ScrollReveal>
 
         <div className='grid gap-6 lg:grid-cols-2'>
-          {PROJECTS.map((project, i) => (
-            <ScrollReveal key={project.title} delay={i * 0.1}>
+          {products.map((project, i) => (
+            <ScrollReveal key={project.id} delay={i * 0.1}>
               <BeamCard beamDelay={i * 1.5} beamSize={120} className='h-full'>
                 <article className='flex h-full min-w-0 flex-col rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper)] p-6 md:p-8'>
                 <div className='mb-6 flex items-start justify-between gap-4'>
                   <div className='relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)]'>
                     <Image
-                      src={project.image}
-                      alt={`${project.title} logo`}
+                      src={project.imageUrl}
+                      alt={project.imageAlt}
                       fill
                       sizes='80px'
                       loading='lazy'
@@ -78,18 +62,22 @@ export default function Projects() {
                   ))}
                 </ul>
 
-                {project.legal && (
+                {(project.legal?.privacyPolicyUrl || project.legal?.termsUrl) && (
                   <div className='mt-6 flex flex-wrap gap-4 border-t border-[var(--color-rule)] pt-4'>
-                    <Link
-                      href='/worknet/privacy-policy'
-                      className='text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-subtle)] transition-colors hover:text-[var(--color-accent)]'>
-                      Privacy policy
-                    </Link>
-                    <Link
-                      href='/worknet/terms-and-conditions'
-                      className='text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-subtle)] transition-colors hover:text-[var(--color-accent)]'>
-                      Terms
-                    </Link>
+                    {project.legal.privacyPolicyUrl && (
+                      <Link
+                        href={project.legal.privacyPolicyUrl}
+                        className='text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-subtle)] transition-colors hover:text-[var(--color-accent)]'>
+                        Privacy policy
+                      </Link>
+                    )}
+                    {project.legal.termsUrl && (
+                      <Link
+                        href={project.legal.termsUrl}
+                        className='text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-subtle)] transition-colors hover:text-[var(--color-accent)]'>
+                        Terms
+                      </Link>
+                    )}
                   </div>
                 )}
                 </article>

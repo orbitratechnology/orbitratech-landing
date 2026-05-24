@@ -1,24 +1,28 @@
-import { MetadataRoute } from 'next';
+import { connection } from 'next/server'
+import type { MetadataRoute } from 'next'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  await connection()
+  const lastModified = new Date()
+
   return [
     {
       url: 'https://orbitratech.net',
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
       url: 'https://orbitratech.net/worknet/privacy-policy',
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'yearly',
       priority: 0.5,
     },
     {
       url: 'https://orbitratech.net/worknet/terms-and-conditions',
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'yearly',
       priority: 0.5,
     },
-  ];
+  ]
 }

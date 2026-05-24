@@ -2,10 +2,11 @@ import { Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { NAV_LINKS, WHATSAPP_URL } from '@/lib/constants';
+import { getCopyrightYear } from '@/lib/copyright-year';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 
-export default function Footer() {
-  const year = new Date().getFullYear();
+export default async function Footer() {
+  const year = await getCopyrightYear();
 
   return (
     <footer className='deferred-section relative z-20 border-t border-[var(--color-rule)] bg-[var(--color-paper)] py-16'>
