@@ -1,10 +1,10 @@
 'use client';
 
+import type { CompanyStat } from '@/lib/company-stats';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Check, MapPin, Target } from 'lucide-react';
-import { COMPANY_STATS } from '@/lib/company-stats';
 import { useRef } from 'react';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
@@ -17,7 +17,11 @@ const PRINCIPLES = [
   'Local context with global-quality engineering',
 ] as const;
 
-export default function About() {
+type AboutProps = {
+  stats: CompanyStat[];
+};
+
+export default function About({ stats }: AboutProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -59,7 +63,7 @@ export default function About() {
 
       return () => mm.revert();
     },
-    { scope: sectionRef },
+    { scope: sectionRef, dependencies: [stats] },
   );
 
   return (
@@ -83,7 +87,7 @@ export default function About() {
         <ScrollReveal>
           <div className='overflow-hidden rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] shadow-[0_1px_2px_var(--color-shadow-soft),0_12px_32px_var(--color-shadow)]'>
             <div className='grid grid-cols-2 divide-x divide-y divide-[var(--color-rule)] lg:grid-cols-4 lg:divide-y-0'>
-              {COMPANY_STATS.map((stat) => (
+              {stats.map((stat) => (
                 <div
                   key={stat.id}
                   className='flex flex-col items-center px-4 py-8 text-center sm:px-6'>

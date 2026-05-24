@@ -3,7 +3,8 @@
 import { ScrollReveal } from '@/components/motion/ScrollReveal';
 import { Iphone } from '@/components/ui/iphone';
 import { Safari } from '@/components/ui/safari';
-import { formatStatLine, SHOWCASE_STATS } from '@/lib/company-stats';
+import type { CompanyStat } from '@/lib/company-stats';
+import { formatStatLine } from '@/lib/company-stats';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,7 +13,11 @@ import { useRef } from 'react';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export default function DeviceShowcase() {
+type DeviceShowcaseProps = {
+  showcaseStats: CompanyStat[];
+};
+
+export default function DeviceShowcase({ showcaseStats }: DeviceShowcaseProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -87,12 +92,16 @@ export default function DeviceShowcase() {
               aria-hidden
             />
             <div className='min-w-0'>
-              <p className='text-base font-semibold text-[var(--color-ink)] sm:text-lg'>
-                {formatStatLine(SHOWCASE_STATS[0], 'badge')}
-              </p>
-              <p className='mt-1 text-sm text-[var(--color-ink-subtle)] sm:text-base'>
-                {formatStatLine(SHOWCASE_STATS[1], 'badge')}
-              </p>
+              {showcaseStats[0] && (
+                <p className='text-base font-semibold text-[var(--color-ink)] sm:text-lg'>
+                  {formatStatLine(showcaseStats[0], 'badge')}
+                </p>
+              )}
+              {showcaseStats[1] && (
+                <p className='mt-1 text-sm text-[var(--color-ink-subtle)] sm:text-base'>
+                  {formatStatLine(showcaseStats[1], 'badge')}
+                </p>
+              )}
             </div>
           </a>
         </div>
