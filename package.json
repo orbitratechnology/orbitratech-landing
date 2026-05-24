@@ -12,9 +12,7 @@
     "generate:types": "payload generate:types ",
     "generate:importmap": "payload generate:importmap",
     "migrate": "payload migrate",
-    "migrate:create": "payload migrate:create",
-    "seed": "bun run scripts/seed-landing.ts",
-    "init:cms": "bun run scripts/init-cms.ts"
+    "migrate:create": "payload migrate:create"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
