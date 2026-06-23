@@ -9,7 +9,7 @@ const FOUNDERS = [
     name: 'Bilal',
     role: 'Founder & CEO',
     bio: 'Leads client strategy, commercial development, and delivery - building Orbitra from zero into a full-service digital engineering firm.',
-    image: '/bilal.jpg',
+    image: '/bilal.jpeg',
     socials: [
       {
         icon: FaLinkedin,

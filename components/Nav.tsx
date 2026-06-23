@@ -73,19 +73,21 @@ export default function Nav() {
           ))}
         </div>
 
-        <a
-          href={WHATSAPP_URL}
-          target='_blank'
-          rel='noopener noreferrer'
-          className='btn-cta btn-whatsapp hidden md:inline-flex'>
-          <WhatsAppIcon className='h-4 w-4' />
-          Talk on WhatsApp
-        </a>
+        <div className='hidden shrink-0 md:flex'>
+          <a
+            href={WHATSAPP_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='btn-cta btn-whatsapp'>
+            <WhatsAppIcon className='h-4 w-4' aria-hidden />
+            Talk on WhatsApp
+          </a>
+        </div>
 
         <button
           type='button'
           onClick={toggleMenu}
-          className='inline-flex rounded-full p-2.5 text-[var(--color-ink-muted)] transition-colors hover:bg-[var(--color-paper-3)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)] md:hidden'
+          className='ml-auto inline-flex rounded-full p-2.5 text-[var(--color-ink-muted)] transition-colors hover:bg-[var(--color-paper-3)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)] md:hidden'
           aria-expanded={open}
           aria-controls='mobile-nav'
           aria-haspopup='dialog'
