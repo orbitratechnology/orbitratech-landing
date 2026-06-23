@@ -76,18 +76,3 @@ export function CommerceIcon({ className }: IconProps) {
     </svg>
   );
 }
-
-export function CloudIcon({ className }: IconProps) {
-  return (
-    <svg className={className} viewBox='0 0 64 64' fill='none' aria-hidden>
-      <path
-        d='M20 42C14.4772 42 10 37.5228 10 32C10 26.4772 14.4772 22 20 22C21.2 22 22.35 22.22 23.4 22.62C25.4 17.5 30.2 14 36 14C43.7 14 50 20.3 50 28C55.5 28.8 60 33.5 60 39C60 45.1 54.6 50 48 50H20Z'
-        stroke='currentColor'
-        strokeWidth='2'
-        fill='var(--color-accent-muted)'
-        strokeLinejoin='round'
-      />
-      <path d='M32 26V38M26 32L32 38L38 32' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
-    </svg>
-  );
-}

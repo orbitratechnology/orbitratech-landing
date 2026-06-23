@@ -74,14 +74,10 @@ export function BrandMarquee({
     <section
       id={id}
       className={cn(
-        'deferred-section relative overflow-hidden border-t border-[var(--color-rule)] py-20 md:py-28',
+        'deferred-section relative overflow-hidden py-20 md:py-28',
         className,
       )}
       aria-labelledby={`${id}-heading`}>
-      <div
-        className='pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent'
-        aria-hidden
-      />
 
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto max-w-2xl text-center'>

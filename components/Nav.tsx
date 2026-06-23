@@ -42,10 +42,10 @@ export default function Nav() {
     <header className='fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6'>
       <nav
         className={cn(
-          'mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full border px-4 py-2.5 transition-[background,border-color,box-shadow] duration-[var(--dur-base)] md:px-5',
+          'mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full px-4 py-2.5 transition-[background,border-color,box-shadow,backdrop-filter] duration-[var(--dur-base)] md:px-5',
+          'backdrop-blur-sm',
           scrolled
-            ? 'border-[var(--color-rule)] bg-[var(--color-paper-2)]/95 shadow-[0_4px_24px_var(--color-shadow-soft)] backdrop-blur-xl'
-            : 'border-transparent bg-[var(--color-paper)]/70 backdrop-blur-sm',
+           && 'shadow-[0_4px_24px_rgb(15_23_42_/_0.08)] backdrop-saturate-70'
         )}
         aria-label='Primary'>
         <Link href='/' className='flex shrink-0 items-center gap-2.5'>

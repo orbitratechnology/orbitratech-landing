@@ -9,7 +9,7 @@
   --color-paper-3: oklch(96.5% 0.012 240);
   --color-surface-tint: oklch(96% 0.025 235);
   --color-ink: oklch(24% 0.04 260);
-  --color-ink-muted: oklch(48% 0.02 260);
+  --color-ink-muted: oklch(35% 0.02 260);
   --color-ink-subtle: oklch(62% 0.015 260);
   --color-accent: oklch(52% 0.16 240);
   --color-accent-strong: oklch(45% 0.17 240);

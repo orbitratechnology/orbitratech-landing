@@ -4,12 +4,11 @@ import { WHATSAPP_URL } from '@/lib/constants';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ArrowRight, Check } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
 import { HeroBrandOrbits } from './HeroBrandOrbits';
 import { AnimatedShinyText } from './ui/animated-shiny-text';
-import { FlickeringGrid } from './ui/flickering-grid';
-import { Meteors } from './ui/meteors';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 
 gsap.registerPlugin(useGSAP);
@@ -61,64 +60,39 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className='hero-intro relative overflow-hidden bg-[var(--color-paper)] pt-28 pb-20 md:pt-36 md:pb-28'>
-      <div
-        className='pointer-events-none absolute inset-0 z-0'
+      className='hero-intro relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28'>
+      <Image
+        src='/hero-bg.png'
+        alt=''
+        fill
+        priority
+        sizes='100vw'
+        className='object-cover object-center'
         aria-hidden
-        style={{
-          background: `linear-gradient(
-            180deg,
-            var(--color-paper) 0%,
-            var(--color-paper) 42%,
-            color-mix(in oklch, var(--color-surface-tint) 28%, var(--color-paper)) 100%
-          )`,
-        }}
-      />
-      <FlickeringGrid
-        className='absolute inset-0 z-0 opacity-20'
-        color='oklch(52% 0.16 240)'
-        maxOpacity={0.08}
-        flickerChance={0.08}
-        squareSize={4}
-        gridGap={8}
       />
       <div
         className='pointer-events-none absolute inset-0 z-[1]'
         aria-hidden
         style={{
-          background:
-            'radial-gradient(ellipse 90% 45% at 50% 0%, color-mix(in oklch, var(--color-surface-tint) 55%, transparent), transparent 70%)',
+          background: `linear-gradient(
+            105deg,
+            rgb(255 255 255 / 0.22) 0%,
+            rgb(255 255 255 / 0.08) 42%,
+            transparent 100%
+          )`,
         }}
       />
-      <div
-        className='pointer-events-none absolute inset-0 z-[1] opacity-[0.035]'
-        aria-hidden
-        style={{
-          backgroundImage:
-            'linear-gradient(var(--color-rule) 1px, transparent 1px), linear-gradient(90deg, var(--color-rule) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
-      <div className='pointer-events-none absolute inset-0 z-[1] overflow-hidden opacity-40' aria-hidden>
-        <Meteors number={8} minDuration={4} maxDuration={10} angle={215} />
-      </div>
       <div
         className='pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-28 md:h-36'
         aria-hidden
         style={{
           background:
-            'linear-gradient(to bottom, transparent, color-mix(in oklch, var(--color-surface-tint) 40%, var(--color-paper-3)))',
+            'linear-gradient(to bottom, transparent, var(--color-paper))',
         }}
       />
 
       <div className='container relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16'>
         <div className='min-w-0 text-center lg:text-left'>
-          <p className='hero-eyebrow mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--color-rule)] bg-[var(--color-paper-2)] px-4 py-1.5 text-sm font-medium shadow-[0_1px_2px_var(--color-shadow-soft)]'>
-            <span className='h-2 w-2 rounded-full bg-[var(--color-accent)]' aria-hidden />
-            <AnimatedShinyText shimmerWidth={120} className='text-sm font-medium'>
-              For Sri Lankan small & medium businesses
-            </AnimatedShinyText>
-          </p>
 
           <h1 className='hero-title font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.08] tracking-tight text-[var(--color-ink)]'>
             Get more customers.{' '}

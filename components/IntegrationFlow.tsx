@@ -5,7 +5,6 @@ import { ScrollReveal } from '@/components/motion/ScrollReveal'
 import { cn } from '@/lib/utils'
 import {
   Bell,
-  Cloud,
   CreditCard,
   Database,
   Package,
@@ -56,12 +55,6 @@ const OUTPUT_NODES: FlowNode[] = [
     label: 'Database',
     caption: 'Secure customer & order data',
     Icon: Database,
-  },
-  {
-    id: 'cloud',
-    label: 'Cloud',
-    caption: 'Hosting that scales on demand',
-    Icon: Cloud,
   },
   {
     id: 'alerts',
@@ -133,7 +126,6 @@ export default function IntegrationFlow() {
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
   ]
 
   const reducedMotion = useSyncExternalStore(
@@ -143,7 +135,7 @@ export default function IntegrationFlow() {
   )
 
   const inputCurvatures = [40, 0, -40]
-  const outputCurvatures = [35, 12, -12, -35]
+  const outputCurvatures = [40, 0, -40]
 
   return (
     <section
@@ -170,7 +162,7 @@ export default function IntegrationFlow() {
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)]'>
             We build your website or app as the hub — then connect payments,
-            data, hosting, and notifications so your business runs on software,
+            data, and notifications so your business runs on software,
             not spreadsheets.
           </p>
         </ScrollReveal>

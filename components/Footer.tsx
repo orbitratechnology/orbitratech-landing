@@ -22,8 +22,8 @@ export default async function Footer() {
               loading='lazy'
             />
             <p className='text-[length:var(--text-base)] leading-relaxed text-[var(--color-ink-muted)]'>
-              Practical digital products for Sri Lankan SMEs - web, mobile, and
-              cloud with clear pricing and local context.
+              Practical digital products for Sri Lankan SMEs — websites, mobile
+              apps, and e-commerce with clear pricing and local context.
             </p>
             <div className='mt-6 flex gap-3'>
               {[

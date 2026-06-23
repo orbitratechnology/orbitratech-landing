@@ -27,7 +27,7 @@ const INNER_ORBIT_PLATFORMS: OrbitPlatform[] = [
 function OrbitPlatformLogo({ label, src }: OrbitPlatform) {
   return (
     <div
-      className='flex size-full items-center justify-center'
+      className='glass-surface flex size-full items-center justify-center rounded-full p-1.5'
       title={label}>
       <Image
         src={src}

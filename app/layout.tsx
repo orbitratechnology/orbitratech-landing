@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://orbitratech.net'),
   title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
   description:
-    'Empowering Sri Lankan SMEs with practical, affordable digital solutions. Web development, mobile apps, e-commerce, and more.',
+    'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs — fixed pricing and production-grade engineering.',
   keywords:
-    'digital transformation, Sri Lanka SMEs, web development Sri Lanka, mobile app development, business digitalization',
+    'digital transformation, Sri Lanka SMEs, web development Sri Lanka, mobile app development, e-commerce Sri Lanka, business digitalization',
   authors: [{ name: 'Adhham Safwan', url: 'https://adhham.dev' }],
   alternates: {
     canonical: '/',
@@ -45,14 +45,14 @@ export const metadata: Metadata = {
     url: '/',
     title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
     description:
-      'Empowering Sri Lankan SMEs with practical, affordable digital solutions. Web & mobile development.',
+      'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',
     images: ['/orbitra_logo.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
     description:
-      'Empowering Sri Lankan SMEs with practical, affordable digital solutions.',
+      'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',
     images: ['/orbitra_logo.png'],
   },
   robots: {
@@ -92,7 +92,13 @@ export default function RootLayout({
               url: 'https://orbitratech.net',
               logo: 'https://orbitratech.net/orbitra_logo.png',
               description:
-                'Empowering Sri Lankan SMEs with practical, affordable digital solutions.',
+                'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',
+              serviceType: [
+                'Website development',
+                'Mobile app development',
+                'Digital transformation',
+                'E-commerce development',
+              ],
               contactPoint: {
                 '@type': 'ContactPoint',
                 telephone: '+94-702-495-311',

@@ -5,7 +5,6 @@ import { useEffect, useRef, type CSSProperties } from 'react';
 
 import { cn } from '@/lib/utils';
 
-import cloudAnimation from '@/lottie/Cloud Hosting.json';
 import marketingAnimation from '@/lottie/Bullhorn and social media icons for marketing.json';
 import mobileAnimation from '@/lottie/Mobile App Showcase.json';
 import cartAnimation from '@/lottie/Supermarket Cart.json';
@@ -15,8 +14,7 @@ export type ServiceVisualId =
   | 'website'
   | 'mobile'
   | 'transform'
-  | 'ecommerce'
-  | 'cloud';
+  | 'ecommerce';
 
 type ServiceVisualProps = {
   id: ServiceVisualId;
@@ -35,7 +33,6 @@ const SERVICE_LOTTIES: Record<ServiceVisualId, LottieConfig> = {
   mobile: { data: mobileAnimation, scale: 1 },
   transform: { data: marketingAnimation, scale: 0.96 },
   ecommerce: { data: cartAnimation, scale: 0.98 },
-  cloud: { data: cloudAnimation, scale: 0.96 },
 };
 
 function ServiceLottiePlayer({

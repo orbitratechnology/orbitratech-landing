@@ -4,7 +4,7 @@ import {
   FaGlobe,
   FaMobileScreenButton,
 } from 'react-icons/fa6';
-import { SiGoogle, SiGoogleplay } from 'react-icons/si';
+import { SiGoogleplay } from 'react-icons/si';
 
 import type { ServiceVisualId } from '@/components/services/service-visuals';
 
@@ -75,18 +75,5 @@ export const SERVICES: ServiceData[] = [
       'Order flows tuned for mobile buyers',
     ],
     icon: { Icon: SiGoogleplay, color: '#00A173', label: 'Play Store' },
-  },
-  {
-    id: 'cloud',
-    name: 'Cloud infrastructure',
-    tagline: 'Hosting that survives peak season',
-    description:
-      'Deployment pipelines, monitoring, and hosting architecture that stay up when traffic spikes - so launch day and sale day feel the same as any other Tuesday.',
-    details: [
-      'CI/CD pipelines with sensible staging environments',
-      'Backups, SSL, and domain management handled',
-      'Cost-aware scaling - pay for what you use',
-    ],
-    icon: { Icon: SiGoogle, color: '#4285F4', label: 'Google Cloud' },
   },
 ];
