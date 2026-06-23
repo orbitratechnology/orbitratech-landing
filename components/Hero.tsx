@@ -17,7 +17,7 @@ gsap.registerPlugin(useGSAP);
 const TRUST_POINTS = [
   'Fixed pricing for growing SMEs',
   'Web and mobile under one team',
-  'Based in Beruwala — remote worldwide',
+  'Based in Beruwala - remote worldwide',
 ] as const;
 
 export default function Hero() {
@@ -38,13 +38,19 @@ export default function Hero() {
       });
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const intro = q(
+          '.hero-eyebrow, .hero-title, .hero-lead, .hero-cta, .hero-trust',
+        );
+        gsap.set(intro, { autoAlpha: 0, y: 16 });
+        gsap.set(q('.hero-visual'), { autoAlpha: 0, scale: 0.96 });
+
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-        tl.from(q('.hero-eyebrow'), { autoAlpha: 0, y: 16, duration: 0.5 })
-          .from(q('.hero-title'), { autoAlpha: 0, y: 28, duration: 0.7 }, '-=0.2')
-          .from(q('.hero-lead'), { autoAlpha: 0, y: 20, duration: 0.6 }, '-=0.35')
-          .from(q('.hero-cta'), { autoAlpha: 0, y: 16, duration: 0.5, stagger: 0.08 }, '-=0.25')
-          .from(q('.hero-trust'), { autoAlpha: 0, y: 12, duration: 0.45, stagger: 0.06 }, '-=0.2')
-          .from(q('.hero-visual'), { autoAlpha: 0, scale: 0.96, duration: 0.9 }, '-=0.5');
+        tl.to(q('.hero-eyebrow'), { autoAlpha: 1, y: 0, duration: 0.5 })
+          .to(q('.hero-title'), { autoAlpha: 1, y: 0, duration: 0.7 }, '-=0.2')
+          .to(q('.hero-lead'), { autoAlpha: 1, y: 0, duration: 0.6 }, '-=0.35')
+          .to(q('.hero-cta'), { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08 }, '-=0.25')
+          .to(q('.hero-trust'), { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.06 }, '-=0.2')
+          .to(q('.hero-visual'), { autoAlpha: 1, scale: 1, duration: 0.9 }, '-=0.5');
       });
 
       return () => mm.revert();
@@ -55,7 +61,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className='relative overflow-hidden bg-[var(--color-paper)] pt-28 pb-20 md:pt-36 md:pb-28'>
+      className='hero-intro relative overflow-hidden bg-[var(--color-paper)] pt-28 pb-20 md:pt-36 md:pb-28'>
       <div
         className='pointer-events-none absolute inset-0 z-0'
         aria-hidden
@@ -134,15 +140,18 @@ export default function Hero() {
               href={WHATSAPP_URL}
               target='_blank'
               rel='noopener noreferrer'
-              className='btn-whatsapp group inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-full px-7 py-3.5 text-base font-semibold sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
-              <WhatsAppIcon className='h-5 w-5' />
+              className='btn-cta btn-cta-lg btn-cta-fluid btn-cta-fluid-sm btn-whatsapp group gap-2.5'>
+              <WhatsAppIcon className='h-5 w-5' aria-hidden />
               Talk on WhatsApp
             </a>
             <Link
               href='#contact'
-              className='btn-outline group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-base font-medium sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+              className='btn-cta btn-cta-lg btn-cta-fluid btn-cta-fluid-sm btn-outline group'>
               Book a free consultation
-              <ArrowRight className='h-4 w-4 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5' />
+              <ArrowRight
+                className='h-4 w-4 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5'
+                aria-hidden
+              />
             </Link>
           </div>
 

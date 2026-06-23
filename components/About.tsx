@@ -1,6 +1,6 @@
 'use client';
 
-import type { CompanyStat } from '@/lib/company-stats';
+import { COMPANY_STATS } from '@/lib/company-stats';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,11 +17,8 @@ const PRINCIPLES = [
   'Local context with global-quality engineering',
 ] as const;
 
-type AboutProps = {
-  stats: CompanyStat[];
-};
-
-export default function About({ stats }: AboutProps) {
+export default function About() {
+  const stats = COMPANY_STATS;
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -78,7 +75,7 @@ export default function About({ stats }: AboutProps) {
             Built in Beruwala for businesses that need practical tech
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)]'>
-            A full-service digital studio — not a template shop. We partner with
+            A full-service digital studio - not a template shop. We partner with
             Sri Lankan SMEs to replace spreadsheets, WhatsApp chaos, and outdated
             sites with tools that actually run the business.
           </p>
@@ -114,7 +111,7 @@ export default function About({ stats }: AboutProps) {
                   Why teams work with us
                 </h3>
                 <p className='mt-3 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)] md:text-[length:var(--text-base)]'>
-                  You get one accountable team from first call to launch — clear
+                  You get one accountable team from first call to launch - clear
                   scope, honest timelines, and software your staff can use without
                   a manual.
                 </p>
@@ -151,7 +148,7 @@ export default function About({ stats }: AboutProps) {
                 </blockquote>
                 <p className='mt-4 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)]'>
                   We combine local market understanding with production-grade
-                  engineering — so your digital presence earns trust on first
+                  engineering - so your digital presence earns trust on first
                   contact.
                 </p>
                 <div className='mt-auto flex items-center gap-2.5 border-t border-[var(--color-rule)] pt-6 text-[length:var(--text-sm)] font-semibold text-[var(--color-ink-muted)]'>

@@ -36,7 +36,7 @@ export const Meteors = ({
         Math.floor(Math.random() * (maxDuration - minDuration) + minDuration) +
         's',
     }));
-    setMeteorStyles(styles);
+    queueMicrotask(() => setMeteorStyles(styles));
   }, [number, minDelay, maxDelay, minDuration, maxDuration, angle]);
 
   return (

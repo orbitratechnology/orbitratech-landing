@@ -3,8 +3,7 @@
 import { ScrollReveal } from '@/components/motion/ScrollReveal';
 import { Iphone } from '@/components/ui/iphone';
 import { Safari } from '@/components/ui/safari';
-import type { CompanyStat } from '@/lib/company-stats';
-import { formatStatLine } from '@/lib/company-stats';
+import { SHOWCASE_STATS, formatStatLine } from '@/lib/company-stats';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,11 +12,8 @@ import { useRef } from 'react';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-type DeviceShowcaseProps = {
-  showcaseStats: CompanyStat[];
-};
-
-export default function DeviceShowcase({ showcaseStats }: DeviceShowcaseProps) {
+export default function DeviceShowcase() {
+  const showcaseStats = SHOWCASE_STATS;
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -59,7 +55,7 @@ export default function DeviceShowcase({ showcaseStats }: DeviceShowcaseProps) {
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)]'>
             Conversion-focused sites for discovery and native mobile apps for
-            repeat engagement — designed and built by one team.
+            repeat engagement - designed and built by one team.
           </p>
         </ScrollReveal>
 

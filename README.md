@@ -17,7 +17,7 @@
 
 ## About
 
-**Orbitra Tech (Pvt) Ltd** partners with growing businesses across Sri Lanka and beyond. We design and ship websites, mobile apps, and internal systems — with fixed pricing, honest timelines, and production-grade engineering.
+**Orbitra Tech (Pvt) Ltd** partners with growing businesses across Sri Lanka and beyond. We design and ship websites, mobile apps, and internal systems - with fixed pricing, honest timelines, and production-grade engineering.
 
 Alongside client work, we build our own products (like **Worknet** and **Gemnet**) as proof of how we ship.
 
@@ -68,11 +68,11 @@ Open [http://localhost:3000](http://localhost:3000) for the site and [http://loc
 
 ## Migrations
 
-Two migration systems — keep both:
+Two migration systems - keep both:
 
-- **`migrations/`** — Payload CMS table schema (`bun run migrate`)
-- **`supabase/migrations/`** — Supabase RLS hardening, storage buckets, and platform SQL
+- **`migrations/`** - Payload CMS table schema (`bun run migrate`)
+- **`supabase/migrations/`** - Supabase RLS hardening, storage buckets, and platform SQL
 
 ## License
 
-Private — © Orbitra Tech (Pvt) Ltd.
+Private - © Orbitra Tech (Pvt) Ltd.

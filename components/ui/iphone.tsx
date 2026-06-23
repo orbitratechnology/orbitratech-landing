@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { useId, type HTMLAttributes, type ReactNode } from "react"
 
 import { cn } from "@/lib/utils"
@@ -60,13 +61,12 @@ export function Iphone({
           className="pointer-events-none absolute z-0 overflow-hidden bg-white"
           style={screenStyle}
         >
-          <img
+          <Image
             src={src}
             alt=""
             width={Math.round(SCREEN_WIDTH)}
             height={Math.round(SCREEN_HEIGHT)}
             loading="lazy"
-            decoding="async"
             className="block size-full object-contain p-[3px]"
           />
         </div>

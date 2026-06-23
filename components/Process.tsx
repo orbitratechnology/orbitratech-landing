@@ -19,7 +19,7 @@ const STEPS = [
   {
     icon: PenLine,
     title: 'Design & build',
-    body: 'We prototype, iterate, and ship with clear milestones — no surprise invoices.',
+    body: 'We prototype, iterate, and ship with clear milestones - no surprise invoices.',
   },
   {
     icon: Rocket,
@@ -101,7 +101,7 @@ export default function Process() {
             How we work with you
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] text-[var(--color-ink-muted)]'>
-            A straightforward path from first message to production — built for
+            A straightforward path from first message to production - built for
             owners who need results, not jargon.
           </p>
         </ScrollReveal>

@@ -77,7 +77,7 @@ export default function Nav() {
           href={WHATSAPP_URL}
           target='_blank'
           rel='noopener noreferrer'
-          className='btn-whatsapp hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold md:inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+          className='btn-cta btn-whatsapp hidden md:inline-flex'>
           <WhatsAppIcon className='h-4 w-4' />
           Talk on WhatsApp
         </a>
@@ -121,7 +121,7 @@ export default function Nav() {
               target='_blank'
               rel='noopener noreferrer'
               onClick={closeMenu}
-              className='btn-whatsapp mt-2 flex items-center justify-center gap-2 rounded-full px-4 py-3.5 text-base font-semibold'>
+              className='btn-cta btn-cta-lg btn-whatsapp btn-cta-fluid mt-2'>
               <WhatsAppIcon className='h-5 w-5' aria-hidden />
               Talk on WhatsApp
             </a>

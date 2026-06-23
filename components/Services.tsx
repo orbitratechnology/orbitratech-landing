@@ -4,10 +4,10 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
 import { ServiceVisual } from '@/components/services/service-visuals';
-import { Button } from '@/components/ui/button';
 import { SERVICES, type ServiceData, type ServiceIcon } from '@/lib/services-data';
 import { cn } from '@/lib/utils';
 
@@ -67,14 +67,15 @@ function ServiceCopy({
               </li>
             ))}
           </ul>
-          <Button
-            nativeButton={false}
-            render={<Link href='#contact' />}
-            variant='outline'
-            size='lg'
-            className='mt-8 border-[var(--color-rule)] bg-[var(--color-paper-2)]/80 text-[var(--color-ink)] hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-accent-muted)]'>
+          <Link
+            href='#contact'
+            className='btn-cta btn-cta-lg btn-outline group mt-8'>
             Discuss this service
-          </Button>
+            <ArrowRight
+              className='h-4 w-4 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5'
+              aria-hidden
+            />
+          </Link>
         </div>
       </div>
     </div>
@@ -291,7 +292,7 @@ export default function Services() {
         </div>
       </div>
 
-      {/* Stacked sections — mobile always, desktop when reduced motion */}
+      {/* Stacked sections - mobile always, desktop when reduced motion */}
       <div className='services-static-fallback container mx-auto max-w-6xl px-6 pb-20'>
         {SERVICES.map((service, index) => (
           <MobileServiceSection

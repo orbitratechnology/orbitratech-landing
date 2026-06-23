@@ -8,7 +8,7 @@ const FOUNDERS = [
   {
     name: 'Bilal',
     role: 'Founder & CEO',
-    bio: 'Leads client strategy, commercial development, and delivery — building Orbitra from zero into a full-service digital engineering firm.',
+    bio: 'Leads client strategy, commercial development, and delivery - building Orbitra from zero into a full-service digital engineering firm.',
     image: '/bilal.jpg',
     socials: [
       {
@@ -26,7 +26,7 @@ const FOUNDERS = [
   {
     name: 'Adhham',
     role: 'Founder & CTO',
-    bio: 'Architects native mobile and modern web systems — every build meets the bar we would ship for our own products.',
+    bio: 'Architects native mobile and modern web systems - every build meets the bar we would ship for our own products.',
     image: '/adhham.jpg',
     website: 'https://adhham.dev',
     socials: [

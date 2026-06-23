@@ -13,7 +13,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState,
+  useSyncExternalStore,
 } from 'react';
 import { cn } from '../../lib/utils';
 
@@ -79,9 +79,11 @@ export function MagicCard(props: MagicCardProps) {
   const glowBlur = isOrbMode(props) ? (props.glowBlur ?? 60) : 60;
   const glowOpacity = isOrbMode(props) ? (props.glowOpacity ?? 0.9) : 0.9;
   const { theme, systemTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   const isDarkTheme = useMemo(() => {
     if (!mounted) return true;

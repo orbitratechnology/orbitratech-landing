@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { useId, type HTMLAttributes, type ReactNode } from "react"
 
 import { cn } from "@/lib/utils"
@@ -85,13 +86,12 @@ export function Safari({
           className="pointer-events-none absolute z-0 overflow-hidden"
           style={screenStyle}
         >
-          <img
+          <Image
             src={imageSrc}
             alt=""
             width={SCREEN_WIDTH}
             height={SCREEN_HEIGHT}
             loading="lazy"
-            decoding="async"
             className="block size-full object-cover object-top"
           />
         </div>

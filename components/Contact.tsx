@@ -18,7 +18,7 @@ export default function Contact() {
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] text-[var(--color-ink-muted)]'>
             A short WhatsApp message is enough to start. We reply with next steps
-            and a realistic timeline — usually within an hour.
+            and a realistic timeline - usually within an hour.
           </p>
         </ScrollReveal>
 
@@ -93,8 +93,8 @@ export default function Contact() {
                   href={WHATSAPP_SHORT}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='btn-whatsapp mt-8 inline-flex min-h-12 items-center justify-center gap-2 self-center rounded-full px-8 py-3.5 text-base font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
-                  <WhatsAppIcon className='h-5 w-5' />
+                  className='btn-cta btn-cta-lg btn-whatsapp mt-8 self-center'>
+                  <WhatsAppIcon className='h-5 w-5' aria-hidden />
                   Open WhatsApp
                 </a>
               </div>

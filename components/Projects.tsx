@@ -1,14 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { LandingProduct } from '@/lib/cms';
+import { LANDING_PRODUCTS } from '@/lib/landing-data';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
 
-type ProjectsProps = {
-  products: LandingProduct[];
-};
-
-export default function Projects({ products }: ProjectsProps) {
+export default function Projects() {
+  const products = LANDING_PRODUCTS;
   return (
     <section
       id='projects'
@@ -19,7 +16,7 @@ export default function Projects({ products }: ProjectsProps) {
             Products we are building in the open
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] text-[var(--color-ink-muted)]'>
-            Alongside client work, Orbitra ships its own apps — proof of how we
+            Alongside client work, Orbitra ships its own apps - proof of how we
             design, ship, and maintain long-running software.
           </p>
         </ScrollReveal>
