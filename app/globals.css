@@ -259,6 +259,16 @@ body {
   }
 }
 
+.hero-intro .hero-bg-video {
+  display: block;
+  box-shadow: none;
+  border: 0;
+  outline: none;
+  -webkit-box-shadow: none;
+  filter: none;
+  
+}
+
 .section-eyebrow {
   font-family: var(--font-display);
   font-size: var(--text-sm);

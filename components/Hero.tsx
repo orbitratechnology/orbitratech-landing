@@ -4,14 +4,15 @@ import { WHATSAPP_URL } from '@/lib/constants';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ArrowRight, Check } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { HeroBrandOrbits } from './HeroBrandOrbits';
-import { AnimatedShinyText } from './ui/animated-shiny-text';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 
 gsap.registerPlugin(useGSAP);
+
+const HERO_BG_VIDEO = '/Ocean_waves_rolling_onto_beach_202606240203.mp4';
+const HERO_BG_POSTER = '/hero-bg.png';
 
 const TRUST_POINTS = [
   'Fixed pricing for growing SMEs',
@@ -21,6 +22,60 @@ const TRUST_POINTS = [
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [allowVideo, setAllowVideo] = useState(false);
+
+  useEffect(() => {
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const saveData =
+      'connection' in navigator &&
+      (navigator as Navigator & { connection?: { saveData?: boolean } })
+        .connection?.saveData;
+
+    setAllowVideo(!motionQuery.matches && !saveData);
+  }, []);
+
+  useEffect(() => {
+    if (!allowVideo) return;
+
+    const video = videoRef.current;
+    const section = sectionRef.current;
+    if (!video || !section) return;
+
+    const play = () => {
+      if (document.hidden) return;
+      void video.play().catch(() => {});
+    };
+
+    const pause = () => {
+      if (!video.paused) video.pause();
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) pause();
+      else if (section.getBoundingClientRect().bottom > 0) play();
+    };
+
+    video.addEventListener('canplay', play, { once: true });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !document.hidden) play();
+        else pause();
+      },
+      { threshold: 0.05, rootMargin: '50px 0px' },
+    );
+
+    observer.observe(section);
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    return () => {
+      video.removeEventListener('canplay', play);
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      pause();
+    };
+  }, [allowVideo]);
 
   useGSAP(
     () => {
@@ -61,8 +116,9 @@ export default function Hero() {
     <section
       ref={sectionRef}
       className='hero-intro relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28'>
+      {/* Static hero background — restore if removing video
       <Image
-        src='/hero-bg.png'
+        src={HERO_BG_POSTER}
         alt=''
         fill
         priority
@@ -70,6 +126,28 @@ export default function Hero() {
         className='object-cover object-center'
         aria-hidden
       />
+      */}
+      <div
+        className='pointer-events-none absolute inset-0 z-0 bg-cover bg-center'
+        style={{ backgroundImage: `url(${HERO_BG_POSTER})` }}
+        aria-hidden
+      />
+      {allowVideo ? (
+        <video
+          ref={videoRef}
+          className=' hero-bg-video pointer-events-none absolute inset-0 -z-1 block h-full w-full border-0 object-cover object-center shadow-none outline-none'
+          poster={HERO_BG_POSTER}
+          muted
+          playsInline
+          loop
+          autoPlay
+          preload='metadata'
+          disablePictureInPicture
+          disableRemotePlayback
+          aria-hidden>
+          <source src={HERO_BG_VIDEO} type='video/mp4' />
+        </video>
+      ) : null}
       <div
         className='pointer-events-none absolute inset-0 z-[1]'
         aria-hidden
