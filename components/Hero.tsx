@@ -5,77 +5,23 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { useRef } from 'react';
 import { HeroBrandOrbits } from './HeroBrandOrbits';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 
 gsap.registerPlugin(useGSAP);
 
-const HERO_BG_VIDEO = '/Ocean_waves_rolling_onto_beach_202606240203.mp4';
-const HERO_BG_POSTER = '/hero-bg.png';
+const HERO_BG = '/hero-bg.png';
 
 const TRUST_POINTS = [
-  'Fixed pricing for growing SMEs',
+  'Flexible pricing for growing SMEs',
   'Web and mobile under one team',
   'Based in Beruwala - remote worldwide',
 ] as const;
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [allowVideo, setAllowVideo] = useState(false);
-
-  useEffect(() => {
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const saveData =
-      'connection' in navigator &&
-      (navigator as Navigator & { connection?: { saveData?: boolean } })
-        .connection?.saveData;
-
-    setAllowVideo(!motionQuery.matches && !saveData);
-  }, []);
-
-  useEffect(() => {
-    if (!allowVideo) return;
-
-    const video = videoRef.current;
-    const section = sectionRef.current;
-    if (!video || !section) return;
-
-    const play = () => {
-      if (document.hidden) return;
-      void video.play().catch(() => {});
-    };
-
-    const pause = () => {
-      if (!video.paused) video.pause();
-    };
-
-    const onVisibilityChange = () => {
-      if (document.hidden) pause();
-      else if (section.getBoundingClientRect().bottom > 0) play();
-    };
-
-    video.addEventListener('canplay', play, { once: true });
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !document.hidden) play();
-        else pause();
-      },
-      { threshold: 0.05, rootMargin: '50px 0px' },
-    );
-
-    observer.observe(section);
-    document.addEventListener('visibilitychange', onVisibilityChange);
-
-    return () => {
-      video.removeEventListener('canplay', play);
-      observer.disconnect();
-      document.removeEventListener('visibilitychange', onVisibilityChange);
-      pause();
-    };
-  }, [allowVideo]);
 
   useGSAP(
     () => {
@@ -83,12 +29,17 @@ export default function Hero() {
       const mm = gsap.matchMedia();
 
       mm.add('(prefers-reduced-motion: reduce)', () => {
-        gsap.set(q('.hero-eyebrow, .hero-title, .hero-lead, .hero-cta, .hero-trust, .hero-visual'), {
-          autoAlpha: 1,
-          y: 0,
-          scale: 1,
-          clearProps: 'transform',
-        });
+        gsap.set(
+          q(
+            '.hero-eyebrow, .hero-title, .hero-lead, .hero-cta, .hero-trust, .hero-visual',
+          ),
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            clearProps: 'transform',
+          },
+        );
       });
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
@@ -102,9 +53,21 @@ export default function Hero() {
         tl.to(q('.hero-eyebrow'), { autoAlpha: 1, y: 0, duration: 0.5 })
           .to(q('.hero-title'), { autoAlpha: 1, y: 0, duration: 0.7 }, '-=0.2')
           .to(q('.hero-lead'), { autoAlpha: 1, y: 0, duration: 0.6 }, '-=0.35')
-          .to(q('.hero-cta'), { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08 }, '-=0.25')
-          .to(q('.hero-trust'), { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.06 }, '-=0.2')
-          .to(q('.hero-visual'), { autoAlpha: 1, scale: 1, duration: 0.9 }, '-=0.5');
+          .to(
+            q('.hero-cta'),
+            { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08 },
+            '-=0.25',
+          )
+          .to(
+            q('.hero-trust'),
+            { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.06 },
+            '-=0.2',
+          )
+          .to(
+            q('.hero-visual'),
+            { autoAlpha: 1, scale: 1, duration: 0.9 },
+            '-=0.5',
+          );
       });
 
       return () => mm.revert();
@@ -116,38 +79,15 @@ export default function Hero() {
     <section
       ref={sectionRef}
       className='hero-intro relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28'>
-      {/* Static hero background — restore if removing video
       <Image
-        src={HERO_BG_POSTER}
+        src={HERO_BG}
         alt=''
         fill
         priority
         sizes='100vw'
-        className='object-cover object-center'
+        className='pointer-events-none object-cover object-center'
         aria-hidden
       />
-      */}
-      <div
-        className='pointer-events-none absolute inset-0 z-0 bg-cover bg-center'
-        style={{ backgroundImage: `url(${HERO_BG_POSTER})` }}
-        aria-hidden
-      />
-      {allowVideo ? (
-        <video
-          ref={videoRef}
-          className=' hero-bg-video pointer-events-none absolute inset-0 -z-1 block h-full w-full border-0 object-cover object-center shadow-none outline-none'
-          poster={HERO_BG_POSTER}
-          muted
-          playsInline
-          loop
-          autoPlay
-          preload='metadata'
-          disablePictureInPicture
-          disableRemotePlayback
-          aria-hidden>
-          <source src={HERO_BG_VIDEO} type='video/mp4' />
-        </video>
-      ) : null}
       <div
         className='pointer-events-none absolute inset-0 z-[1]'
         aria-hidden
@@ -171,7 +111,6 @@ export default function Hero() {
 
       <div className='container relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16'>
         <div className='min-w-0 text-center lg:text-left'>
-
           <h1 className='hero-title font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.08] tracking-tight text-[var(--color-ink)]'>
             Get more customers.{' '}
             <span className='text-[var(--color-accent)]'>

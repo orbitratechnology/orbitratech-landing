@@ -1,7 +1,7 @@
 @import 'tailwindcss';
-@import '../tokens.css' ;
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import '../tokens.css';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -93,8 +93,7 @@
 @keyframes orbit {
   0% {
     transform: rotate(calc(var(--angle) * 1deg))
-      translateY(calc(var(--radius) * 1px))
-      rotate(calc(var(--angle) * -1deg));
+      translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
   }
   100% {
     transform: rotate(calc(var(--angle) * 1deg + 360deg))
@@ -257,16 +256,6 @@ body {
     opacity: 0;
     visibility: hidden;
   }
-}
-
-.hero-intro .hero-bg-video {
-  display: block;
-  box-shadow: none;
-  border: 0;
-  outline: none;
-  -webkit-box-shadow: none;
-  filter: none;
-  
 }
 
 .section-eyebrow {
@@ -435,7 +424,11 @@ body {
 }
 
 .hero-intro .btn-outline:hover {
-  border-color: color-mix(in oklch, var(--color-accent) 35%, rgb(255 255 255 / 0.38));
+  border-color: color-mix(
+    in oklch,
+    var(--color-accent) 35%,
+    rgb(255 255 255 / 0.38)
+  );
   background: rgb(255 255 255 / 0.28);
   backdrop-filter: blur(24px) saturate(1.75);
   -webkit-backdrop-filter: blur(24px) saturate(1.75);
@@ -557,8 +550,7 @@ h4 {
   .animate-orbit {
     animation: none !important;
     transform: rotate(calc(var(--angle) * 1deg))
-      translateY(calc(var(--radius) * 1px))
-      rotate(calc(var(--angle) * -1deg));
+      translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
   }
 }
 
