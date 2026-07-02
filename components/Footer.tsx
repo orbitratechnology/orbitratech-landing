@@ -81,9 +81,9 @@ export default async function Footer() {
               <li className='flex items-center gap-2'>
                 <Mail className='h-4 w-4 shrink-0' aria-hidden />
                 <a
-                  href='mailto:admin@orbitratech.net'
+                  href='mailto:orbitra.technology@gmail.com'
                   className='hover:text-[var(--color-ink)]'>
-                  admin@orbitratech.net
+                  orbitra.technology@gmail.com
                 </a>
               </li>
               <li className='flex items-start gap-2'>
