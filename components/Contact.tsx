@@ -53,7 +53,7 @@ export default function Contact() {
                     <a
                       href='mailto:admin@orbitratech.net'
                       className='mt-1 block break-all text-[var(--color-ink-muted)] hover:text-[var(--color-accent)]'>
-                      admin@orbitratech.net
+                   orbitra.technology@gmail.com
                     </a>
                   </div>
                 </li>
