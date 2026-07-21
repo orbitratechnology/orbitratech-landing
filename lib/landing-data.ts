@@ -28,13 +28,18 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
     },
   },
   {
-    id: 'gemnet',
-    title: 'Gemnet',
-    status: 'Planned',
+    id: 'gemfort',
+    title: 'GemFort',
+    status: 'In development',
     description:
-      'Secure B2B network for gem traders - discovery, trading, and market insights in one place.',
-    features: ['B2B trading', 'Verification', 'Market insights'],
-    imageUrl: '/gemnet-logo.png',
-    imageAlt: 'Gemnet logo',
+      'Secure B2B network and Workspace for gem traders - discovery, trading, and market insights in one place.',
+    features: [
+      'B2B Gem trading',
+      'Workspace',
+      'Verification',
+      'Market insights',
+    ],
+    imageUrl: '/gemfort-logo.png',
+    imageAlt: 'GemFort logo',
   },
 ];
