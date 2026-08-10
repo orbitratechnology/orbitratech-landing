@@ -161,7 +161,7 @@ export default function IntegrationFlow() {
             One platform. Every system wired in.
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)]'>
-            We build your website or app as the hub — then connect payments,
+            We build your website or app as the hub - then connect payments,
             data, and notifications so your business runs on software,
             not spreadsheets.
           </p>

@@ -17,7 +17,7 @@
 
 ## About
 
-**Orbitra Tech (Pvt) Ltd** partners with growing businesses across Sri Lanka and beyond. We design and ship websites, mobile apps, e-commerce stores, and internal systems — with fixed pricing, honest timelines, and production-grade engineering.
+**Orbitra Tech (Pvt) Ltd** partners with growing businesses across Sri Lanka and beyond. We design and ship websites, mobile apps, e-commerce stores, and internal systems - with fixed pricing, honest timelines, and production-grade engineering.
 
 **Services:** website development · mobile apps · digital transformation · e-commerce
 

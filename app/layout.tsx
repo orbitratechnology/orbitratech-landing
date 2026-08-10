@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://orbitratech.net'),
   title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
   description:
-    'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs — fixed pricing and production-grade engineering.',
+    'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs - fixed pricing and production-grade engineering.',
   keywords:
     'digital transformation, Sri Lanka SMEs, web development Sri Lanka, mobile app development, e-commerce Sri Lanka, business digitalization',
   authors: [{ name: 'Adhham Safwan', url: 'https://adhham.dev' }],
