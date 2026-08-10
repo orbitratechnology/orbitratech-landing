@@ -48,7 +48,7 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
     status: 'Planning',
     description:
       'A mobile-first marketplace designed to help Sri Lankan women turn practical skills, home-based production and independent services into more stable income.',
-    features: [,
+    features: [
       'Women-Led Marketplace',
       'Handmade Products',
       'Local Service Booking',
