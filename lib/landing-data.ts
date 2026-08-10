@@ -16,7 +16,7 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
   {
     id: 'worknet',
     title: 'Worknet',
-    status: 'In development',
+    status: 'In Beta',
     description:
       'Mobile app connecting workers with opportunities - job matching, profiles, and daily task management.',
     features: ['Job matching', 'Worker profiles', 'Task management'],
@@ -30,7 +30,7 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
   {
     id: 'gemfort',
     title: 'GemFort',
-    status: 'In development',
+    status: 'In Development',
     description:
       'Secure B2B network and Workspace for gem traders - discovery, trading, and market insights in one place.',
     features: [
@@ -42,4 +42,19 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
     imageUrl: '/gemfort-logo.png',
     imageAlt: 'GemFort logo',
   },
+   {
+    id: 'hermade',
+    title: 'Hermade',
+    status: 'Planning',
+    description:
+      'A mobile-first marketplace designed to help Sri Lankan women turn practical skills, home-based production and independent services into more stable income.',
+    features: [,
+      'Women-Led Marketplace',
+      'Handmade Products',
+      'Local Service Booking',
+      'Sri Lanka Women Entrepreneurs'
+    ],
+    imageUrl: '/hermade-logo.png',
+    imageAlt: 'Hermade logo',
+  }
 ];
