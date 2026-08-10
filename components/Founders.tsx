@@ -9,7 +9,7 @@ const FOUNDERS = [
     name: 'Bilal',
     role: 'Founder & CEO',
     bio: 'Leads client strategy, commercial development, and delivery - building Orbitra from zero into a full-service digital engineering firm.',
-    image: '/bilal.jpeg',
+    image: '/bilal.png',
     socials: [
       {
         icon: FaLinkedin,
@@ -18,7 +18,7 @@ const FOUNDERS = [
       },
       {
         icon: Mail,
-        url: 'mailto:ahamedbilal622@gmail.com',
+        url: 'mailto:bilalibnsuhair@gmail.com',
         label: 'Email',
       },
     ],
@@ -27,7 +27,7 @@ const FOUNDERS = [
     name: 'Adhham',
     role: 'Founder & CTO',
     bio: 'Architects native mobile and modern web systems - every build meets the bar we would ship for our own products.',
-    image: '/adhham.jpg',
+    image: '/adhham.png',
     website: 'https://adhham.dev',
     socials: [
       { icon: FaTwitter, url: 'https://x.com/AdhhamDev', label: 'Twitter' },
@@ -36,7 +36,7 @@ const FOUNDERS = [
         url: 'https://www.linkedin.com/in/adhham',
         label: 'LinkedIn',
       },
-      { icon: Mail, url: 'mailto:msmadhhamg@gmail.com', label: 'Email' },
+      { icon: Mail, url: 'mailto:adhham.dev.mail@gmail.com', label: 'Email' },
       { icon: Globe, url: 'https://adhham.dev', label: 'Website' },
     ],
   },

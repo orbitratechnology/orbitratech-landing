@@ -38,7 +38,7 @@ export default async function Footer() {
                   label: 'Instagram',
                 },
                 {
-                  href: 'https://www.linkedin.com/in/orbitra-tech-664ba03ba/',
+                  href: 'https://www.linkedin.com/company/orbitra-tech/',
                   icon: FaLinkedin,
                   label: 'LinkedIn',
                 },
