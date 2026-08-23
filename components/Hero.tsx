@@ -28,6 +28,7 @@ export default function Hero() {
       const q = gsap.utils.selector(sectionRef);
       const mm = gsap.matchMedia();
 
+      // Keep content visible without JS (agents / no-motion). Only enhance when motion is OK.
       mm.add('(prefers-reduced-motion: reduce)', () => {
         gsap.set(
           q(
@@ -46,28 +47,17 @@ export default function Hero() {
         const intro = q(
           '.hero-eyebrow, .hero-title, .hero-lead, .hero-cta, .hero-trust',
         );
-        gsap.set(intro, { autoAlpha: 0, y: 16 });
-        gsap.set(q('.hero-visual'), { autoAlpha: 0, scale: 0.96 });
-
-        const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-        tl.to(q('.hero-eyebrow'), { autoAlpha: 1, y: 0, duration: 0.5 })
-          .to(q('.hero-title'), { autoAlpha: 1, y: 0, duration: 0.7 }, '-=0.2')
-          .to(q('.hero-lead'), { autoAlpha: 1, y: 0, duration: 0.6 }, '-=0.35')
-          .to(
-            q('.hero-cta'),
-            { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08 },
-            '-=0.25',
-          )
-          .to(
-            q('.hero-trust'),
-            { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.06 },
-            '-=0.2',
-          )
-          .to(
-            q('.hero-visual'),
-            { autoAlpha: 1, scale: 1, duration: 0.9 },
-            '-=0.5',
-          );
+        // Start from visible SSR state; animate only subtle lift so crawlers always see text
+        gsap.fromTo(
+          intro,
+          { y: 12, autoAlpha: 1 },
+          { y: 0, autoAlpha: 1, duration: 0.55, stagger: 0.06, ease: 'power2.out' },
+        );
+        gsap.fromTo(
+          q('.hero-visual'),
+          { scale: 0.98, autoAlpha: 1 },
+          { scale: 1, autoAlpha: 1, duration: 0.8, ease: 'power2.out' },
+        );
       });
 
       return () => mm.revert();
@@ -111,6 +101,9 @@ export default function Hero() {
 
       <div className='container relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16'>
         <div className='min-w-0 text-center lg:text-left'>
+          <p className='hero-eyebrow mb-3 text-sm font-semibold uppercase tracking-wide text-[var(--color-accent)]'>
+            Orbitra Tech · Beruwala, Sri Lanka
+          </p>
           <h1 className='hero-title font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.08] tracking-tight text-[var(--color-ink)]'>
             Get more customers.{' '}
             <span className='text-[var(--color-accent)]'>
@@ -123,7 +116,9 @@ export default function Hero() {
               Orbitra Tech
             </strong>{' '}
             designs and builds websites and mobile apps that help local
-            businesses win customers and save hours every week.
+            businesses win customers and save hours every week. We deliver website
+            development, mobile apps, digital transformation, and e-commerce with
+            fixed pricing and production-grade engineering for Sri Lankan SMEs.
           </p>
 
           <div className='hero-cta mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start'>

@@ -13,6 +13,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
+      url: 'https://orbitratech.net/llms.txt',
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
       url: 'https://orbitratech.net/worknet/privacy-policy',
       lastModified,
       changeFrequency: 'yearly',

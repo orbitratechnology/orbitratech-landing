@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     'digital transformation, Sri Lanka SMEs, web development Sri Lanka, mobile app development, e-commerce Sri Lanka, business digitalization',
   authors: [{ name: 'Adhham Safwan', url: 'https://adhham.dev' }],
   alternates: {
-    canonical: '/',
+    canonical: 'https://orbitratech.net/',
   },
   icons: {
     icon: '/orbitra_logo.png',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: '/',
+    url: 'https://orbitratech.net/',
     title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
     description:
       'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',
@@ -66,6 +66,91 @@ export const metadata: Metadata = {
   category: 'technology',
 };
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Orbitra Tech',
+  url: 'https://orbitratech.net',
+  logo: 'https://orbitratech.net/orbitra_logo.png',
+  description:
+    'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',
+  email: 'hello@orbitratech.net',
+  telephone: '+94702495311',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '198/43 Sheikh Jamaldeen Road',
+    addressLocality: 'Beruwala',
+    addressCountry: 'LK',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+94702495311',
+    contactType: 'customer service',
+    areaServed: 'LK',
+    availableLanguage: ['English', 'Sinhala'],
+    url: 'https://wa.me/94702495311',
+  },
+  sameAs: [
+    'https://www.linkedin.com/in/orbitra-tech-org-7206523a6',
+    'https://www.facebook.com/profile.php?id=61586622600161',
+    'https://github.com/orbitratechnology',
+  ],
+  founder: {
+    '@type': 'Person',
+    name: 'Adhham Safwan',
+    url: 'https://adhham.dev',
+  },
+};
+
+const professionalServiceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Orbitra Tech',
+  url: 'https://orbitratech.net',
+  logo: 'https://orbitratech.net/orbitra_logo.png',
+  description:
+    'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',
+  serviceType: [
+    'Website development',
+    'Mobile app development',
+    'Digital transformation',
+    'E-commerce development',
+  ],
+  telephone: '+94702495311',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '198/43 Sheikh Jamaldeen Road',
+    addressLocality: 'Beruwala',
+    addressCountry: 'LK',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+94702495311',
+    contactType: 'customer service',
+    areaServed: 'LK',
+    availableLanguage: ['English', 'Sinhala'],
+  },
+  sameAs: [
+    'https://www.linkedin.com/in/orbitra-tech-org-7206523a6',
+    'https://www.facebook.com/profile.php?id=61586622600161',
+    'https://github.com/orbitratechnology',
+  ],
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  url: 'https://orbitratech.net',
+  name: 'Orbitra Tech',
+  description:
+    'Digital transformation for Sri Lankan SMEs — websites, mobile apps, and e-commerce.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Orbitra Tech',
+    url: 'https://orbitratech.net',
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,58 +162,29 @@ export default function RootLayout({
       className={cn('h-full antialiased font-sans', poppins.variable, inter.variable)}>
       <head>
         <meta name='apple-mobile-web-app-title' content='Orbitra Tech' />
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(professionalServiceJsonLd),
+          }}
+        />
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd),
+          }}
+        />
       </head>
       <body className='flex min-h-full flex-col'>
         <a href='#content' className='skip-link'>
           Skip to main content
         </a>
-        <script
-          type='application/ld+json'
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'ProfessionalService',
-              name: 'Orbitra Tech',
-              url: 'https://orbitratech.net',
-              logo: 'https://orbitratech.net/orbitra_logo.png',
-              description:
-                'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',
-              serviceType: [
-                'Website development',
-                'Mobile app development',
-                'Digital transformation',
-                'E-commerce development',
-              ],
-              contactPoint: {
-                '@type': 'ContactPoint',
-                telephone: '+94-702-495-311',
-                contactType: 'customer service',
-                areaServed: 'LK',
-                availableLanguage: ['English', 'Sinhala'],
-              },
-              address: {
-                '@type': 'PostalAddress',
-                addressCountry: 'LK',
-              },
-              sameAs: [
-                'https://www.linkedin.com/in/orbitra-tech-org-7206523a6',
-                'https://www.facebook.com/profile.php?id=61586622600161',
-                'https://github.com/orbitratechnology',
-              ],
-            }),
-          }}
-        />
-        <script
-          type='application/ld+json'
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              url: 'https://orbitratech.net',
-              name: 'Orbitra Tech',
-            }),
-          }}
-        />
         {children}
       </body>
     </html>
