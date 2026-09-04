@@ -1,5 +1,3 @@
-'use client';
-
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { WHATSAPP_SHORT } from '@/lib/constants';
 import { ScrollReveal } from './motion/ScrollReveal';

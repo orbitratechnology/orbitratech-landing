@@ -1,5 +1,3 @@
-'use client'
-
 import { Marquee } from '@/components/ui/marquee'
 import { ScrollReveal } from '@/components/motion/ScrollReveal'
 import type { BrandLogo } from '@/lib/brand-logos'

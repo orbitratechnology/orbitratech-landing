@@ -6,6 +6,10 @@ import Hero from '@/components/Hero'
 import Nav from '@/components/Nav'
 import { SectionPlaceholder } from '@/components/SectionPlaceholder'
 
+// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
+// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
+export const instant = false;
+
 const Technologies = dynamic(() => import('@/components/Technologies'), {
   loading: () => <SectionPlaceholder minHeight='14rem' />,
 })
