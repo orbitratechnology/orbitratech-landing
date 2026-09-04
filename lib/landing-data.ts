@@ -1,5 +1,6 @@
 export type LandingProduct = {
   id: string;
+  href: string;
   title: string;
   status: string;
   description: string;
@@ -14,7 +15,19 @@ export type LandingProduct = {
 
 export const LANDING_PRODUCTS: LandingProduct[] = [
   {
+    id: 'callnet',
+    href: '/callnet',
+    title: 'Callnet',
+    status: 'In Development',
+    description:
+      'A focused 1:1 calling app for private voice and video conversations with almost no friction.',
+    features: ['Voice calling', 'Video calling', 'Private by design'],
+    imageUrl: '/callnet-logo.png',
+    imageAlt: 'Callnet logo',
+  },
+  {
     id: 'worknet',
+    href: '/worknet',
     title: 'Worknet',
     status: 'In Beta',
     description:
@@ -29,6 +42,7 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
   },
   {
     id: 'gemfort',
+    href: '/gemfort',
     title: 'GemFort',
     status: 'In Development',
     description:
@@ -44,6 +58,7 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
   },
    {
     id: 'hermade',
+    href: '/hermade',
     title: 'Hermade',
     status: 'Planning',
     description:

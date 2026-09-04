@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { LANDING_PRODUCTS } from '@/lib/landing-data';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
@@ -77,6 +78,12 @@ export default function Projects() {
                     )}
                   </div>
                 )}
+                <Link
+                  href={project.href}
+                  className='mt-8 inline-flex items-center gap-2 self-start text-sm font-semibold text-[var(--color-accent-strong)] transition-colors hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+                  Explore {project.title}
+                  <ArrowUpRight className='h-4 w-4' aria-hidden />
+                </Link>
                 </article>
               </BeamCard>
             </ScrollReveal>
