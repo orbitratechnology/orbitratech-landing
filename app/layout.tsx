@@ -78,7 +78,7 @@ const organizationJsonLd = {
   telephone: '+94702495311',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '198/43 Sheikh Jamaldeen Road',
+    streetAddress: '198/3 Sheikh Jamaldeen Road',
     addressLocality: 'Beruwala',
     addressCountry: 'LK',
   },
@@ -119,7 +119,7 @@ const professionalServiceJsonLd = {
   telephone: '+94702495311',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '198/43 Sheikh Jamaldeen Road',
+    streetAddress: '198/3 Sheikh Jamaldeen Road',
     addressLocality: 'Beruwala',
     addressCountry: 'LK',
   },

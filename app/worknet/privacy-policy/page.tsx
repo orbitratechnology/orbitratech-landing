@@ -209,7 +209,7 @@ export default async function PrivacyPolicy() {
                   <br />
                   <strong>Email:</strong> admin@orbitratech.net
                   <br />
-                  <strong>Headquarters:</strong> 198/41 Sheikh Jamaldeen Road,
+                  <strong>Headquarters:</strong> 198/3 Sheikh Jamaldeen Road,
                   Beruwala, Sri Lanka
                 </p>
               </div>

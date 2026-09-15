@@ -55,6 +55,10 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
     ],
     imageUrl: '/gemfort-logo.png',
     imageAlt: 'GemFort logo',
+    legal: {
+      privacyPolicyUrl: '/gemfort/privacy-policy',
+      termsUrl: '/gemfort/terms-and-conditions',
+    },
   },
    {
     id: 'hermade',

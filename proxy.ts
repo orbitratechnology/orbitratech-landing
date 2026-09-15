@@ -47,6 +47,9 @@ Based in **Beruwala, Sri Lanka**. Remote-friendly worldwide.
 - [robots.txt](https://orbitratech.net/robots.txt)
 - Worknet privacy: https://orbitratech.net/worknet/privacy-policy
 - Worknet terms: https://orbitratech.net/worknet/terms-and-conditions
+- GemFort privacy: https://orbitratech.net/gemfort/privacy-policy
+- GemFort terms: https://orbitratech.net/gemfort/terms-and-conditions
+- GemFort account deletion: https://orbitratech.net/gemfort/delete-account
 `;
 
 const NOT_FOUND_MARKDOWN = `# 404 — Page not found
@@ -70,6 +73,7 @@ const KNOWN = new Set([
   '/robots.txt',
   '/sitemap.xml',
   '/manifest.json',
+  '/gemfort',
   '/worknet/privacy-policy',
   '/worknet/terms-and-conditions',
 ]);
@@ -133,6 +137,7 @@ export function proxy(request: NextRequest) {
   const known =
     KNOWN.has(pathname) ||
     pathname.startsWith('/worknet/') ||
+    pathname.startsWith('/gemfort/') ||
     pathname.startsWith('/brands/') ||
     pathname.startsWith('/platforms/') ||
     pathname.startsWith('/showcase/');

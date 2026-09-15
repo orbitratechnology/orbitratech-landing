@@ -215,7 +215,8 @@ export default async function TermsAndConditions() {
                   <br />
                   <strong>Email:</strong> admin@orbitratech.net
                   <br />
-                  <strong>Location:</strong> Beruwala, Sri Lanka
+                  <strong>Location:</strong> 198/3 Sheikh Jamaldeen Road,
+                  Beruwala, Sri Lanka
                 </p>
               </div>
             </section>

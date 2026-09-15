@@ -343,6 +343,11 @@ export const PRODUCT_DETAILS = {
     closingBody:
       'The long-term opportunity is bigger than a marketplace: a professional network where stones have structured histories, businesses have trusted identities, services are discoverable, and day-to-day records are easier to maintain.',
     ctaLabel: 'Explore the GemFort vision',
+    legalLinks: [
+      { href: '/gemfort/privacy-policy', label: 'Privacy policy' },
+      { href: '/gemfort/terms-and-conditions', label: 'Terms and conditions' },
+      { href: '/gemfort/delete-account', label: 'Delete your account' },
+    ],
   },
   hermade: {
     id: 'hermade',
