@@ -337,25 +337,20 @@ export default function GemFortTermsAndConditions() {
 
       <LegalSection id='liability' title='16. Limitation of liability'>
         <LegalParagraph>
-          To the maximum extent permitted by law, GemFort and its officers,
-          employees, contractors, licensors, and service providers will not be
-          liable for indirect, incidental, special, consequential, exemplary,
-          punitive, or loss-of-profit, loss-of-data, loss-of-goodwill,
-          loss-of-business, loss-of-opportunity, or transaction losses arising
-          from or related to the Service, user content, user dealings,
-          verification, public disclosure, third-party services, travel, device
-          permissions, account compromise, suspension, or deletion.
+          To the maximum extent permitted by applicable law, Orbitra Tech (Pvt)
+          Ltd and GemFort are not responsible for any damage, injury, financial
+          loss, or misconduct resulting from an interaction, user dealing,
+          travel, transaction, or arrangement initiated or facilitated through
+          GemFort. GemFort does not provide, supervise, guarantee, or contract
+          for services, purchases, sales, payments, or settlements between
+          users.
         </LegalParagraph>
         <LegalParagraph>
-          To the maximum extent permitted by law, for direct loss proven to
-          have been caused by GemFort&apos;s breach of
-          these Terms, GemFort&apos;s total aggregate liability is limited to the
-          lesser of the proven direct loss and LKR 25,000. This is a risk-
-          allocation term for a free service, not a fee, payment, or refund
-          policy. It does not exclude or limit liability, rights, or remedies
-          that cannot lawfully be excluded or limited, including applicable
-          liability for fraud, wilful misconduct, or death or personal injury
-          caused by negligence.
+          Any disputes regarding quality, pricing, safety, performance, or
+          professionalism must be resolved directly between the parties
+          involved. Nothing in these Terms excludes or limits liability, rights,
+          or remedies that applicable law does not permit to be excluded or
+          limited.
         </LegalParagraph>
       </LegalSection>
 
