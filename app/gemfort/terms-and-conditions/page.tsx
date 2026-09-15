@@ -44,19 +44,17 @@ const navItems: LegalNavItem[] = [
 export default function GemFortTermsAndConditions() {
   return (
     <GemFortLegalPage
-      badge='Audit-reviewed draft'
+      badge='GemFort legal'
       title='Terms and Conditions'
       description='These terms govern access to GemFort, GemNet, GemTrack, public GemFort links, and related services. Read them before using the Service.'
       asideTitle='Agreement sections'
       navItems={navItems}>
-      <LegalCallout tone='warning'>
-        <strong>Draft for review.</strong> This page is based on the September
-        2026 code, security, and cloud audit. GemFort has no GemFort fees,
-        payment processing, subscriptions, checkout, or user-to-user
-        transactions. The remaining legal wording requires counsel review.
-        <span className='mt-2 block'>
+      <LegalCallout>
+        <p className='text-sm text-[var(--color-ink-muted)]'>
+          Effective date: September 16, 2026
+          <br />
           Last updated: September 16, 2026
-        </span>
+        </p>
       </LegalCallout>
 
       <LegalSection id='agreement' title='1. Agreement'>
@@ -64,8 +62,8 @@ export default function GemFortTermsAndConditions() {
           These Terms and Conditions govern your access to and use of the
           GemFort mobile applications, public GemFort links, GemNet, GemTrack,
           and related services (the &quot;Service&quot;). The Service is provided by
-          Orbitra Tech, based at 198/3 Sheikh Jamaldeen Road, Beruwala, Sri
-          Lanka (&quot;GemFort&quot;,
+          Orbitra Tech (Pvt) Ltd, based at 198/3 Sheikh Jamaldeen Road,
+          Beruwala, Sri Lanka (&quot;GemFort&quot;,
           &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;).
         </LegalParagraph>
         <LegalParagraph>
@@ -448,8 +446,7 @@ export default function GemFortTermsAndConditions() {
             Sri Lanka
           </p>
           <p className='mt-4 text-xs text-[var(--color-ink-muted)]'>
-            The formal legal entity and final legal wording remain subject to
-            confirmation before final legal publication.
+            Controller/operator: Orbitra Tech (Pvt) Ltd.
           </p>
         </LegalCallout>
       </LegalSection>

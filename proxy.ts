@@ -37,7 +37,7 @@ Based in **Beruwala, Sri Lanka**. Remote-friendly worldwide.
 - Website: https://orbitratech.net
 - WhatsApp: https://wa.me/94702495311
 - Phone: +94 70 249 5311
-- Address: 198/43 Sheikh Jamaldeen Road, Beruwala, Sri Lanka
+- Address: 198/3 Sheikh Jamaldeen Road, Beruwala, Sri Lanka
 - GitHub: https://github.com/orbitratechnology
 
 ## Agent resources

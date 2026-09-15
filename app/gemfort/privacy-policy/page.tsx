@@ -37,25 +37,23 @@ const navItems: LegalNavItem[] = [
 export default function GemFortPrivacyPolicy() {
   return (
     <GemFortLegalPage
-      badge='Audit-reviewed draft'
+      badge='GemFort legal'
       title='Privacy Policy'
       description='GemFort by Orbitra Tech. This policy explains what data GemFort collects, how it is used, when it is shared, and how you can request deletion.'
       asideTitle='In this policy'
       navItems={navItems}>
-      <LegalCallout tone='warning'>
-        <strong>Draft for review.</strong> This page is based on the September
-        2026 code, security, and cloud audit. The final legal entity,
-        retention schedule, and jurisdiction-specific wording still require
-        legal review.
-        <span className='mt-2 block'>
+      <LegalCallout>
+        <p className='text-sm text-[var(--color-ink-muted)]'>
+          Effective date: September 16, 2026
+          <br />
           Last updated: September 16, 2026
-        </span>
+        </p>
       </LegalCallout>
 
       <LegalSection id='who-we-are' title='1. Who we are'>
         <LegalParagraph>
-          GemFort is a product of Orbitra Tech, based at 198/3 Sheikh Jamaldeen
-          Road, Beruwala, Sri Lanka. GemFort provides a gem-trade directory and
+          GemFort is a product of Orbitra Tech (Pvt) Ltd, based at 198/3 Sheikh
+          Jamaldeen Road, Beruwala, Sri Lanka. GemFort provides a gem-trade directory and
           listing service called GemNet and a private business workspace called
           GemTrack for traders, lapidaries, and related businesses. GemFort does
           not process payments, subscriptions, or user-to-user transactions.
@@ -325,7 +323,7 @@ export default function GemFortPrivacyPolicy() {
           days. Narrow security, fraud, dispute, legal, or regulatory records
           may be retained only as necessary and normally for no longer than
           seven years, unless applicable law or an active proceeding requires
-          longer. This schedule remains subject to legal review.
+          longer.
         </LegalParagraph>
 
         <LegalTable>
@@ -464,8 +462,7 @@ export default function GemFortPrivacyPolicy() {
             Sri Lanka
           </p>
           <p className='mt-4 text-xs text-[var(--color-ink-muted)]'>
-            The formal legal entity and final retention schedule remain subject
-            to confirmation before final legal publication.
+            Controller: Orbitra Tech (Pvt) Ltd.
           </p>
         </LegalCallout>
       </LegalSection>
