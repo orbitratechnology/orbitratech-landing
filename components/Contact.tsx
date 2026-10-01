@@ -6,9 +6,7 @@ import WhatsAppContactForm from './WhatsAppContactForm';
 
 export default function Contact() {
   return (
-    <section
-      id='contact'
-      className='deferred-section relative border-t border-[var(--color-rule)] py-20 md:py-28'>
+    <section className='deferred-section relative border-t border-[var(--color-rule)] py-20 md:py-28'>
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto mb-12 max-w-2xl text-center'>
           <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>

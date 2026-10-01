@@ -70,10 +70,10 @@ function ServiceCopy({
           </ul>
           <Link
             href={`/${SERVICE_PAGE_BY_NAME[service.name].slug}`}
-            className='btn-cta btn-cta-lg btn-outline group mt-8'>
+            className='btn-cta btn-cta-lg btn-outline service-detail-link group mt-8'>
             Explore {service.name} in Sri Lanka
             <ArrowRight
-              className='h-4 w-4 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5'
+              className='h-4 w-4 shrink-0 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5'
               aria-hidden
             />
           </Link>

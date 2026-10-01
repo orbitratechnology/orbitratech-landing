@@ -94,9 +94,11 @@ export default function Home() {
         <DeferredSection fallback={<SectionPlaceholder minHeight='14rem' />}>
           <Payments />
         </DeferredSection>
-        <DeferredSection fallback={<SectionPlaceholder minHeight='20rem' />}>
-          <Contact />
-        </DeferredSection>
+        <div id='contact' className='scroll-mt-28'>
+          <DeferredSection fallback={<SectionPlaceholder minHeight='20rem' />}>
+            <Contact />
+          </DeferredSection>
+        </div>
         <DeferredSection fallback={<SectionPlaceholder minHeight='18rem' />}>
           <Founders />
         </DeferredSection>

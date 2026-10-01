@@ -298,6 +298,17 @@ body {
     color var(--dur-base) var(--ease-out);
 }
 
+.service-detail-link {
+  white-space: normal;
+  text-align: center;
+}
+
+@media (max-width: 639px) {
+  .service-detail-link {
+    width: 100%;
+  }
+}
+
 .btn-cta-lg {
   min-height: 3rem;
   padding: 0.875rem 1.75rem;
