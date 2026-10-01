@@ -53,10 +53,8 @@ export default function Hero() {
             Orbitra Tech · Beruwala, Sri Lanka
           </p>
           <h1 className='hero-title font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.08] tracking-tight text-[var(--color-ink)]'>
-            Get more customers.{' '}
-            <span className='text-[var(--color-accent)]'>
-              Run your business smoother.
-            </span>
+            Website &amp; App Development in{' '}
+            <span className='text-[var(--color-accent)]'>Sri Lanka</span>
           </h1>
 
           <p className='hero-lead mx-auto mt-6 max-w-xl text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)] lg:mx-0'>
@@ -67,6 +65,8 @@ export default function Hero() {
             businesses win customers and save hours every week. We deliver website
             development, mobile apps, digital transformation, and e-commerce with
             fixed pricing and production-grade engineering for Sri Lankan SMEs.
+            Get more customers and run your business smoother with software built
+            around how your team works.
           </p>
 
           <div className='hero-cta mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start'>

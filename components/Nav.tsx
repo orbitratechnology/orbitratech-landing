@@ -5,10 +5,12 @@ import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 
 export default function Nav() {
+  const pathname = usePathname();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -43,9 +45,9 @@ export default function Nav() {
       <nav
         className={cn(
           'mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full px-4 py-2.5 transition-[background,border-color,box-shadow,backdrop-filter] duration-[var(--dur-base)] md:px-5',
-          'backdrop-blur-sm',
+          'backdrop-blur-md',
           scrolled
-           && 'shadow-[0_4px_24px_rgb(15_23_42_/_0.08)] backdrop-saturate-70'
+           && 'shadow-[0_4px_24px_rgb(15_23_42/0.08)]'
         )}
         aria-label='Primary'>
         <Link href='/' className='flex shrink-0 items-center gap-2.5'>
@@ -66,7 +68,7 @@ export default function Nav() {
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={`${pathname === '/' ? '' : '/'}${link.href}`}
               className='rounded-full px-3.5 py-2 text-sm font-semibold text-[var(--color-ink-muted)] transition-colors duration-[var(--dur-fast)] hover:bg-[var(--color-paper-3)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
               {link.label}
             </Link>
@@ -112,7 +114,7 @@ export default function Nav() {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
+                href={`${pathname === '/' ? '' : '/'}${link.href}`}
                 onClick={closeMenu}
                 className='rounded-xl px-4 py-3 text-base font-semibold text-[var(--color-ink)] hover:bg-[var(--color-paper-3)]'>
                 {link.label}

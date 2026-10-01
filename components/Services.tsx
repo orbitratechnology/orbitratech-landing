@@ -9,6 +9,7 @@ import { useEffect, useRef } from 'react';
 
 import { ServiceVisual } from '@/components/services/service-visuals';
 import { SERVICES, type ServiceData, type ServiceIcon } from '@/lib/services-data';
+import { SERVICE_PAGE_BY_NAME } from '@/lib/service-pages';
 import { cn } from '@/lib/utils';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -68,9 +69,9 @@ function ServiceCopy({
             ))}
           </ul>
           <Link
-            href='#contact'
+            href={`/${SERVICE_PAGE_BY_NAME[service.name].slug}`}
             className='btn-cta btn-cta-lg btn-outline group mt-8'>
-            Discuss this service
+            Explore {service.name} in Sri Lanka
             <ArrowRight
               className='h-4 w-4 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5'
               aria-hidden

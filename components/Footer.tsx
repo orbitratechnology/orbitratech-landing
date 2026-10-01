@@ -64,7 +64,7 @@ export default async function Footer() {
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
-                    href={link.href}
+                    href={`/${link.href}`}
                     className='text-sm font-semibold text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]'>
                     {link.label}
                   </a>

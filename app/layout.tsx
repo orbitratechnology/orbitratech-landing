@@ -27,9 +27,12 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://orbitratech.net'),
-  title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
+  title: {
+    default: 'Web & App Development in Sri Lanka | Orbitra Tech',
+    template: '%s | Orbitra Tech',
+  },
   description:
-    'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs - fixed pricing and production-grade engineering.',
+    'Orbitra Tech builds websites, mobile apps, online stores, and business software for Sri Lankan SMEs. Based in Beruwala, Sri Lanka.',
   keywords:
     'digital transformation, Sri Lanka SMEs, web development Sri Lanka, mobile app development, e-commerce Sri Lanka, business digitalization',
   authors: [{ name: 'Adhham Safwan', url: 'https://adhham.dev' }],
@@ -43,14 +46,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: 'https://orbitratech.net/',
-    title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
+    title: 'Web & App Development in Sri Lanka | Orbitra Tech',
     description:
       'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',
     images: ['/orbitra_logo.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Orbitra Tech - Digital Transformation for Sri Lankan SMEs',
+    title: 'Web & App Development in Sri Lanka | Orbitra Tech',
     description:
       'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',
     images: ['/orbitra_logo.png'],

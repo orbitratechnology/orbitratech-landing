@@ -1,8 +1,12 @@
-export const WHATSAPP_URL =
-  "https://wa.me/94702495311?text=Hi%20Orbitra%20Tech,%20I'm%20interested%20in%20digitizing%20my%20business.%20Can%20we%20talk?";
+export const WHATSAPP_PHONE = '94702495311';
 
-export const WHATSAPP_SHORT =
-  "https://wa.me/94702495311?text=Hi%20Orbitra%20Tech,%20I'd%20like%20to%20discuss%20a%20project.";
+export function createWhatsAppUrl(message: string) {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+}
+
+export const WHATSAPP_URL = createWhatsAppUrl(
+  "Hi Orbitra Tech, I'm interested in digitizing my business. Can we talk?",
+);
 
 export const NAV_LINKS = [
   { href: '#about', label: 'About' },

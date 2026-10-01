@@ -1,8 +1,8 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { WHATSAPP_SHORT } from '@/lib/constants';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
+import WhatsAppContactForm from './WhatsAppContactForm';
 
 export default function Contact() {
   return (
@@ -22,7 +22,7 @@ export default function Contact() {
 
         <div className='mx-auto grid max-w-5xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]'>
           <ScrollReveal>
-            <div className='h-full rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-6 md:p-8'>
+            <div className='rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-6 md:p-8'>
               <h3 className='mb-6 font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--color-ink)]'>
                 Contact details
               </h3>
@@ -81,20 +81,13 @@ export default function Contact() {
                   <WhatsAppIcon className='h-7 w-7 text-[var(--color-whatsapp-strong)]' />
                 </div>
                 <h3 className='font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--color-ink)]'>
-                  Start on WhatsApp
+                  Tell us about your project
                 </h3>
                 <p className='mx-auto mt-3 max-w-sm text-[length:var(--text-sm)] text-[var(--color-ink-muted)]'>
-                  Describe your business and what is not working today. We will
-                  suggest the smallest useful first step.
+                  Share a few details and we will prepare a WhatsApp message for
+                  you to review and send.
                 </p>
-                <a
-                  href={WHATSAPP_SHORT}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='btn-cta btn-cta-lg btn-whatsapp mt-8 self-center'>
-                  <WhatsAppIcon className='h-5 w-5' aria-hidden />
-                  Open WhatsApp
-                </a>
+                <WhatsAppContactForm />
               </div>
             </BeamCard>
           </ScrollReveal>
