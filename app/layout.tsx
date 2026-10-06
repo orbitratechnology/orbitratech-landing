@@ -36,16 +36,14 @@ export const metadata: Metadata = {
   keywords:
     'digital transformation, Sri Lanka SMEs, web development Sri Lanka, mobile app development, e-commerce Sri Lanka, business digitalization',
   authors: [{ name: 'Adhham Safwan', url: 'https://adhham.dev' }],
-  alternates: {
-    canonical: 'https://orbitratech.net/',
-  },
+
   icons: {
     icon: '/orbitra_logo.png',
     apple: '/orbitra_logo.png',
   },
   openGraph: {
     type: 'website',
-    url: 'https://orbitratech.net/',
+    url: 'https://orbitratech.net',
     title: 'Web & App Development in Sri Lanka | Orbitra Tech',
     description:
       'Websites, mobile apps, digital transformation, and e-commerce for Sri Lankan SMEs.',

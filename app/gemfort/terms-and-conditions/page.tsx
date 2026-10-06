@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: 'Terms and Conditions | GemFort by Orbitra Tech',
   description:
     'Terms and Conditions for GemFort, including GemNet, GemTrack, public listings, verification, user content, third-party services, account deletion, and liability.',
+  alternates: {
+    canonical: 'https://www.orbitratech.net/gemfort/terms-and-conditions',
+  },
 };
 
 const navItems: LegalNavItem[] = [

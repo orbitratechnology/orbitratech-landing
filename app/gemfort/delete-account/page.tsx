@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: 'Delete your GemFort account | GemFort',
   description:
     'Request deletion of your GemFort account and associated personal data.',
+  alternates: {
+    canonical: 'https://www.orbitratech.net/gemfort/delete-account',
+  },
 };
 
 const navItems: LegalNavItem[] = [

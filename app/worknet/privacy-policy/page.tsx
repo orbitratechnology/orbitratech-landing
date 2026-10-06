@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | Worknet by Orbitra Tech',
   description:
     'Privacy Policy for Worknet - Find local help fast. Learn how we collect, use, and protect your data.',
+  alternates: {
+    canonical: 'https://www.orbitratech.net/worknet/privacy-policy',
+  },
 };
 
 export default async function PrivacyPolicy() {

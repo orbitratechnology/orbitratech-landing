@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Terms & Conditions | Worknet by Orbitra Tech',
   description:
     'Terms and Conditions for Worknet - Read about our service overview, user eligibility, account responsibilities, and legal disclaimers.',
+  alternates: {
+    canonical: 'https://www.orbitratech.net/worknet/terms-and-conditions',
+  },
 };
 
 export default async function TermsAndConditions() {
