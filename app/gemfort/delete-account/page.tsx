@@ -38,7 +38,7 @@ export default function GemFortDeleteAccount() {
           Cannot access the app?
         </p>
         <a
-          href='mailto:orbitra.technology@gmail.com?subject=GemFort%20account%20deletion%20request'
+          href='mailto:hello@orbitratech.net?subject=GemFort%20account%20deletion%20request'
           className='btn-cta btn-cta-lg btn-brand mt-5'>
           Email a deletion request
         </a>
@@ -57,9 +57,9 @@ export default function GemFortDeleteAccount() {
           <li>
             If you cannot sign in, email{' '}
             <a
-              href='mailto:orbitra.technology@gmail.com?subject=GemFort%20account%20deletion%20request'
+              href='mailto:hello@orbitratech.net?subject=GemFort%20account%20deletion%20request'
               className='font-semibold text-[var(--color-accent-strong)] underline underline-offset-4'>
-              orbitra.technology@gmail.com
+              hello@orbitratech.net
             </a>{' '}
             with the subject &quot;GemFort account deletion request&quot;. Include your
             account email or phone number, display name, and business name if
@@ -110,9 +110,9 @@ export default function GemFortDeleteAccount() {
       <LegalCallout>
         Questions about the process? Email{' '}
         <a
-          href='mailto:orbitra.technology@gmail.com'
+          href='mailto:hello@orbitratech.net'
           className='font-semibold text-[var(--color-accent-strong)] underline underline-offset-4'>
-          orbitra.technology@gmail.com
+          hello@orbitratech.net
         </a>{' '}
         or read the{' '}
         <Link

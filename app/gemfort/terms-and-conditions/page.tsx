@@ -396,9 +396,9 @@ export default function GemFortTermsAndConditions() {
           These Terms are governed by the laws of Sri Lanka. Before starting
           court proceedings, send a written complaint to{' '}
           <a
-            href='mailto:orbitra.technology@gmail.com'
+            href='mailto:hello@orbitratech.net'
             className='font-semibold text-[var(--color-accent-strong)] underline underline-offset-4'>
-            orbitra.technology@gmail.com
+            hello@orbitratech.net
           </a>{' '}
           and allow 30 days for good-faith resolution. Subject to mandatory
           consumer and data-protection rights, the courts in Kalutara District,
@@ -434,9 +434,9 @@ export default function GemFortTermsAndConditions() {
         <LegalCallout>
           <p className='font-semibold'>Legal and support questions</p>
           <a
-            href='mailto:orbitra.technology@gmail.com'
+            href='mailto:hello@orbitratech.net'
             className='mt-2 inline-block text-[var(--color-accent-strong)] underline underline-offset-4'>
-            orbitra.technology@gmail.com
+            hello@orbitratech.net
           </a>
           <p className='mt-4'>
             GemFort by Orbitra Tech · 198/3 Sheikh Jamaldeen Road, Beruwala,

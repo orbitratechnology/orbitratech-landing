@@ -64,9 +64,9 @@ export default function GemFortPrivacyPolicy() {
         <LegalParagraph>
           For privacy requests or questions, email{' '}
           <a
-            href='mailto:orbitra.technology@gmail.com'
+            href='mailto:hello@orbitratech.net'
             className='font-semibold text-[var(--color-accent-strong)] underline underline-offset-4'>
-            orbitra.technology@gmail.com
+            hello@orbitratech.net
           </a>
           . This policy applies to the GemFort mobile applications, public
           GemFort links, and related services. It does not govern third-party
@@ -382,9 +382,9 @@ export default function GemFortPrivacyPolicy() {
         <LegalParagraph>
           To exercise a right, email{' '}
           <a
-            href='mailto:orbitra.technology@gmail.com'
+            href='mailto:hello@orbitratech.net'
             className='font-semibold text-[var(--color-accent-strong)] underline underline-offset-4'>
-            orbitra.technology@gmail.com
+            hello@orbitratech.net
           </a>{' '}
           with the account email or UID, the request, and enough information to
           verify identity. We may refuse or limit a request where permitted by
@@ -456,9 +456,9 @@ export default function GemFortPrivacyPolicy() {
         <LegalCallout>
           <p className='font-semibold'>Privacy requests and general support</p>
           <a
-            href='mailto:orbitra.technology@gmail.com'
+            href='mailto:hello@orbitratech.net'
             className='mt-2 inline-block text-[var(--color-accent-strong)] underline underline-offset-4'>
-            orbitra.technology@gmail.com
+            hello@orbitratech.net
           </a>
           <p className='mt-4'>
             GemFort by Orbitra Tech · 198/3 Sheikh Jamaldeen Road, Beruwala,

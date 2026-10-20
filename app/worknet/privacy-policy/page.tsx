@@ -210,7 +210,7 @@ export default async function PrivacyPolicy() {
                 <p className='mb-5 text-slate-600 text-[1.05rem] leading-relaxed'>
                   <strong>Orbitra Tech (Pvt) Ltd.</strong>
                   <br />
-                  <strong>Email:</strong> admin@orbitratech.net
+                  <strong>Email:</strong> hello@orbitratech.net
                   <br />
                   <strong>Headquarters:</strong> 198/3 Sheikh Jamaldeen Road,
                   Beruwala, Sri Lanka

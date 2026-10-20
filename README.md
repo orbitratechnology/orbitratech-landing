@@ -24,7 +24,7 @@
 Alongside client work, we build our own products (like **Worknet** and **Gemnet**) as proof of how we ship.
 
 **Based in:** Beruwala, Sri Lanka · Remote worldwide  
-**Contact:** [admin@orbitratech.net](mailto:admin@orbitratech.net)
+**Contact:** [hello@orbitratech.net](mailto:hello@orbitratech.net)
 
 ## This repo
 
