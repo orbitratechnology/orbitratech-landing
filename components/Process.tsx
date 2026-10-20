@@ -14,7 +14,7 @@ const STEPS = [
   {
     icon: MessageCircle,
     title: 'Discovery call',
-    body: 'Tell us your goals on WhatsApp. We scope what you need and what it should cost.',
+    body: 'Tell us your goals on WhatsApp, email, or a call. We scope what you need and send a fixed price.',
   },
   {
     icon: PenLine,
@@ -94,7 +94,8 @@ export default function Process() {
   return (
     <section
       ref={sectionRef}
-      className='deferred-section relative border-y border-[var(--color-rule)] bg-[var(--color-paper-2)] py-16 md:py-20'>
+      id='process'
+      className='deferred-section relative scroll-mt-28 border-y border-[var(--color-rule)] bg-[var(--color-paper-2)] py-16 md:py-20'>
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto mb-12 max-w-2xl text-center'>
           <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)]'>

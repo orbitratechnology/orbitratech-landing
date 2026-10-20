@@ -1,24 +1,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { LANDING_PRODUCTS } from '@/lib/landing-data';
+import { LANDING_PRODUCTS, PRODUCT_STATUS_NOTES } from '@/lib/landing-data';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
 
-export default function Projects() {
+export default function Products() {
   const products = LANDING_PRODUCTS;
   return (
     <section
-      id='projects'
-      className='deferred-section relative border-t border-[var(--color-rule)] bg-[var(--color-paper-2)] py-20 md:py-28'>
+      id='products'
+      className='deferred-section relative scroll-mt-28 border-t border-[var(--color-rule)] py-20 md:py-28'>
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto mb-14 max-w-2xl text-center'>
+          <p className='section-eyebrow mb-3'>Our products</p>
           <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>
-            Products we are building in the open
+            Products we are building ourselves
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] text-[var(--color-ink-muted)]'>
-            Alongside client work, Orbitra ships its own apps - proof of how we
-            design, ship, and maintain long-running software.
+            Alongside client work, we design and build our own products. They
+            show how we take software from idea to release, and each is
+            labelled with where it honestly stands today.
           </p>
         </ScrollReveal>
 
@@ -26,7 +28,7 @@ export default function Projects() {
           {products.map((project, i) => (
             <ScrollReveal key={project.id} delay={i * 0.1}>
               <BeamCard beamDelay={i * 1.5} beamSize={120} className='h-full'>
-                <article className='flex h-full min-w-0 flex-col rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper)] p-6 md:p-8'>
+                <article className='flex h-full min-w-0 flex-col rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-6 md:p-8'>
                 <div className='mb-6 flex items-start justify-between gap-4'>
                   <div className='relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)]'>
                     <Image
@@ -46,19 +48,25 @@ export default function Projects() {
                 <h3 className='font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--color-ink)]'>
                   {project.title}
                 </h3>
-                <p className='mt-3 flex-1 text-[length:var(--text-base)] leading-relaxed text-[var(--color-ink-muted)]'>
+                <p className='mt-3 text-[length:var(--text-base)] leading-relaxed text-[var(--color-ink-muted)]'>
                   {project.description}
                 </p>
 
-                <ul className='mt-6 flex flex-wrap gap-2'>
-                  {project.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className='rounded-full border border-[var(--color-rule)] px-3 py-1 text-xs font-medium text-[var(--color-ink-muted)]'>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <div className='mt-5 flex-1 rounded-xl border border-[var(--color-rule)] p-4'>
+                  <p className='text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-accent)]'>
+                    What it shows we can build
+                  </p>
+                  <p className='mt-1.5 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink)]'>
+                    {project.demonstrates}
+                  </p>
+                </div>
+
+                <p className='mt-4 text-xs leading-relaxed text-[var(--color-ink-subtle)]'>
+                  <span className='font-semibold text-[var(--color-ink-muted)]'>
+                    {project.status}:
+                  </span>{' '}
+                  {PRODUCT_STATUS_NOTES[project.status]}
+                </p>
 
                 {(project.legal?.privacyPolicyUrl || project.legal?.termsUrl) && (
                   <div className='mt-6 flex flex-wrap gap-4 border-t border-[var(--color-rule)] pt-4'>

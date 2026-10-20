@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getCopyrightYear } from '@/lib/copyright-year';
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | Worknet by Orbitra Tech',
+  title: { absolute: 'Terms & Conditions | Worknet by Orbitra Tech' },
   description:
     'Terms and Conditions for Worknet - Read about our service overview, user eligibility, account responsibilities, and legal disclaimers.',
   alternates: {

@@ -1,22 +1,21 @@
-import { WHATSAPP_URL } from '@/lib/constants';
+import { RESPONSE_TIME, WHATSAPP_URL } from '@/lib/constants';
 import { ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { HeroBrandOrbits } from './HeroBrandOrbits';
-import { HeroMotion } from './HeroMotion';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 
 const HERO_BG = '/hero-bg.png';
 
 const TRUST_POINTS = [
-  'Flexible pricing for growing SMEs',
-  'Web and mobile under one team',
-  'Based in Beruwala - remote worldwide',
+  'Fixed scope and price, agreed in writing before work starts',
+  'You work directly with the founders who build it',
+  'Client work in Sri Lanka, Australia, and the UK',
 ] as const;
 
 export default function Hero() {
   return (
-    <HeroMotion>
+    <section className='hero-intro relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28'>
       <Image
         src={HERO_BG}
         alt=''
@@ -49,48 +48,51 @@ export default function Hero() {
 
       <div className='container relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16'>
         <div className='min-w-0 text-center lg:text-left'>
-          <p className='hero-eyebrow mb-3 text-sm font-semibold uppercase tracking-wide text-[var(--color-accent)]'>
-            Orbitra Tech · Beruwala, Sri Lanka
-          </p>
-          <h1 className='hero-title font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.08] tracking-tight text-[var(--color-ink)]'>
-            Website &amp; App Development in{' '}
-            <span className='text-[var(--color-accent)]'>Sri Lanka</span>
+          <h1>
+            <span className='hero-eyebrow mb-4 block text-sm font-semibold uppercase tracking-wide text-[var(--color-accent)]'>
+              Website &amp; app development in Sri Lanka
+            </span>
+            <span className='sr-only'>: </span>
+            <span className='hero-title block font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.08] tracking-tight text-[var(--color-ink)]'>
+              Software that wins customers and{' '}
+              <span className='text-[var(--color-accent)]'>
+                saves your team hours
+              </span>
+            </span>
           </h1>
 
           <p className='hero-lead mx-auto mt-6 max-w-xl text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)] lg:mx-0'>
             <strong className='font-semibold text-[var(--color-ink)]'>
               Orbitra Tech
             </strong>{' '}
-            designs and builds websites and mobile apps that help local
-            businesses win customers and save hours every week. We deliver website
-            development, mobile apps, digital transformation, and e-commerce with
-            fixed pricing and production-grade engineering for Sri Lankan SMEs.
-            Get more customers and run your business smoother with software built
-            around how your team works.
+            designs and builds websites, mobile apps, online stores, and
+            business automation for growing companies in Sri Lanka and
+            worldwide. We scope the smallest build that fixes your problem, at
+            a price agreed before we start.
           </p>
 
           <div className='hero-cta mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start'>
-            <a
-              href={WHATSAPP_URL}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='btn-cta btn-cta-lg btn-cta-fluid btn-cta-fluid-sm btn-whatsapp group gap-2.5'>
-              <WhatsAppIcon className='h-5 w-5' aria-hidden />
-              Talk on WhatsApp
-            </a>
             <Link
               href='#contact'
-              className='btn-cta btn-cta-lg btn-cta-fluid btn-cta-fluid-sm btn-outline group'>
-              Book a free consultation
+              className='btn-cta btn-cta-lg btn-cta-fluid btn-cta-fluid-sm btn-brand group gap-2'>
+              Discuss your project
               <ArrowRight
                 className='h-4 w-4 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5'
                 aria-hidden
               />
             </Link>
+            <a
+              href={WHATSAPP_URL}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='btn-cta btn-cta-lg btn-cta-fluid btn-cta-fluid-sm btn-outline group gap-2.5'>
+              <WhatsAppIcon className='h-5 w-5 text-[var(--color-whatsapp-strong)]' aria-hidden />
+              Ask a quick question
+            </a>
           </div>
 
           <p className='hero-trust mt-4 text-sm text-[var(--color-ink-subtle)]'>
-            We reply within 2 hours (9am–8pm, Mon–Sat).
+            No commitment needed. {RESPONSE_TIME}
           </p>
 
           <ul className='hero-trust mt-8 flex flex-col gap-3 sm:gap-2'>
@@ -112,6 +114,6 @@ export default function Hero() {
           <HeroBrandOrbits />
         </div>
       </div>
-    </HeroMotion>
+    </section>
   );
 }

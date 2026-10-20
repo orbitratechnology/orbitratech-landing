@@ -6,12 +6,11 @@ import GemFortLegalPage, {
   LegalList,
   LegalParagraph,
   LegalSection,
-  LegalSubheading,
   type LegalNavItem,
 } from '@/components/GemFortLegalPage';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions | GemFort by Orbitra Tech',
+  title: { absolute: 'Terms and Conditions | GemFort by Orbitra Tech' },
   description:
     'Terms and Conditions for GemFort, including GemNet, GemTrack, public listings, verification, user content, third-party services, account deletion, and liability.',
   alternates: {

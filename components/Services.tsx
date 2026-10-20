@@ -71,7 +71,7 @@ function ServiceCopy({
           <Link
             href={`/${SERVICE_PAGE_BY_NAME[service.name].slug}`}
             className='btn-cta btn-cta-lg btn-outline service-detail-link group mt-8'>
-            Explore {service.name} in Sri Lanka
+            {SERVICE_PAGE_BY_NAME[service.name].linkLabel}
             <ArrowRight
               className='h-4 w-4 shrink-0 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5'
               aria-hidden
@@ -279,16 +279,16 @@ export default function Services() {
     <section
       id='services'
       ref={sectionRef}
-      className='relative border-t border-[var(--color-rule)]'>
+      className='relative scroll-mt-28 border-t border-[var(--color-rule)]'>
       <div className='container mx-auto max-w-6xl px-6 py-20 md:py-28'>
         <div className='services-header mx-auto max-w-2xl text-center'>
           <p className='section-eyebrow mb-3'>Services</p>
           <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>
-            Built for Sri Lankan SMEs. Priced for the outcome, not the hours.
+            What we build for growing businesses
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)]'>
-            Fixed-scope pricing so you know what you are paying for before we
-            start. Scroll through each capability below.
+            Four services, each priced for the outcome rather than the hours.
+            Find the problem closest to yours.
           </p>
         </div>
       </div>

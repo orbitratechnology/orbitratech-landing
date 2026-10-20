@@ -64,7 +64,7 @@ export default function Nav() {
           </span>
         </Link>
 
-        <div className='hidden items-center gap-1 md:flex'>
+        <div className='hidden items-center gap-1 lg:flex'>
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -75,7 +75,7 @@ export default function Nav() {
           ))}
         </div>
 
-        <div className='hidden shrink-0 md:flex'>
+        <div className='hidden shrink-0 lg:flex'>
           <a
             href={WHATSAPP_URL}
             target='_blank'
@@ -89,7 +89,7 @@ export default function Nav() {
         <button
           type='button'
           onClick={toggleMenu}
-          className='ml-auto inline-flex rounded-full p-2.5 text-[var(--color-ink-muted)] transition-colors hover:bg-[var(--color-paper-3)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)] md:hidden'
+          className='ml-auto inline-flex rounded-full p-2.5 text-[var(--color-ink-muted)] transition-colors hover:bg-[var(--color-paper-3)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)] lg:hidden'
           aria-expanded={open}
           aria-controls='mobile-nav'
           aria-haspopup='dialog'
@@ -102,7 +102,7 @@ export default function Nav() {
         ref={dialogRef}
         id='mobile-nav'
         aria-label='Mobile navigation'
-        className='mobile-nav-dialog md:hidden'
+        className='mobile-nav-dialog lg:hidden'
         onClose={() => setOpen(false)}
         onClick={(event) => {
           if (event.target === dialogRef.current) {

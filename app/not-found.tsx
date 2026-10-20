@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '404 — Page not found | Orbitra Tech',
+  title: { absolute: '404 — Page not found | Orbitra Tech' },
   description:
     'This path does not exist on orbitratech.net. See the homepage, llms.txt, or sitemap.',
   robots: { index: false, follow: true },
@@ -13,10 +13,10 @@ export default function NotFound() {
 
 This path does not exist on **orbitratech.net**.
 
-- [Homepage](https://orbitratech.net/)
-- [llms.txt](https://orbitratech.net/llms.txt)
-- [sitemap.xml](https://orbitratech.net/sitemap.xml)
-- [robots.txt](https://orbitratech.net/robots.txt)
+- [Homepage](https://www.orbitratech.net/)
+- [llms.txt](https://www.orbitratech.net/llms.txt)
+- [sitemap.xml](https://www.orbitratech.net/sitemap.xml)
+- [robots.txt](https://www.orbitratech.net/robots.txt)
 
 WhatsApp: https://wa.me/94702495311`;
 

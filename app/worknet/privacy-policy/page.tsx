@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getCopyrightYear } from '@/lib/copyright-year';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Worknet by Orbitra Tech',
+  title: { absolute: 'Privacy Policy | Worknet by Orbitra Tech' },
   description:
     'Privacy Policy for Worknet - Find local help fast. Learn how we collect, use, and protect your data.',
   alternates: {

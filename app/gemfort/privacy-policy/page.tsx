@@ -12,7 +12,7 @@ import GemFortLegalPage, {
 } from '@/components/GemFortLegalPage';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | GemFort by Orbitra Tech',
+  title: { absolute: 'Privacy Policy | GemFort by Orbitra Tech' },
   description:
     'Privacy Policy for GemFort, including GemNet, GemTrack, account data, public profiles, workspace records, contacts, location, uploads, and deletion.',
   alternates: {

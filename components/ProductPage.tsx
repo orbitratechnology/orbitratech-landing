@@ -24,6 +24,8 @@ import Link from 'next/link';
 
 import type { ProductDetails, ProductIcon } from '@/lib/product-data';
 import { PRODUCT_DETAILS } from '@/lib/product-data';
+import { PRODUCT_STATUS_NOTES } from '@/lib/landing-data';
+import { SITE_URL } from '@/lib/constants';
 import Footer from './Footer';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
@@ -70,12 +72,8 @@ function ProductSchema({ product }: { product: ProductDetails }) {
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'iOS, Android',
     description: product.description,
-    url: `https://orbitratech.net${product.path}`,
-    creator: {
-      '@type': 'Organization',
-      name: 'Orbitra Tech',
-      url: 'https://orbitratech.net',
-    },
+    url: `${SITE_URL}${product.path}`,
+    creator: { '@id': `${SITE_URL}/#organization` },
   };
 
   return (
@@ -121,6 +119,13 @@ export default function ProductPage({ product }: { product: ProductDetails }) {
                 </h1>
                 <p className='mt-7 max-w-2xl text-[length:var(--text-xl)] leading-relaxed text-[var(--color-ink-muted)]'>
                   {product.description}
+                </p>
+                <p className='mt-5 max-w-2xl border-l-2 border-[var(--color-accent)] pl-4 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)]'>
+                  <strong className='font-semibold text-[var(--color-ink)]'>
+                    {product.status}.
+                  </strong>{' '}
+                  {PRODUCT_STATUS_NOTES[product.status]} {product.title} is an
+                  Orbitra Tech product, not a client project.
                 </p>
 
                 <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
@@ -290,7 +295,7 @@ export default function ProductPage({ product }: { product: ProductDetails }) {
                   Talk to Orbitra
                 </Link>
                 <Link
-                  href='/#projects'
+                  href='/#products'
                   className='btn-cta btn-cta-lg border border-[var(--color-paper-3)]/30 bg-transparent text-[var(--color-paper)] hover:bg-[var(--color-paper)]/10'>
                   See all products
                 </Link>
@@ -317,13 +322,13 @@ export default function ProductPage({ product }: { product: ProductDetails }) {
               <div>
                 <p className='section-eyebrow mb-3'>More from Orbitra Tech</p>
                 <h2 className='font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--color-ink)]'>
-                  Explore the other products in our Work
+                  Other products Orbitra is building
                 </h2>
               </div>
               <Link
-                href='/#projects'
+                href='/#products'
                 className='inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent-strong)] hover:text-[var(--color-ink)]'>
-                View Work
+                All products
                 <ArrowRight className='size-4' aria-hidden />
               </Link>
             </div>

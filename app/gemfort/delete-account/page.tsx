@@ -10,7 +10,7 @@ import GemFortLegalPage, {
 } from '@/components/GemFortLegalPage';
 
 export const metadata: Metadata = {
-  title: 'Delete your GemFort account | GemFort',
+  title: { absolute: 'Delete your GemFort account | GemFort by Orbitra Tech' },
   description:
     'Request deletion of your GemFort account and associated personal data.',
   alternates: {

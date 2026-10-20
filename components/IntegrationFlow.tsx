@@ -117,16 +117,16 @@ function FlowNodeCard({
 export default function IntegrationFlow() {
   const containerRef = useRef<HTMLDivElement>(null)
   const hubRef = useRef<HTMLDivElement>(null)
-  const inputRefs = [
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-  ]
-  const outputRefs = [
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-  ]
+  // Each hook is its own statement: React Compiler memoizes array literals,
+  // so `[useRef(), useRef()]` would skip the calls after the first render.
+  const customersRef = useRef<HTMLDivElement>(null)
+  const teamRef = useRef<HTMLDivElement>(null)
+  const operationsRef = useRef<HTMLDivElement>(null)
+  const paymentsRef = useRef<HTMLDivElement>(null)
+  const databaseRef = useRef<HTMLDivElement>(null)
+  const alertsRef = useRef<HTMLDivElement>(null)
+  const inputRefs = [customersRef, teamRef, operationsRef]
+  const outputRefs = [paymentsRef, databaseRef, alertsRef]
 
   const reducedMotion = useSyncExternalStore(
     subscribeReducedMotion,

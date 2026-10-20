@@ -17,6 +17,7 @@ export type ServiceIcon = {
 export type ServiceData = {
   id: ServiceVisualId;
   name: string;
+  /** Who the service is for, shown as the eyebrow above the name. */
   tagline: string;
   description: string;
   details: string[];
@@ -27,7 +28,7 @@ export const SERVICES: ServiceData[] = [
   {
     id: 'website',
     name: 'Website development',
-    tagline: 'Built to convert on first visit',
+    tagline: 'For businesses that need more enquiries',
     description:
       'We design and ship marketing sites and product landing pages that load fast, read clearly on mobile, and guide visitors toward one action - not twelve.',
     details: [
@@ -40,7 +41,7 @@ export const SERVICES: ServiceData[] = [
   {
     id: 'mobile',
     name: 'Mobile apps',
-    tagline: 'Apps people keep installed',
+    tagline: 'For founders and product teams',
     description:
       'Native iOS and Android experiences with the polish users expect - smooth navigation, reliable offline flows, and push notifications when they add real value.',
     details: [
@@ -52,10 +53,10 @@ export const SERVICES: ServiceData[] = [
   },
   {
     id: 'transform',
-    name: 'Digital transformation',
-    tagline: 'Modernize without the hype cycle',
+    name: 'Business automation',
+    tagline: 'For teams buried in manual work',
     description:
-      'We help teams replace spreadsheets, manual handoffs, and brittle legacy tools with software that matches how you actually work - choosing the right stack, not the trendiest one.',
+      'Custom software that replaces spreadsheets, manual handoffs, and brittle legacy tools with a system that matches how you actually work - choosing the right stack, not the trendiest one.',
     details: [
       'Workflow mapping before any code is written',
       'Phased rollouts so operations never stop',
@@ -66,7 +67,7 @@ export const SERVICES: ServiceData[] = [
   {
     id: 'ecommerce',
     name: 'E-commerce',
-    tagline: 'Stores you can run day to day',
+    tagline: 'For retailers selling online',
     description:
       'Online shops with secure checkout, inventory you can trust, and admin panels your staff will actually use - whether you sell locally or ship nationwide.',
     details: [

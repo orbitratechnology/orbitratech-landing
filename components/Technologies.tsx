@@ -5,9 +5,9 @@ export default function Technologies() {
   return (
     <BrandMarquee
       id='platforms'
-      eyebrow='Platforms & Integrations'
-      title='Built with enterprise-grade tools'
-      description='Databases, AI APIs, payment gateways, and commerce platforms - the same stack trusted by global product teams, configured for Sri Lankan businesses.'
+      eyebrow='Tools we build with'
+      title='Proven platforms, not experiments'
+      description='The databases, cloud services, AI APIs, and commerce platforms we build on. These are the tools we use, not client logos.'
       logos={TECHNOLOGY_LOGOS}
       dualRow
     />

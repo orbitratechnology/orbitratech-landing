@@ -246,16 +246,33 @@ body {
   }
 }
 
+/* Hero entrance: transform only, so the headline paints immediately (no
+ * opacity or visibility gating that would delay LCP or depend on JS). */
 @media (prefers-reduced-motion: no-preference) {
   .hero-intro .hero-eyebrow,
   .hero-intro .hero-title,
   .hero-intro .hero-lead,
   .hero-intro .hero-cta,
-  .hero-intro .hero-trust,
-  .hero-intro .hero-visual {
-    opacity: 0;
-    visibility: hidden;
+  .hero-intro .hero-trust {
+    animation: hero-rise var(--dur-slow) var(--ease-out) both;
   }
+
+  .hero-intro .hero-title { animation-delay: 60ms; }
+  .hero-intro .hero-lead { animation-delay: 120ms; }
+  .hero-intro .hero-cta { animation-delay: 180ms; }
+  .hero-intro .hero-trust { animation-delay: 240ms; }
+
+  .hero-intro .hero-visual {
+    animation: hero-settle 800ms var(--ease-out) both;
+  }
+}
+
+@keyframes hero-rise {
+  from { transform: translateY(12px); }
+}
+
+@keyframes hero-settle {
+  from { transform: scale(0.98); }
 }
 
 .section-eyebrow {

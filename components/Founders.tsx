@@ -9,6 +9,8 @@ const FOUNDERS = [
     name: 'Bilal',
     role: 'Co-Founder & CEO',
     bio: 'Leads client strategy, commercial development, and delivery - building Orbitra from zero into a full-service digital engineering firm.',
+    onYourProject:
+      'Your main point of contact: scoping, quotes, timelines, and keeping delivery on track.',
     image: '/bilal.png',
     socials: [
       {
@@ -27,6 +29,8 @@ const FOUNDERS = [
     name: 'Adhham',
     role: 'Co-Founder & CTO',
     bio: 'Architects native mobile and modern web systems - every build meets the bar we would ship for our own products.',
+    onYourProject:
+      'Owns the technical decisions: architecture, code quality, and how your web and mobile apps are built and released.',
     image: '/adhham.png',
     website: 'https://adhham.dev',
     socials: [
@@ -50,11 +54,11 @@ export default function Founders() {
       <div className='container mx-auto max-w-6xl px-6'>
         <ScrollReveal className='mx-auto mb-14 max-w-2xl text-center'>
           <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>
-            The team behind your build
+            Who you will work with
           </h2>
           <p className='mt-4 text-[length:var(--text-lg)] text-[var(--color-ink-muted)]'>
-            Two founders, one standard: software that earns trust with your
-            customers and your books.
+            Orbitra is founder-led. The two people below scope, build, and stand
+            behind your project, and they are the people you talk to.
           </p>
         </ScrollReveal>
 
@@ -65,7 +69,7 @@ export default function Founders() {
                 <article className='flex h-full min-w-0 flex-col items-center rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-8 text-center'>
                 <Image
                   src={founder.image}
-                  alt={founder.name}
+                  alt={`${founder.name}, ${founder.role} of Orbitra Tech`}
                   width={160}
                   height={160}
                   className='mb-6 h-36 w-36 rounded-full object-cover ring-2 ring-[var(--color-rule)]'
@@ -80,6 +84,14 @@ export default function Founders() {
                 <p className='mt-4 max-w-xs text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)]'>
                   {founder.bio}
                 </p>
+                <div className='mt-5 w-full max-w-xs rounded-xl bg-[var(--color-paper-3)] p-4 text-left'>
+                  <p className='text-xs font-bold uppercase tracking-[0.1em] text-[var(--color-accent)]'>
+                    On your project
+                  </p>
+                  <p className='mt-1.5 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink)]'>
+                    {founder.onYourProject}
+                  </p>
+                </div>
                 <div className='mt-6 flex flex-wrap justify-center gap-3'>
                   {founder.socials.map((social) => {
                     const Icon = social.icon;
@@ -94,6 +106,7 @@ export default function Founders() {
                         target='_blank'
                         rel='noopener noreferrer'
                         title={social.label}
+                        aria-label={`${founder.name} on ${social.label}`}
                         className='rounded-full border border-[var(--color-rule)] p-3 text-[var(--color-ink-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
                         <Icon className='h-5 w-5' aria-hidden />
                       </a>

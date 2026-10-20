@@ -1,4 +1,20 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/constants';
+
+// Search crawlers (Googlebot, Bingbot, OAI-SearchBot, Claude-SearchBot,
+// PerplexityBot) are covered by `*`. The named entries make the intent explicit
+// for the AI search and assistant crawlers the site wants to be discoverable in.
+const AI_CRAWLERS = [
+  'OAI-SearchBot',
+  'ChatGPT-User',
+  'GPTBot',
+  'Claude-SearchBot',
+  'Claude-User',
+  'ClaudeBot',
+  'PerplexityBot',
+  'Google-Extended',
+  'Applebot-Extended',
+];
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,32 +24,8 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: '/private/',
       },
-      {
-        userAgent: 'GPTBot',
-        allow: '/',
-      },
-      {
-        userAgent: 'ChatGPT-User',
-        allow: '/',
-      },
-      {
-        userAgent: 'ClaudeBot',
-        allow: '/',
-      },
-      {
-        userAgent: 'PerplexityBot',
-        allow: '/',
-      },
-      {
-        userAgent: 'Google-Extended',
-        allow: '/',
-      },
-      {
-        userAgent: 'Applebot-Extended',
-        allow: '/',
-      },
+      ...AI_CRAWLERS.map((userAgent) => ({ userAgent, allow: '/' })),
     ],
-    sitemap: 'https://orbitratech.net/sitemap.xml',
-    host: 'https://orbitratech.net',
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

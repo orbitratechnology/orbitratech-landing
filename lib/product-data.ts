@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import type { ProductStatus } from './landing-data';
+
 export type ProductIcon =
   | 'briefcase'
   | 'calendar'
@@ -36,7 +38,7 @@ export type ProductDetails = {
   id: 'callnet' | 'worknet' | 'gemfort' | 'hermade';
   path: `/${string}`;
   title: string;
-  status: string;
+  status: ProductStatus;
   eyebrow: string;
   tagline: string;
   description: string;
@@ -445,8 +447,11 @@ export const PRODUCT_DETAILS = {
 } satisfies Record<ProductDetails['id'], ProductDetails>;
 
 export function createProductMetadata(product: ProductDetails): Metadata {
+  const title = `${product.title}: ${product.eyebrow}`;
+  const socialTitle = `${title} | Orbitra Tech`;
+
   return {
-    title: `${product.title} | Orbitra Tech`,
+    title,
     description: product.description,
     alternates: {
       canonical: product.path,
@@ -454,13 +459,13 @@ export function createProductMetadata(product: ProductDetails): Metadata {
     openGraph: {
       type: 'website',
       url: product.path,
-      title: `${product.title} | Orbitra Tech`,
+      title: socialTitle,
       description: product.description,
       images: [product.imageUrl],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${product.title} | Orbitra Tech`,
+      title: socialTitle,
       description: product.description,
       images: [product.imageUrl],
     },
