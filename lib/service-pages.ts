@@ -1,6 +1,24 @@
+export type ServiceSceneId = 'website' | 'mobile' | 'ecommerce' | 'transform';
+
+export type DeliverableArt =
+  | 'sitemap'
+  | 'screens'
+  | 'launch'
+  | 'flow'
+  | 'platforms'
+  | 'release'
+  | 'catalogue'
+  | 'checkout'
+  | 'orders'
+  | 'map'
+  | 'plan'
+  | 'rollout';
+
 export type ServicePageData = {
   slug: string;
   name: string;
+  /** Which animated scene explains this service. */
+  scene: ServiceSceneId;
   /** Visible H1. */
   title: string;
   /** <title> text; the root layout appends "| Orbitra Tech". */
@@ -8,13 +26,18 @@ export type ServicePageData = {
   /** Link text used when other pages point here. */
   linkLabel: string;
   description: string;
+  /** One plain sentence under the H1. Also used in summaries for agents. */
   summary: string;
+  /** One sentence that opens the "what you get" section. */
   intro: string;
   audience: {
     buyers: string;
+    /** What the visitor is living with today. */
     problems: string[];
+    /** What changes, one for each problem, in the same order. */
+    fixes: string[];
   };
-  deliverables: { title: string; description: string }[];
+  deliverables: { title: string; description: string; art: DeliverableArt }[];
   costFactors: string[];
   /** Real, verifiable evidence only. Orbitra products must stay labelled as such. */
   evidence?: {
@@ -30,39 +53,49 @@ export const SERVICE_PAGES: ServicePageData[] = [
   {
     slug: 'website-development-sri-lanka',
     name: 'Website development',
+    scene: 'website',
     title: 'Website Development in Sri Lanka',
     metaTitle: 'Website Development Company in Sri Lanka',
     linkLabel: 'Website development in Sri Lanka',
     description:
       'Fast, mobile-friendly business websites built in Sri Lanka. Orbitra Tech helps SMEs explain their services, reach customers, and win enquiries.',
     summary:
-      'Orbitra Tech builds business websites in Sri Lanka that explain what you offer, work well on mobile, and help visitors take the next step.',
+      'A website that explains what you offer, works well on a phone, and makes it easy for visitors to call, message or visit.',
     intro:
-      'Based in Beruwala, Orbitra Tech works with growing businesses to plan, design, and launch marketing websites and product landing pages. The work starts with your customers and business goals, then turns those into a clear page structure and a practical build.',
+      'We start with your customers and what you want them to do, then design the pages around that.',
     audience: {
-      buyers: 'Business owners and marketing managers',
+      buyers: 'For business owners and marketing managers',
       problems: [
         'Your website looks dated or is hard to use on a phone',
         'Visitors arrive but rarely call, message, or enquire',
         'Customers cannot easily find your services, prices, or location',
         'Updating the site means waiting on someone else',
       ],
+      fixes: [
+        'A modern site that reads well on any phone',
+        'Clear buttons to call, WhatsApp or send an enquiry',
+        'Services, prices and directions one tap away',
+        'Change your own text and photos when you need to',
+      ],
     },
     deliverables: [
       {
         title: 'A clear site structure',
         description:
-          'Organize your services, products, and contact information so customers can find the details they need.',
+          'Your services, products and contact details organised so customers find what they need.',
+        art: 'sitemap',
       },
       {
-        title: 'Responsive page design',
+        title: 'Pages that fit every screen',
         description:
-          'Design layouts for phones, tablets, and desktop screens, with readable content and clear calls to action.',
+          'Layouts for phones, tablets and computers, with easy-to-read text and clear buttons.',
+        art: 'screens',
       },
       {
-        title: 'A launch-ready website',
+        title: 'A website ready to launch',
         description:
-          'Build with performance and accessibility in mind, and connect enquiry forms and analytics where required.',
+          'Fast, easy to use, with enquiry forms and visitor stats set up before it goes live.',
+        art: 'launch',
       },
     ],
     costFactors: [
@@ -74,7 +107,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'More than one language',
     ],
     evidence: {
-      body: 'Business websites we have built for clients. This site is another example: orbitratech.net is designed and built by Orbitra, with server-rendered pages, structured data for search engines, and a mobile-first layout.',
+      body: 'Business websites we have built for clients. This site is another example: we designed and built orbitratech.net to be found on Google and to load fast on a phone.',
       clientProjectIds: [
         'nethmi-gem-jewellery',
         'hey-gems-international',
@@ -82,20 +115,20 @@ export const SERVICE_PAGES: ServicePageData[] = [
       ],
     },
     process: [
-      { title: 'Understand', description: 'Review your audience, offer, and current site or materials.' },
-      { title: 'Plan and design', description: 'Agree on the page structure, content needs, and visual direction.' },
-      { title: 'Build and launch', description: 'Develop, review, and prepare the site for launch with you.' },
+      { title: 'Understand', description: 'We look at your customers, what you offer, and your current site.' },
+      { title: 'Plan and design', description: 'We agree the pages, the content you need, and how it should look.' },
+      { title: 'Build and launch', description: 'We build it, review it with you, and put it live.' },
     ],
     faqs: [
       {
         question: 'How much does a business website cost in Sri Lanka?',
         answer:
-          'It depends mainly on the number of pages, how custom the design is, who provides the content, and integrations such as booking or enquiry forms. Orbitra quotes a fixed price for a written scope after a free first conversation, and can give an indicative range from a short description.',
+          'It depends mainly on the number of pages, how custom the design is, who provides the content, and extras such as booking or enquiry forms. Orbitra quotes a fixed price for a written scope after a free first conversation, and can give an indicative range from a short description.',
       },
       {
         question: 'What does website development include?',
         answer:
-          'A project can include planning, responsive design, website development, enquiry forms, analytics setup, and launch support. The exact scope is agreed before work starts.',
+          'A project can include planning, design for phones and computers, building the site, enquiry forms, visitor stats, and help at launch. The exact scope is agreed before work starts.',
       },
       {
         question: 'How long does it take to build a business website?',
@@ -105,46 +138,56 @@ export const SERVICE_PAGES: ServicePageData[] = [
       {
         question: 'Can Orbitra update an existing business website?',
         answer:
-          'Yes. Orbitra can review an existing website and discuss a redesign, new landing pages, or focused improvements based on your goals and current technology.',
+          'Yes. Orbitra can review an existing website and discuss a redesign, new landing pages, or focused improvements based on your goals and the technology it uses today.',
       },
     ],
   },
   {
     slug: 'mobile-app-development-sri-lanka',
     name: 'Mobile app development',
+    scene: 'mobile',
     title: 'Mobile App Development in Sri Lanka',
     metaTitle: 'iOS & Android App Development in Sri Lanka',
     linkLabel: 'Mobile app development in Sri Lanka',
     description:
       'Orbitra Tech builds iOS and Android apps and MVPs for businesses and founders, with product design, backend integration, and app store submission support.',
     summary:
-      'Orbitra Tech plans and builds business mobile apps for iOS and Android, connecting the customer experience to the backend systems the app needs.',
+      'An app for iPhone and Android that does one job well for your customers or staff, connected to the systems behind it.',
     intro:
-      'A useful mobile app starts with a specific customer or operational need. Orbitra Tech helps businesses and founders shape that need into an app scope, design the important user journeys, and build the app alongside the APIs and authentication it depends on.',
+      'A useful app starts with one clear need. We shape that need into a first version, then build it properly.',
     audience: {
-      buyers: 'Founders, product managers, and business owners',
+      buyers: 'For founders, product managers, and business owners',
       problems: [
         'You have an app idea and need a first version real users can try',
         'Customers expect an app, or your website is not enough on mobile',
         'Your staff need a mobile tool for field work, orders, or bookings',
         'An existing app is unreliable, slow, or hard to update',
       ],
+      fixes: [
+        'A first version in real hands, so you learn fast',
+        'An app your customers keep on their home screen',
+        'A simple tool your staff carry in their pocket',
+        'A steady app you can keep improving',
+      ],
     },
     deliverables: [
       {
-        title: 'Product and user-flow planning',
+        title: 'The key screens, planned first',
         description:
-          'Define the core problem, key screens, and the first useful version before committing to a larger feature set.',
+          'We agree the main problem, the screens that solve it, and the smallest useful first version.',
+        art: 'flow',
       },
       {
-        title: 'iOS and Android app development',
+        title: 'One app for iPhone and Android',
         description:
-          'Build mobile experiences with shared design and implementation where it makes sense for the product.',
+          'Built once and shared across both phones where it makes sense, so you are not paying twice.',
+        art: 'platforms',
       },
       {
-        title: 'Backend and release support',
+        title: 'Connected and published',
         description:
-          'Integrate APIs and authentication, then support preparation for App Store and Google Play submission.',
+          'Sign-in and links to your existing systems, then help getting onto the App Store and Google Play.',
+        art: 'release',
       },
     ],
     costFactors: [
@@ -161,15 +204,15 @@ export const SERVICE_PAGES: ServicePageData[] = [
       productIds: ['worknet', 'callnet'],
     },
     process: [
-      { title: 'Scope the app', description: 'Identify users, essential tasks, and the smallest useful release.' },
-      { title: 'Design and connect', description: 'Map user journeys and plan app, API, and authentication needs.' },
-      { title: 'Build and prepare release', description: 'Develop, review on devices, and prepare store submission materials.' },
+      { title: 'Scope the app', description: 'Who will use it, what they must be able to do, and the smallest useful release.' },
+      { title: 'Design and connect', description: 'We map each screen and what it needs from your systems.' },
+      { title: 'Build and release', description: 'We build, test on real phones, and prepare the store listings.' },
     ],
     faqs: [
       {
         question: 'How much does it cost to build a mobile app?',
         answer:
-          'The biggest factors are the number of screens and user roles, whether you need iOS, Android, or both, and the back end the app depends on. Orbitra quotes a fixed price for an agreed first release, so you know the cost before development starts.',
+          'The biggest factors are the number of screens and user roles, whether you need iOS, Android, or both, and the systems the app depends on. Orbitra quotes a fixed price for an agreed first release, so you know the cost before development starts.',
       },
       {
         question: 'What is an MVP, and should I start with one?',
@@ -179,12 +222,12 @@ export const SERVICE_PAGES: ServicePageData[] = [
       {
         question: 'Can one project support both iOS and Android?',
         answer:
-          'Yes. Orbitra develops for iOS and Android, sharing design and code where appropriate while accounting for platform-specific behavior.',
+          'Yes. Orbitra develops for iOS and Android, sharing design and code where it makes sense while respecting how each platform works.',
       },
       {
-        question: 'Can the app connect to our existing backend?',
+        question: 'Can the app connect to our existing systems?',
         answer:
-          'Orbitra can integrate mobile apps with existing APIs and authentication systems after reviewing their capabilities and access requirements.',
+          'Yes, after Orbitra has reviewed what your current systems can do and how the app can safely connect to them, including how people sign in.',
       },
       {
         question: 'Does Orbitra help submit apps to the stores?',
@@ -196,39 +239,49 @@ export const SERVICE_PAGES: ServicePageData[] = [
   {
     slug: 'ecommerce-development-sri-lanka',
     name: 'E-commerce development',
+    scene: 'ecommerce',
     title: 'E-commerce Development in Sri Lanka',
     metaTitle: 'E-commerce Website Development in Sri Lanka',
     linkLabel: 'E-commerce development in Sri Lanka',
     description:
       'Orbitra Tech develops online stores for Sri Lankan businesses, including product catalogues, local payment gateways, inventory flows, and mobile checkout.',
     summary:
-      'Orbitra Tech builds online stores that help Sri Lankan businesses manage products, take orders, and support customers buying on mobile.',
+      'An online shop where customers order and pay on their phone, and your team sees every order and every item in stock.',
     intro:
-      'An online store needs to fit how your team handles products, payments, and fulfilment. Orbitra Tech plans e-commerce around those day-to-day workflows so customers can browse and order while staff can manage the catalogue and incoming orders.',
+      'Your shop should fit how you already handle products, payments and delivery. We plan it around that.',
     audience: {
-      buyers: 'Retailers and established merchants',
+      buyers: 'For retailers and established merchants',
       problems: [
         'Orders arrive through WhatsApp, calls, and DMs and get lost',
         'Stock in your shop and online does not match',
         'Customers drop off at checkout or cannot pay the way they want',
         'Your current store platform is expensive or hard for staff to manage',
       ],
+      fixes: [
+        'Every order lands in one list',
+        'Stock updates the moment something sells',
+        'A quick checkout with card, PayHere or cash on delivery',
+        'Simple tools your staff are happy to use',
+      ],
     },
     deliverables: [
       {
-        title: 'Product catalogue and variants',
+        title: 'Your products, organised',
         description:
-          'Organize products, options, pricing, and stock information in a way your team can maintain.',
+          'Products, sizes, prices and stock set up in a way your team can keep up to date.',
+        art: 'catalogue',
       },
       {
-        title: 'Checkout and payment flows',
+        title: 'A checkout people finish',
         description:
-          'Plan secure checkout and connect payment gateways and invoicing to the agreed store requirements.',
+          'A short, secure checkout with the payment methods your customers already use.',
+        art: 'checkout',
       },
       {
-        title: 'Order and inventory tools',
+        title: 'Orders and stock in one place',
         description:
-          'Give staff practical ways to review orders and keep inventory up to date, including on mobile.',
+          'Your team sees new orders and stock levels, on a computer or a phone.',
+        art: 'orders',
       },
     ],
     costFactors: [
@@ -240,9 +293,9 @@ export const SERVICE_PAGES: ServicePageData[] = [
       'Moving products and customers from an existing store',
     ],
     process: [
-      { title: 'Map your selling workflow', description: 'Review products, payment options, fulfilment, and staff tasks.' },
-      { title: 'Plan the store', description: 'Agree on catalogue structure, checkout steps, and admin needs.' },
-      { title: 'Build and prepare launch', description: 'Connect the store flows, review orders end to end, and prepare launch.' },
+      { title: 'Map how you sell', description: 'Your products, payment options, delivery, and who does what.' },
+      { title: 'Plan the shop', description: 'We agree the categories, checkout steps, and staff tools.' },
+      { title: 'Build and launch', description: 'We connect everything, test real orders end to end, and go live.' },
     ],
     faqs: [
       {
@@ -253,56 +306,66 @@ export const SERVICE_PAGES: ServicePageData[] = [
       {
         question: 'Can an Orbitra online store support local payment gateways?',
         answer:
-          'Payment gateway integration can be included after confirming the provider, account access, and technical requirements for your store.',
+          'Yes, such as PayHere, once the provider, your account access, and what your store needs have been confirmed.',
       },
       {
         question: 'Can my staff manage products and orders?',
         answer:
-          'Store projects can include administration tools for product catalogues, stock, and order workflows based on the needs agreed during scoping.',
+          'Store projects can include simple tools for products, stock, and orders, based on what is agreed during scoping.',
       },
       {
         question: 'Will the store work on mobile phones?',
         answer:
-          'Orbitra plans online stores for mobile buyers, including responsive product pages and checkout flows.',
+          'Yes. Orbitra plans online stores for people buying on their phones, including product pages and checkout.',
       },
     ],
   },
   {
     slug: 'digital-transformation-sri-lanka',
     name: 'Business automation & custom software',
+    scene: 'transform',
     title: 'Custom Software & Business Automation in Sri Lanka',
     metaTitle: 'Custom Software & Business Automation in Sri Lanka',
     linkLabel: 'Business automation in Sri Lanka',
     description:
       'Orbitra Tech builds custom software that replaces spreadsheets and manual workflows for SMEs, using workflow mapping and phased rollouts. Fixed price.',
     summary:
-      'Orbitra Tech helps businesses map manual processes and replace spreadsheet, paperwork, and chat-based workflows with practical custom software.',
+      'Software that replaces spreadsheets, paperwork and WhatsApp chasing with one place where your team can see and do the work.',
     intro:
-      'Digital transformation does not need to begin with a large platform or a new trend. Orbitra Tech starts by understanding how work moves through your business, then identifies where software can reduce repeated manual steps without disrupting daily operations.',
+      'We first learn how work moves through your business, then fix the steps that waste the most time.',
     audience: {
-      buyers: 'Operations managers and business owners',
+      buyers: 'For operations managers and business owners',
       problems: [
         'The same data is typed into several spreadsheets or systems',
         'Orders, approvals, or jobs are tracked in WhatsApp chats and notebooks',
         'You cannot see the status of work without asking someone',
         'Off-the-shelf software almost fits, but forces awkward workarounds',
       ],
+      fixes: [
+        'Enter information once, use it everywhere',
+        'Jobs and approvals in one shared list',
+        'See the status of any job at a glance',
+        'Software shaped around how you actually work',
+      ],
     },
     deliverables: [
       {
-        title: 'Workflow mapping',
+        title: 'A map of how work moves',
         description:
-          'Document the current process, handoffs, repeated data entry, and the issues your team wants to solve.',
+          'We write down the steps, handovers and repeated typing your team wants to get rid of.',
+        art: 'map',
       },
       {
-        title: 'A practical software plan',
+        title: 'A plan that starts small',
         description:
-          'Prioritize useful improvements and choose technology around the workflow rather than the other way around.',
+          'We pick the changes that help most first, and choose tools that fit your way of working.',
+        art: 'plan',
       },
       {
-        title: 'Phased rollout and handover',
+        title: 'Rolled out in stages',
         description:
-          'Introduce changes in stages, with training and documentation your team can use and maintain.',
+          'Introduced step by step, with training and simple guides your team can keep using.',
+        art: 'rollout',
       },
     ],
     costFactors: [
@@ -319,9 +382,9 @@ export const SERVICE_PAGES: ServicePageData[] = [
       productIds: ['gemfort'],
     },
     process: [
-      { title: 'Map the work', description: 'Understand the people, tools, and decisions involved in the current process.' },
-      { title: 'Prioritize a first step', description: 'Choose a contained improvement that can be delivered and reviewed.' },
-      { title: 'Roll out and learn', description: 'Introduce the software in phases and support the team through handover.' },
+      { title: 'Map the work', description: 'The people, tools and decisions in your current process.' },
+      { title: 'Pick a first step', description: 'One contained improvement we can deliver and review together.' },
+      { title: 'Roll out and learn', description: 'We introduce it in stages and support your team through handover.' },
     ],
     faqs: [
       {
@@ -332,7 +395,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       {
         question: 'What does digital transformation mean for a small business?',
         answer:
-          'It can mean improving a specific business workflow with software, such as reducing spreadsheet-based tracking or making handoffs easier to manage. The right scope depends on the process.',
+          'It can mean improving one specific part of how you work with software, such as replacing spreadsheet tracking or making handovers easier. The right scope depends on the process.',
       },
       {
         question: 'Does Orbitra replace every tool a business already uses?',
@@ -342,7 +405,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
       {
         question: 'How can changes be introduced without stopping operations?',
         answer:
-          'Orbitra plans phased rollouts so a team can adopt improvements progressively and review how they work in practice.',
+          'Orbitra plans rollouts in stages so a team can adopt improvements gradually and see how they work in practice.',
       },
     ],
   },

@@ -1,78 +1,119 @@
-/* Hallmark · macrostructure: Marquee Hero · tone: utilitarian · theme: Plain (light SME)
- * nav: N5 Floating pill · footer: Ft5 Statement · accent: brand-blue ~240°
- * paper-band: light · display-style: geometric-sans · accent-hue: cool
+/* Hallmark · redesign: full · genre: modern-minimal · theme: brand (Orbitra blue kept, faces replaced)
+ * shape: Switcher home, Narrative Workflow for service and product pages · nav: plain bar · footer: statement mast
+ * signature: each service and product drawn as its own working system, labelled UI pieces joined by animated paths
+ * critique: the old page said everything at 15px in centred card grids; now one idea per screen, set large,
+ * and every service and product explains itself with a picture of how it works.
+ * imagery: client screenshots, founder photos, product logos · product and service scenes built in SVG
+ * waive 80 · the owner asked for SVG pictures tailored to each service and product; every scene is a labelled
+ *   diagram of the real workflow built from interface pieces, never a drawing of an object or a person
+ * waive F4 · the WhatsApp button keeps WhatsApp green because visitors recognise it; brand blue stays the one primary
+ * kept · the shadcn .dark block in globals.css predates this redesign and is unused
  */
 
 :root {
-  --color-paper: oklch(99.2% 0.006 240);
+  /* Ground, surfaces and ink: cool paper tinted toward the brand hue. */
+  --color-paper: oklch(98.6% 0.006 240);
   --color-paper-2: oklch(100% 0 0);
-  --color-paper-3: oklch(96.5% 0.012 240);
-  --color-surface-tint: oklch(96% 0.025 235);
-  --color-ink: oklch(24% 0.04 260);
-  --color-ink-muted: oklch(35% 0.02 260);
-  --color-ink-subtle: oklch(62% 0.015 260);
+  --color-paper-3: oklch(95.8% 0.013 240);
+  --color-paper-4: oklch(92.6% 0.02 240);
+  --color-surface-tint: oklch(95.5% 0.03 235);
+  --color-ink: oklch(22% 0.045 262);
+  --color-ink-muted: oklch(37% 0.028 260);
+  --color-ink-subtle: oklch(50% 0.022 260);
+  --color-rule: oklch(90.5% 0.014 240);
+
+  /* The one brand accent, kept from the logo. */
   --color-accent: oklch(52% 0.16 240);
   --color-accent-strong: oklch(45% 0.17 240);
+  --color-accent-soft: oklch(93% 0.04 240);
+  --color-accent-ink: oklch(100% 0 0);
   --color-accent-muted: oklch(52% 0.16 240 / 0.1);
-  --color-focus: oklch(52% 0.16 240);
-  --color-rule: oklch(91% 0.012 240);
+  --color-focus: oklch(52% 0.19 240);
+
+  /* A deep field for the few full-bleed bands. */
+  --color-field: oklch(23% 0.05 262);
+  --color-field-2: oklch(28% 0.055 262);
+  --color-field-ink: oklch(97% 0.008 240);
+  --color-field-muted: oklch(82% 0.02 245);
+
+  /* Signals used inside the diagrams. */
   --color-success: oklch(52% 0.14 155);
+  --color-success-soft: oklch(94% 0.05 155);
+  --color-warning: oklch(74% 0.14 75);
+  --color-warning-soft: oklch(95% 0.05 85);
+  --color-warning-ink: oklch(45% 0.1 70);
+  --color-danger: oklch(58% 0.19 27);
   --color-whatsapp: oklch(52% 0.14 155);
   --color-whatsapp-strong: oklch(45% 0.15 155);
   --color-whatsapp-muted: oklch(52% 0.14 155 / 0.12);
+
   --color-shadow: oklch(24% 0.04 260 / 0.08);
+  --color-shadow-near: oklch(24% 0.04 260 / 0.06);
+  --color-shadow-far: oklch(24% 0.04 260 / 0.12);
+  --color-scrim: oklch(22% 0.045 262 / 0.18);
   --color-shadow-soft: oklch(24% 0.04 260 / 0.04);
-  --color-shadow-accent: oklch(45% 0.17 240 / 0.22);
-  --color-shadow-accent-soft: oklch(45% 0.17 240 / 0.12);
-  --color-shadow-whatsapp: oklch(45% 0.15 155 / 0.24);
-  --color-shadow-whatsapp-soft: oklch(45% 0.15 155 / 0.14);
+  --shadow-float: 0 1px 2px oklch(24% 0.04 260 / 0.06), 0 18px 40px -16px oklch(24% 0.04 260 / 0.28);
+  --shadow-menu: 0 2px 4px oklch(24% 0.04 260 / 0.06), 0 24px 48px -12px oklch(24% 0.04 260 / 0.22);
 
-  --shadow-cta-rest: 0 1px 2px var(--color-shadow-soft), 0 4px 12px var(--color-shadow);
-  --shadow-cta-hover: 0 2px 4px var(--color-shadow-soft), 0 8px 22px oklch(24% 0.04 260 / 0.12);
-  --shadow-cta-active: 0 1px 2px var(--color-shadow-soft);
-  --shadow-cta-primary-rest: 0 1px 2px var(--color-shadow-whatsapp-soft),
-    0 6px 18px var(--color-shadow-whatsapp);
-  --shadow-cta-primary-hover: 0 2px 6px var(--color-shadow-whatsapp-soft),
-    0 10px 28px var(--color-shadow-whatsapp);
-  --shadow-cta-accent-rest: 0 1px 2px var(--color-shadow-accent-soft),
-    0 6px 18px var(--color-shadow-accent);
-  --shadow-cta-accent-hover: 0 2px 6px var(--color-shadow-accent-soft),
-    0 10px 28px var(--color-shadow-accent);
-  --shadow-cta-outline-rest: 0 1px 2px var(--color-shadow-soft), 0 2px 8px var(--color-shadow-soft);
-  --shadow-cta-outline-hover: 0 2px 4px var(--color-shadow-soft), 0 6px 16px var(--color-shadow);
+  /* Product palettes, taken from each product's logo. */
+  --callnet-accent: oklch(64% 0.17 152);
+  --callnet-accent-2: oklch(42% 0.12 152);
+  --callnet-soft: oklch(94% 0.04 152);
+  --callnet-deep: oklch(19% 0.008 260);
+  --callnet-screen: oklch(19% 0.008 260);
+  --callnet-raise: oklch(28% 0.01 260);
+  --worknet-accent: oklch(55% 0.2 258);
+  --worknet-accent-2: oklch(44% 0.17 258);
+  --worknet-soft: oklch(94% 0.035 220);
+  --worknet-deep: oklch(25% 0.06 250);
+  --worknet-mint: oklch(68% 0.15 162);
+  --gemfort-accent: oklch(48% 0.17 262);
+  --gemfort-accent-2: oklch(40% 0.16 262);
+  --gemfort-soft: oklch(94% 0.025 262);
+  --gemfort-deep: oklch(26% 0.025 255);
+  --hermade-accent: oklch(64% 0.14 32);
+  --hermade-accent-2: oklch(42% 0.12 350);
+  --hermade-soft: oklch(95% 0.03 40);
+  --hermade-deep: oklch(30% 0.09 350);
+  --hermade-gold: oklch(76% 0.12 72);
 
-  --font-display: var(--font-poppins), system-ui, sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-funnel), system-ui, sans-serif;
+  --font-body: var(--font-onest), system-ui, sans-serif;
 
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  --space-4xl: 6rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+  --section-y: clamp(5.5rem, 3rem + 7vw, 10rem);
+  --gutter: clamp(1.25rem, 0.75rem + 2vw, 2.5rem);
+  --container: 78rem;
 
-  --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
-  --text-sm: clamp(0.875rem, 0.82rem + 0.25vw, 0.9375rem);
-  --text-base: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
-  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
-  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-  --text-2xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
-  --text-3xl: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);
-  --text-display: clamp(2.5rem, 1.8rem + 3.5vw, 4.25rem);
-  --text-display-s: clamp(2rem, 1.5rem + 2.5vw, 3.25rem);
+  /* Five working sizes, far apart, plus two display steps. */
+  --text-xs: 0.875rem;
+  --text-sm: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+  --text-base: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --text-lg: clamp(1.1875rem, 1.08rem + 0.45vw, 1.4375rem);
+  --text-xl: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --text-3xl: clamp(2.25rem, 1.55rem + 2.8vw, 3.875rem);
+  --text-display: clamp(2.75rem, 1.6rem + 4.6vw, 5.75rem);
+  --text-display-s: clamp(2.25rem, 1.55rem + 2.8vw, 3.875rem);
 
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
-  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
-  --dur-fast: 150ms;
-  --dur-base: 280ms;
-  --dur-slow: 520ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 600ms;
 
   --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.25rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
   --radius-full: 9999px;
 }

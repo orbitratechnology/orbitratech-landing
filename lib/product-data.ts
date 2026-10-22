@@ -42,6 +42,8 @@ export type ProductDetails = {
   eyebrow: string;
   tagline: string;
   description: string;
+  /** One short, plain sentence for the hero. */
+  heroLine: string;
   imageUrl: string;
   imageAlt: string;
   audience: string;
@@ -72,6 +74,7 @@ export const PRODUCT_DETAILS = {
     tagline: 'Find a person. Tap call. Connect.',
     description:
       'Callnet is a mobile-first calling app by Orbitra Tech for private one-to-one voice and video calls with a fast, calm, native-feeling experience.',
+    heroLine: 'A calm, private app for one-to-one voice and video calls.',
     imageUrl: '/callnet-logo.png',
     imageAlt: 'Callnet logo',
     audience:
@@ -79,7 +82,7 @@ export const PRODUCT_DETAILS = {
     promise: {
       title: 'A beautifully simple way to make and receive private calls.',
       body:
-        'Callnet focuses on one job: helping two people connect quickly. Choose a person, tap voice or video, and let the app handle the signaling, media connection, and call state without asking you to think about the technology underneath.',
+        'Callnet focuses on one job: helping two people connect quickly. Choose a person, tap voice or video, and Callnet does the rest. There are no settings to learn and nothing technical to think about.',
     },
     pillarsHeading: 'Four ways Callnet keeps calling simple',
     pillars: [
@@ -91,7 +94,7 @@ export const PRODUCT_DETAILS = {
         details: [
           'Keep navigation shallow and the primary actions obvious',
           'Choose voice or video directly from the person you want to call',
-          'Respond to taps immediately while connection work happens in the background',
+          'Responds to every tap at once while the call connects',
         ],
       },
       {
@@ -101,7 +104,7 @@ export const PRODUCT_DETAILS = {
           'Use video when seeing the other person matters, without turning the app into a meeting suite.',
         details: [
           'Support one-to-one video with a clear remote and local view',
-          'Keep camera, microphone, audio route, and end-call controls easy to reach',
+          'Keep the camera, microphone, speaker and end-call buttons easy to reach',
           'Let controls fade back when the conversation is underway',
         ],
       },
@@ -112,8 +115,8 @@ export const PRODUCT_DETAILS = {
           'Build around known people, minimal retained metadata, and a focused private experience.',
         details: [
           'Avoid public caller discovery, social feeds, and unnecessary profiles',
-          'Keep the service focused on identity, signaling, presence, and call delivery',
-          'Prefer direct peer-to-peer media when the network allows it',
+          'Keeps only what a call needs, nothing more',
+          'Sends calls straight between the two phones when it can',
         ],
       },
       {
@@ -122,9 +125,9 @@ export const PRODUCT_DETAILS = {
         summary:
           'Make the call experience dependable across everyday Wi-Fi, cellular, and restrictive networks.',
         details: [
-          'Use TURN as a fallback when a direct connection is not possible',
-          'Handle ringing, connecting, connected, ended, and failed states clearly',
-          'Clean up media, timers, and listeners when a call ends',
+          'Finds another route when a direct connection is blocked',
+          'Always shows clearly whether a call is ringing, live or ended',
+          'Turns off the camera and microphone the moment a call ends',
         ],
       },
     ],
@@ -143,7 +146,7 @@ export const PRODUCT_DETAILS = {
       {
         label: '03',
         title: 'Connect',
-        description: 'Let Callnet establish the best available route between both devices.',
+        description: 'Callnet finds the best connection between both phones.',
       },
       {
         label: '04',
@@ -165,6 +168,7 @@ export const PRODUCT_DETAILS = {
     tagline: 'Find a worker. Find work. Build reputation. Manage today\'s jobs.',
     description:
       'Worknet is a mobile-first network by Orbitra Tech that helps people find reliable local workers while helping skilled workers become easier to discover, contact, and trust.',
+    heroLine: 'Helps people find trusted local workers, and helps good workers get found.',
     imageUrl: '/worknet-logo.png',
     imageAlt: 'Worknet logo',
     audience:
@@ -262,6 +266,7 @@ export const PRODUCT_DETAILS = {
     tagline: 'Trusted gems. Clear records. Real connections.',
     description:
       'GemFort is a mobile-first platform by Orbitra Tech for Sri Lanka\'s gemstone industry, helping gem professionals discover trusted counterparts and manage the work around their relationships more clearly.',
+    heroLine: 'Helps gem professionals find trusted partners and keep their records in order.',
     imageUrl: '/gemfort-logo.png',
     imageAlt: 'GemFort logo',
     audience:
@@ -360,6 +365,7 @@ export const PRODUCT_DETAILS = {
     tagline: 'Start small. Become discoverable. Build something stronger.',
     description:
       'Hermade is a mobile-first marketplace and business platform by Orbitra Tech that helps women entrepreneurs showcase what they create, reach customers, and build more stable businesses through simple digital tools.',
+    heroLine: 'Helps women-led small businesses get discovered, take orders and grow.',
     imageUrl: '/hermade-logo.png',
     imageAlt: 'Hermade logo',
     audience:

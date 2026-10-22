@@ -10,6 +10,8 @@ export type ClientProject = {
   /** Only set when the project is not yet live. */
   status?: 'In development';
   description: string;
+  /** One short line for cards; the full description serves summaries for agents. */
+  summary: string;
   tags: string[];
   image: {
     src: string;
@@ -31,6 +33,7 @@ export const CLIENT_PROJECTS: ClientProject[] = [
     type: 'Events and booking platform',
     description:
       'An occasion, booking, and events platform developed for an Australian startup, supporting digital event and booking experiences. Organisers can find and book caterers, venues, photographers, florists, and other vendors in one place.',
+    summary: 'Book caterers, venues, photographers and florists in one place.',
     tags: ['Platform development', 'Bookings', 'Web app'],
     image: {
       src: '/work/event-hero.webp',
@@ -46,6 +49,7 @@ export const CLIENT_PROJECTS: ClientProject[] = [
     type: 'Web and mobile healthcare platform',
     description:
       'A platform for cancer patients and clinicians, focused on patient monitoring, clinical triaging, and care coordination. Patients complete daily symptom check-ins that their care team can review. The project is associated with NHS-backed initiatives in the UK.',
+    summary: 'Daily symptom check-ins that a cancer care team can review.',
     tags: ['Mobile app', 'Web app', 'Clinical workflows'],
     image: {
       src: '/work/oncscare.jpg',
@@ -63,6 +67,7 @@ export const CLIENT_PROJECTS: ClientProject[] = [
     type: 'Business website',
     description:
       'A web presence for a gem and jewellery business in Aluthgama, designed to showcase its Ceylon gemstones, jewellery, and services online and bring visitors to the store.',
+    summary: 'Shows Ceylon gemstones and jewellery online and brings visitors to the store.',
     tags: ['Website', 'Product showcase'],
     image: {
       src: '/work/nethmi-gem-jewellery.webp',
@@ -80,6 +85,7 @@ export const CLIENT_PROJECTS: ClientProject[] = [
     status: 'In development',
     description:
       'A travel-sector web platform covering Hajj and Umrah, Ziyarah, tours, visa services, and flight tickets. Currently in development.',
+    summary: 'Hajj and Umrah, tours, visas and flights in one site.',
     tags: ['Web platform', 'Travel services'],
     image: {
       src: '/work/al-muallah-travels.webp',
@@ -97,6 +103,7 @@ export const CLIENT_PROJECTS: ClientProject[] = [
     type: 'Business website',
     description:
       'A website for a mango garden business, providing an online presence for its brand and offerings, including a garden map and a catalogue of its trees.',
+    summary: 'The garden’s story, a garden map and a catalogue of its trees.',
     tags: ['Website', 'Garden map'],
     image: {
       src: '/work/rabeeyunil-awwal-mango-garden.webp',
@@ -114,6 +121,7 @@ export const CLIENT_PROJECTS: ClientProject[] = [
     type: 'Digital platform',
     description:
       'A digital platform for an international gemstone business, presenting its heritage and making it easy for buyers to get in touch.',
+    summary: 'Presents the company’s heritage and makes it easy for buyers to get in touch.',
     tags: ['Website', 'Brand presence'],
     image: {
       src: '/work/hey-gems-international.webp',
@@ -126,11 +134,3 @@ export const CLIENT_PROJECTS: ClientProject[] = [
 export const CLIENT_PROJECT_BY_ID = Object.fromEntries(
   CLIENT_PROJECTS.map((project) => [project.id, project]),
 ) as Record<string, ClientProject>;
-
-export const CAPABILITIES = [
-  'Web development',
-  'Mobile app development',
-  'Full-stack engineering',
-  'Platform development',
-  'Turning business requirements into practical software',
-] as const;

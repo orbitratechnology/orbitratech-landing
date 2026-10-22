@@ -1,27 +1,13 @@
-import type { IconType } from 'react-icons';
-import {
-  FaDesktop,
-  FaGlobe,
-  FaMobileScreenButton,
-} from 'react-icons/fa6';
-import { SiGoogleplay } from 'react-icons/si';
-
-import type { ServiceVisualId } from '@/components/services/service-visuals';
-
-export type ServiceIcon = {
-  Icon: IconType;
-  color: string;
-  label: string;
-};
+import type { ServiceSceneId } from '@/lib/service-pages';
 
 export type ServiceData = {
-  id: ServiceVisualId;
+  id: ServiceSceneId;
   name: string;
-  /** Who the service is for, shown as the eyebrow above the name. */
+  /** Who the service is for. */
   tagline: string;
   description: string;
+  /** Three outcomes, each short enough to read at a glance. */
   details: string[];
-  icon: ServiceIcon;
 };
 
 export const SERVICES: ServiceData[] = [
@@ -30,51 +16,47 @@ export const SERVICES: ServiceData[] = [
     name: 'Website development',
     tagline: 'For businesses that need more enquiries',
     description:
-      'We design and ship marketing sites and product landing pages that load fast, read clearly on mobile, and guide visitors toward one action - not twelve.',
+      'A clear, fast website that tells people what you do and makes it easy to call, message or visit.',
     details: [
-      'Performance-first builds with Core Web Vitals in mind',
-      'CMS or headless content when your team needs to edit copy',
-      'Analytics and forms wired before launch, not after',
+      'Loads fast, even on mobile data',
+      'Change your own text and photos',
+      'Enquiry forms and visitor stats from day one',
     ],
-    icon: { Icon: FaGlobe, color: 'var(--color-accent)', label: 'Website' },
   },
   {
     id: 'mobile',
     name: 'Mobile apps',
     tagline: 'For founders and product teams',
     description:
-      'Native iOS and Android experiences with the polish users expect - smooth navigation, reliable offline flows, and push notifications when they add real value.',
+      'An app for iPhone and Android that your customers or staff actually enjoy using.',
     details: [
-      'App Store and Play Store submission support',
-      'Shared design system across platforms where it saves time',
-      'Backend APIs and auth integrated with your existing stack',
+      'Help getting onto the App Store and Google Play',
+      'One design that works on both phones',
+      'Connects to the systems you already use',
     ],
-    icon: { Icon: FaMobileScreenButton, color: 'var(--color-accent-strong)', label: 'Mobile' },
-  },
-  {
-    id: 'transform',
-    name: 'Business automation',
-    tagline: 'For teams buried in manual work',
-    description:
-      'Custom software that replaces spreadsheets, manual handoffs, and brittle legacy tools with a system that matches how you actually work - choosing the right stack, not the trendiest one.',
-    details: [
-      'Workflow mapping before any code is written',
-      'Phased rollouts so operations never stop',
-      'Training and documentation your team can own',
-    ],
-    icon: { Icon: FaDesktop, color: 'var(--color-ink-muted)', label: 'Desktop' },
   },
   {
     id: 'ecommerce',
     name: 'E-commerce',
     tagline: 'For retailers selling online',
     description:
-      'Online shops with secure checkout, inventory you can trust, and admin panels your staff will actually use - whether you sell locally or ship nationwide.',
+      'An online shop with a quick checkout, accurate stock, and an order list your staff will actually use.',
     details: [
-      'Payment gateways and invoicing set up correctly',
-      'Product catalogues, variants, and stock alerts',
-      'Order flows tuned for mobile buyers',
+      'Card, PayHere and cash on delivery',
+      'Products, sizes and stock alerts',
+      'A checkout made for phones',
     ],
-    icon: { Icon: SiGoogleplay, color: '#00A173', label: 'Play Store' },
+  },
+  {
+    id: 'transform',
+    name: 'Business automation',
+    tagline: 'For teams buried in manual work',
+    description:
+      'Software that replaces spreadsheets, paperwork and WhatsApp chasing with one system that fits how you work.',
+    details: [
+      'We map how work moves before we build',
+      'Rolled out in stages, so work never stops',
+      'Training and guides for your team',
+    ],
   },
 ];

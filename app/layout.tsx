@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+import { Funnel_Display, Onest } from 'next/font/google';
 import './globals.css';
 import {
   CONTACT_EMAIL,
@@ -11,18 +11,18 @@ import {
 import { SERVICE_PAGES } from '@/lib/service-pages';
 import { cn } from "@/lib/utils";
 
-const poppins = Poppins({
+const funnelDisplay = Funnel_Display({
   subsets: ['latin'],
-  weight: ['600', '700'],
-  variable: '--font-poppins',
+  weight: ['600'],
+  variable: '--font-funnel',
   display: 'swap',
   adjustFontFallback: true,
 });
 
-const inter = Inter({
+const onest = Onest({
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-inter',
+  weight: ['400', '600'],
+  variable: '--font-onest',
   display: 'swap',
   adjustFontFallback: true,
 });
@@ -30,7 +30,7 @@ const inter = Inter({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#fafbfd',
+  themeColor: '#f8fafd',
 };
 
 const DESCRIPTION =
@@ -170,7 +170,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={cn('h-full antialiased font-sans', poppins.variable, inter.variable)}>
+      className={cn('h-full antialiased font-sans', funnelDisplay.variable, onest.variable)}>
       <head>
         <meta name='apple-mobile-web-app-title' content='Orbitra Tech' />
         <script

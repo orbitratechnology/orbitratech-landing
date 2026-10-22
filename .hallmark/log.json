@@ -1,16 +1,33 @@
 [
   {
+    "date": "2026-10-22",
+    "mode": "redesign",
+    "depth": "full",
+    "scope": "site",
+    "macrostructure": "Switcher home, Narrative Workflow service and product pages",
+    "theme": "brand (Orbitra blue kept, faces replaced)",
+    "nav": "plain bar",
+    "footer": "statement mast",
+    "imagery": "client screenshots, founder photos, logos; animated SVG scenes per service and product",
+    "signature": "homepage orbit of the four services around the visitor's business",
+    "waived": [
+      "80",
+      "F4"
+    ],
+    "brief": "Orbitra Tech \u00b7 declutter for non-technical visitors \u00b7 visual, animated service and product pages"
+  },
+  {
     "date": "2026-06-23",
     "macrostructure": "Marquee Hero",
     "theme": "Plain (light SME)",
     "enrichment": "E1 marquee brand strips (technologies + payments)",
-    "brief": "Orbitra Tech · technologies + payment logo marquees"
+    "brief": "Orbitra Tech \u00b7 technologies + payment logo marquees"
   },
   {
     "date": "2026-05-21",
     "macrostructure": "Marquee Hero",
     "theme": "Quiet",
     "enrichment": "E5 hand-built SVG (OrbitHeroIllustration)",
-    "brief": "Orbitra Tech landing · SME digital studio · conversion-focused redesign"
+    "brief": "Orbitra Tech landing \u00b7 SME digital studio \u00b7 conversion-focused redesign"
   }
 ]

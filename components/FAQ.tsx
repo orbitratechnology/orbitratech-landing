@@ -1,11 +1,13 @@
-import { ChevronDown } from 'lucide-react';
+import { RESPONSE_TIME } from '@/lib/constants';
+
+import { FaqList } from './FaqList';
 import { ScrollReveal } from './motion/ScrollReveal';
 
 const FAQS = [
   {
     question: 'How much does a website, app, or custom software project cost?',
     answer:
-      'It depends on scope: the number of pages or features, integrations, design complexity, and who supplies the content. After a free first conversation we send a written scope with a fixed price, so you know the total before you commit. If you want a ballpark first, a short description is enough for an indicative range.',
+      'It depends on scope: the number of pages or features, links to other systems, how custom the design is, and who supplies the content. After a free first conversation we send a written scope with a fixed price, so you know the total before you commit. If you want a ballpark first, a short description is enough for an indicative range.',
   },
   {
     question: 'How long does a project take?',
@@ -25,12 +27,12 @@ const FAQS = [
   {
     question: 'Who will I actually work with?',
     answer:
-      'The founders. Bilal handles scope, communication, and delivery, and Adhham leads architecture and engineering. You talk to the people building your project, not an account manager.',
+      'The founders. Bilal handles scope, communication, and delivery, and Adhham leads the technical work. You talk to the people building your project, not an account manager.',
   },
   {
     question: 'What happens after launch?',
     answer:
-      'We train your team and hand over documentation so you are not dependent on us for day-to-day use. If you want ongoing updates, fixes, or new features, that can be included in your quote or arranged later.',
+      'We train your team and hand over simple guides so you are not dependent on us for day-to-day use. If you want ongoing updates, fixes, or new features, that can be included in your quote or arranged later.',
   },
   {
     question: 'What is the difference between your client work and your products?',
@@ -51,39 +53,20 @@ const faqJsonLd = {
 
 export default function FAQ() {
   return (
-    <section
-      id='faq'
-      className='deferred-section relative scroll-mt-28 border-t border-[var(--color-rule)] py-20 md:py-28'>
+    <section id='faq' className='section band-tint scroll-mt-24'>
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <div className='container mx-auto max-w-4xl px-6'>
-        <ScrollReveal className='mx-auto mb-10 max-w-2xl text-center'>
-          <p className='section-eyebrow mb-3'>Questions</p>
-          <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>
-            What people ask before hiring us
-          </h2>
-        </ScrollReveal>
-
+      <div className='shell grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16'>
         <ScrollReveal>
-          <div className='divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]'>
-            {FAQS.map((faq) => (
-              <details key={faq.question} className='group py-5'>
-                <summary className='flex cursor-pointer list-none items-start justify-between gap-4 rounded-md font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)] [&::-webkit-details-marker]:hidden'>
-                  {faq.question}
-                  <ChevronDown
-                    className='mt-1 size-5 shrink-0 text-[var(--color-ink-subtle)] transition-transform duration-[var(--dur-base)] group-open:rotate-180'
-                    aria-hidden
-                  />
-                </summary>
-                <p className='mt-3 max-w-3xl leading-relaxed text-[var(--color-ink-muted)]'>
-                  {faq.answer}
-                </p>
-              </details>
-            ))}
-          </div>
+          <h2 className='t-h2'>Questions people ask before hiring us</h2>
+          <p className='t-body mt-5'>
+            Something else on your mind? Ask us on WhatsApp or by email.{' '}
+            {RESPONSE_TIME}
+          </p>
         </ScrollReveal>
+        <FaqList faqs={FAQS} />
       </div>
     </section>
   );

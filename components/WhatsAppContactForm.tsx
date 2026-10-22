@@ -2,17 +2,17 @@
 
 import { useEffect, useRef } from 'react';
 import type { FormEvent } from 'react';
-import { Mail } from 'lucide-react';
+import { ChevronDown, Mail } from 'lucide-react';
 import { createEmailUrl, createWhatsAppUrl } from '@/lib/constants';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 
 const FIELD_CLASS =
-  'mt-1.5 w-full rounded-xl border border-[var(--color-rule)] bg-[var(--color-paper)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none transition-shadow placeholder:text-[var(--color-ink-subtle)] focus-visible:ring-2 focus-visible:ring-[var(--color-focus)]';
+  'mt-2 min-h-12 w-full rounded-[var(--radius-md)] border border-[var(--color-paper-4)] bg-[var(--color-paper-2)] px-4 py-3 text-[length:var(--text-base)] text-[var(--color-ink)] outline-none transition-[border-color] placeholder:text-[var(--color-ink-subtle)] focus-visible:border-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-[var(--color-focus)]';
 
-const LABEL_CLASS = 'block text-sm font-semibold text-[var(--color-ink)]';
+const LABEL_CLASS = 'block text-[length:var(--text-sm)] font-semibold text-[var(--color-ink)]';
 
 const OPTIONAL = (
-  <span className='font-normal text-[var(--color-ink-subtle)]'>(optional)</span>
+  <span className='font-normal text-[var(--color-ink-muted)]'>(optional)</span>
 );
 
 // Values match the `?service=` param that service landing pages link with.
@@ -97,8 +97,8 @@ export default function WhatsAppContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='mt-6 space-y-4 text-left'>
-      <div className='grid gap-4 sm:grid-cols-2'>
+    <form onSubmit={handleSubmit} className='mt-8 space-y-5 text-left'>
+      <div className='grid gap-5 sm:grid-cols-2'>
         <label className={LABEL_CLASS}>
           Your name
           <input
@@ -123,28 +123,6 @@ export default function WhatsAppContactForm() {
             required
           />
         </label>
-        <label className={LABEL_CLASS}>
-          Business name {OPTIONAL}
-          <input
-            name='business'
-            type='text'
-            autoComplete='organization'
-            maxLength={120}
-            placeholder='Your business'
-            className={FIELD_CLASS}
-          />
-        </label>
-        <label className={LABEL_CLASS}>
-          Country {OPTIONAL}
-          <input
-            name='country'
-            type='text'
-            autoComplete='country-name'
-            maxLength={60}
-            placeholder='e.g. Sri Lanka'
-            className={FIELD_CLASS}
-          />
-        </label>
       </div>
       <label className={LABEL_CLASS}>
         What do you need?
@@ -165,37 +143,65 @@ export default function WhatsAppContactForm() {
           required
         />
       </label>
-      <div className='grid gap-4 sm:grid-cols-2'>
-        <label className={LABEL_CLASS}>
-          Timeframe {OPTIONAL}
-          <select name='timeframe' defaultValue='' className={FIELD_CLASS}>
-            <option value=''>Select…</option>
-            {TIMEFRAME_OPTIONS.map((option) => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
-        </label>
-        <label className={LABEL_CLASS}>
-          Rough budget {OPTIONAL}
-          <input
-            name='budget'
-            type='text'
-            maxLength={60}
-            placeholder='Any currency'
-            className={FIELD_CLASS}
-          />
-        </label>
-      </div>
-      <label className={LABEL_CLASS}>
-        How did you find us? {OPTIONAL}
-        <select name='source' defaultValue='' className={FIELD_CLASS}>
-          <option value=''>Select…</option>
-          {SOURCE_OPTIONS.map((option) => (
-            <option key={option} value={option}>{option}</option>
-          ))}
-        </select>
-      </label>
-      <p className='text-xs leading-relaxed text-[var(--color-ink-subtle)]'>
+      <details className='group rounded-[var(--radius-md)] bg-[var(--color-paper-2)]'>
+        <summary className='flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-[length:var(--text-sm)] font-semibold [&::-webkit-details-marker]:hidden'>
+          Add more details {OPTIONAL}
+          <ChevronDown className='size-4 shrink-0 transition-transform duration-[var(--dur-base)] group-open:rotate-180' aria-hidden />
+        </summary>
+        <div className='grid gap-5 px-4 pt-2 pb-5 sm:grid-cols-2'>
+          <label className={LABEL_CLASS}>
+            Business name
+            <input
+              name='business'
+              type='text'
+              autoComplete='organization'
+              maxLength={120}
+              placeholder='Your business'
+              className={FIELD_CLASS}
+            />
+          </label>
+          <label className={LABEL_CLASS}>
+            Country
+            <input
+              name='country'
+              type='text'
+              autoComplete='country-name'
+              maxLength={60}
+              placeholder='e.g. Sri Lanka'
+              className={FIELD_CLASS}
+            />
+          </label>
+          <label className={LABEL_CLASS}>
+            Timeframe
+            <select name='timeframe' defaultValue='' className={FIELD_CLASS}>
+              <option value=''>Select…</option>
+              {TIMEFRAME_OPTIONS.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+          </label>
+          <label className={LABEL_CLASS}>
+            Rough budget
+            <input
+              name='budget'
+              type='text'
+              maxLength={60}
+              placeholder='Any currency'
+              className={FIELD_CLASS}
+            />
+          </label>
+          <label className={`${LABEL_CLASS} sm:col-span-2`}>
+            How did you find us?
+            <select name='source' defaultValue='' className={FIELD_CLASS}>
+              <option value=''>Select…</option>
+              {SOURCE_OPTIONS.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </details>
+      <p className='t-note'>
         Your message opens in WhatsApp or your email app, ready to review. Nothing
         is sent until you press send there.
       </p>
@@ -204,7 +210,7 @@ export default function WhatsAppContactForm() {
           <WhatsAppIcon className='h-5 w-5' aria-hidden />
           Send via WhatsApp
         </button>
-        <button type='submit' name='channel' value='email' className='btn-cta btn-cta-lg btn-outline flex-1'>
+        <button type='submit' name='channel' value='email' className='btn-cta btn-cta-lg btn-soft flex-1'>
           <Mail className='h-5 w-5' aria-hidden />
           Send by email
         </button>

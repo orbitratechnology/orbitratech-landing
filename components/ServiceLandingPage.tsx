@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
+import { ArrowRight, Check, X } from 'lucide-react';
+
 import { CLIENT_PROJECT_BY_ID } from '@/lib/client-projects';
 import { SITE_URL } from '@/lib/constants';
 import { LANDING_PRODUCTS, PRODUCT_STATUS_NOTES } from '@/lib/landing-data';
@@ -9,12 +9,24 @@ import {
   SERVICE_PAGES,
   type ServicePageData,
 } from '@/lib/service-pages';
+import { cn } from '@/lib/utils';
 import { ProjectCard } from '@/components/ClientWork';
-import Nav from '@/components/Nav';
+import { FaqList } from '@/components/FaqList';
 import Footer from '@/components/Footer';
+import { ScrollReveal } from '@/components/motion/ScrollReveal';
+import Nav from '@/components/Nav';
+import { ProductTile } from '@/components/ProductTile';
+import { SERVICE_ICONS, ServiceScene } from '@/components/scenes';
+import { BriefBuilder } from '@/components/services/BriefBuilder';
+import { DeliverableArt } from '@/components/services/DeliverableArt';
+import { StepPath } from '@/components/StepPath';
 
-const H2_CLASS =
-  'font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)]';
+const PRICE_PROMISES = [
+  'A free first conversation',
+  'A written scope with a fixed price',
+  'Nothing billed by the hour',
+  'Changes agreed with you first',
+];
 
 export default function ServiceLandingPage({ page }: { page: ServicePageData }) {
   const pageUrl = `${SITE_URL}/${page.slug}`;
@@ -27,6 +39,7 @@ export default function ServiceLandingPage({ page }: { page: ServicePageData }) 
   );
   const otherServices = SERVICE_PAGES.filter((other) => other.slug !== page.slug);
   const contactHref = `/?service=${page.slug.replace(/-sri-lanka$/, '')}#contact`;
+  const longTitle = page.title.length > 34;
 
   const serviceJsonLd = {
     '@context': 'https://schema.org',
@@ -59,7 +72,7 @@ export default function ServiceLandingPage({ page }: { page: ServicePageData }) 
   return (
     <>
       <Nav />
-      <main id='content' tabIndex={-1} className='min-w-0 pt-28 outline-none'>
+      <main id='content' tabIndex={-1} className='min-w-0 outline-none'>
         {[serviceJsonLd, breadcrumbJsonLd, faqJsonLd].map((schema) => (
           <script
             key={schema['@type']}
@@ -67,221 +80,228 @@ export default function ServiceLandingPage({ page }: { page: ServicePageData }) 
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
         ))}
-        <section className='border-b border-[var(--color-rule)] bg-[var(--color-paper-2)] py-16 md:py-24'>
-          <div className='container mx-auto max-w-6xl px-6'>
-            <nav aria-label='Breadcrumb' className='mb-8 text-sm text-[var(--color-ink-muted)]'>
-              <ol className='flex flex-wrap items-center gap-2'>
-                <li><Link href='/' className='hover:text-[var(--color-accent)]'>Home</Link></li>
-                <li aria-hidden='true'>/</li>
-                <li aria-current='page'>{page.name}</li>
-              </ol>
-            </nav>
-            <p className='mb-3 text-sm font-semibold uppercase tracking-wide text-[var(--color-accent)]'>
-              Orbitra Tech · Beruwala, Sri Lanka · Remote worldwide
-            </p>
-            <h1 className='max-w-4xl font-[family-name:var(--font-display)] text-[length:var(--text-display)] font-bold leading-[1.08] tracking-tight text-[var(--color-ink)]'>
-              {page.title}
-            </h1>
-            <p className='mt-6 max-w-3xl text-[length:var(--text-xl)] leading-relaxed text-[var(--color-ink-muted)]'>
-              {page.summary}
-            </p>
-            <p className='mt-4 max-w-3xl leading-relaxed text-[var(--color-ink-muted)]'>
-              {page.intro}
-            </p>
-            <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
-              <Link href={contactHref} className='btn-cta btn-cta-lg btn-brand group gap-2'>
-                Discuss your project
-                <ArrowRight className='h-4 w-4 transition-transform group-hover:translate-x-0.5' aria-hidden />
-              </Link>
-              <Link href='#pricing' className='btn-cta btn-cta-lg btn-outline'>
-                How pricing works
-              </Link>
+
+        {/* Hero: what it is, and the service working, side by side. */}
+        <section className='pt-28 pb-20 md:pt-36 md:pb-28'>
+          <div className='shell grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16'>
+            <div className='hero-rise'>
+              <nav aria-label='Breadcrumb' className='t-note'>
+                <ol className='flex flex-wrap items-center gap-2'>
+                  <li>
+                    <Link href='/' className='link-quiet'>
+                      Home
+                    </Link>
+                  </li>
+                  <li aria-hidden='true'>/</li>
+                  <li aria-current='page'>{page.name}</li>
+                </ol>
+              </nav>
+              <h1 className={cn('t-display mt-6', longTitle && 'text-[length:var(--text-3xl)] lg:text-[clamp(2.5rem,1.4rem+3vw,4.5rem)]')}>
+                {page.title}
+              </h1>
+              <p className='t-lead mt-6 text-[var(--color-ink-muted)]'>{page.summary}</p>
+              <div className='mt-9 flex flex-col gap-3 sm:flex-row'>
+                <Link href={contactHref} className='btn-cta btn-cta-lg btn-brand'>
+                  Discuss your project
+                  <ArrowRight className='btn-arrow size-4' aria-hidden />
+                </Link>
+                <Link href='#pricing' className='btn-cta btn-cta-lg btn-soft'>
+                  What affects the price
+                </Link>
+              </div>
             </div>
+            <ServiceScene id={page.scene} className='mx-auto w-full max-w-[34rem] lg:mr-0' />
           </div>
         </section>
 
-        <section className='py-16 md:py-24'>
-          <div className='container mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr]'>
-            <div>
-              <p className='section-eyebrow mb-3'>Who this is for</p>
-              <h2 className={H2_CLASS}>{page.audience.buyers}</h2>
-              <p className='mt-4 leading-relaxed text-[var(--color-ink-muted)]'>
-                If any of these sound familiar, this service is a good place to start.
-              </p>
+        {/* Sound familiar: each problem beside what changes. */}
+        <section className='section band-tint'>
+          <div className='shell'>
+            <ScrollReveal className='grid gap-5 lg:grid-cols-2 lg:items-end'>
+              <h2 className='t-h2'>Sound familiar?</h2>
+              <p className='t-lead text-[var(--color-ink-muted)]'>{page.audience.buyers}.</p>
+            </ScrollReveal>
+            <div className='mt-12 hidden grid-cols-[minmax(0,1fr)_2.5rem_minmax(0,1fr)] gap-6 px-7 md:grid'>
+              <p className='t-label text-[var(--color-ink-muted)]'>Today</p>
+              <span />
+              <p className='t-label text-[var(--color-ink-muted)]'>With Orbitra</p>
             </div>
-            <ul className='grid gap-4 sm:grid-cols-2'>
-              {page.audience.problems.map((problem) => (
-                <li
+            <ScrollReveal staggerChildren='.fix-row' y={20} className='mt-4 grid gap-3'>
+              {page.audience.problems.map((problem, index) => (
+                <div
                   key={problem}
-                  className='flex gap-3 rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-5 leading-relaxed text-[var(--color-ink)]'>
-                  <Check className='mt-1 h-4 w-4 shrink-0 text-[var(--color-accent)]' aria-hidden />
-                  <span>{problem}</span>
-                </li>
+                  className='fix-row grid items-center gap-3 rounded-[var(--radius-lg)] bg-[var(--color-paper-2)] p-5 md:grid-cols-[minmax(0,1fr)_2.5rem_minmax(0,1fr)] md:gap-6 md:p-7'>
+                  <p className='flex items-start gap-3 text-[length:var(--text-base)] text-[var(--color-ink-muted)]'>
+                    <span className='mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-paper-3)]' aria-hidden>
+                      <X className='size-3.5' strokeWidth={2.5} />
+                    </span>
+                    <span>
+                      <span className='sr-only'>Today: </span>
+                      {problem}
+                    </span>
+                  </p>
+                  <ArrowRight className='ml-1.5 size-5 rotate-90 text-[var(--color-accent)] md:ml-0 md:rotate-0' aria-hidden />
+                  <p className='flex items-start gap-3 text-[length:var(--text-base)] font-semibold text-[var(--color-ink)]'>
+                    <span className='mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-success)] text-[var(--color-paper-2)]' aria-hidden>
+                      <Check className='size-3.5' strokeWidth={3} />
+                    </span>
+                    <span>
+                      <span className='sr-only'>With Orbitra: </span>
+                      {page.audience.fixes[index]}
+                    </span>
+                  </p>
+                </div>
               ))}
-            </ul>
+            </ScrollReveal>
           </div>
         </section>
 
-        <section className='border-t border-[var(--color-rule)] py-16 md:py-24'>
-          <div className='container mx-auto max-w-6xl px-6'>
-            <div className='max-w-2xl'>
-              <p className='section-eyebrow mb-3'>What the work can include</p>
-              <h2 className={H2_CLASS}>A scope shaped around your business</h2>
-            </div>
-            <div className='mt-10 grid gap-5 md:grid-cols-3'>
+        {/* What you get: each deliverable drawn. */}
+        <section className='section'>
+          <div className='shell'>
+            <ScrollReveal className='grid gap-5 lg:grid-cols-2 lg:items-end'>
+              <h2 className='t-h2'>What you get</h2>
+              <p className='t-lead text-[var(--color-ink-muted)]'>{page.intro}</p>
+            </ScrollReveal>
+            <ScrollReveal staggerChildren='.deliverable' className='mt-14 grid gap-12 md:grid-cols-3 md:gap-8'>
               {page.deliverables.map((item) => (
-                <article key={item.title} className='rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-6'>
-                  <Check className='mb-4 h-5 w-5 text-[var(--color-accent)]' aria-hidden />
-                  <h3 className='font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-ink)]'>{item.title}</h3>
-                  <p className='mt-3 leading-relaxed text-[var(--color-ink-muted)]'>{item.description}</p>
+                <article key={item.title} className='deliverable'>
+                  <DeliverableArt art={item.art} />
+                  <h3 className='t-h3 mt-7'>{item.title}</h3>
+                  <p className='t-body mt-2'>{item.description}</p>
                 </article>
               ))}
-            </div>
+            </ScrollReveal>
           </div>
         </section>
 
-        <section className='border-y border-[var(--color-rule)] bg-[var(--color-paper-2)] py-16 md:py-24'>
-          <div className='container mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr]'>
-            <div>
-              <p className='section-eyebrow mb-3'>How we work</p>
-              <h2 className={H2_CLASS}>From the real problem to a useful first release</h2>
-              <p className='mt-4 leading-relaxed text-[var(--color-ink-muted)]'>
-                You work directly with Orbitra&rsquo;s founders, with a clear
-                scope and a fixed price agreed before work starts.
+        {/* How it works. */}
+        <section className='section band-field'>
+          <div className='shell'>
+            <div className='grid gap-5 lg:grid-cols-2 lg:items-end'>
+              <h2 className='t-h2 text-[var(--color-field-ink)]'>How we work together</h2>
+              <p className='t-lead text-[var(--color-field-muted)]'>
+                You work directly with Orbitra’s founders, with a fixed price
+                agreed before work starts.
               </p>
             </div>
-            <ol className='space-y-5'>
-              {page.process.map((step, index) => (
-                <li key={step.title} className='flex gap-4 rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper)] p-5'>
-                  <span className='flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-muted)] text-sm font-bold text-[var(--color-accent-strong)]'>{index + 1}</span>
-                  <div>
-                    <h3 className='font-semibold text-[var(--color-ink)]'>{step.title}</h3>
-                    <p className='mt-1 leading-relaxed text-[var(--color-ink-muted)]'>{step.description}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+            <StepPath steps={page.process} tone='field' className='mt-16 md:mt-20' />
           </div>
         </section>
 
-        <section id='pricing' className='scroll-mt-28 py-16 md:py-24'>
-          <div className='container mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr]'>
-            <div>
-              <p className='section-eyebrow mb-3'>Pricing</p>
-              <h2 className={H2_CLASS}>A fixed price for a written scope</h2>
-              <p className='mt-4 leading-relaxed text-[var(--color-ink-muted)]'>
-                After a free first conversation, you get a written scope with a
-                fixed price and milestones. Nothing is billed by the hour, and
-                changes are agreed with you before they are made. A short
-                description is enough for an indicative range.
+        {/* Pricing, with the brief builder. */}
+        <section id='pricing' className='section scroll-mt-20'>
+          <div className='shell grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16'>
+            <ScrollReveal>
+              <h2 className='t-h2'>A fixed price for a written scope</h2>
+              <p className='t-body mt-5'>
+                Every project is quoted as one price for an agreed scope. A
+                short description is enough for us to give you a price range.
               </p>
-            </div>
-            <div className='rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-6 md:p-8'>
-              <h3 className='font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-ink)]'>
-                What affects the price
-              </h3>
-              <ul className='mt-5 grid gap-3 sm:grid-cols-2'>
-                {page.costFactors.map((factor) => (
-                  <li key={factor} className='flex gap-3 leading-relaxed text-[var(--color-ink-muted)]'>
-                    <span className='mt-2.5 size-1.5 shrink-0 rounded-full bg-[var(--color-accent)]' aria-hidden />
-                    <span>{factor}</span>
+              <ul className='mt-8 grid gap-3'>
+                {PRICE_PROMISES.map((promise) => (
+                  <li key={promise} className='flex items-center gap-3 text-[length:var(--text-base)] font-semibold'>
+                    <span className='flex size-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-soft)] text-[var(--color-accent-strong)]' aria-hidden>
+                      <Check className='size-4' strokeWidth={2.5} />
+                    </span>
+                    {promise}
                   </li>
                 ))}
               </ul>
-            </div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.08}>
+              <h3 className='t-h3 mb-5'>What affects the price</h3>
+              <BriefBuilder service={page.name} factors={page.costFactors} />
+            </ScrollReveal>
           </div>
         </section>
 
+        {/* Proof. */}
         {page.evidence ? (
-          <section className='border-t border-[var(--color-rule)] bg-[var(--color-paper-2)] py-16 md:py-24'>
-            <div className='container mx-auto max-w-6xl px-6'>
-              <div className='max-w-2xl'>
-                <p className='section-eyebrow mb-3'>Proof of work</p>
-                <h2 className={H2_CLASS}>What we have built</h2>
-                <p className='mt-4 leading-relaxed text-[var(--color-ink-muted)]'>
-                  {page.evidence.body}
-                </p>
-              </div>
+          <section className='section band-white'>
+            <div className='shell'>
+              <ScrollReveal className='grid gap-5 lg:grid-cols-2 lg:items-end'>
+                <h2 className='t-h2'>What we have built</h2>
+                <p className='t-body'>{page.evidence.body}</p>
+              </ScrollReveal>
               {evidenceProjects.length > 0 ? (
                 <div
-                  className={`mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 ${evidenceProjects.length >= 3 ? 'lg:grid-cols-3' : ''}`}>
+                  className={cn(
+                    'mt-14 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2',
+                    evidenceProjects.length >= 3 && 'lg:grid-cols-3',
+                  )}>
                   {evidenceProjects.map((project) => (
-                    <ProjectCard key={project.id} project={project} />
+                    <ScrollReveal key={project.id}>
+                      <ProjectCard project={project} />
+                    </ScrollReveal>
                   ))}
                 </div>
               ) : null}
               {evidenceProducts.length > 0 ? (
-                <div className='mt-5 grid grid-cols-1 gap-5 md:grid-cols-2'>
-                  {evidenceProducts.map((product) => (
-                    <Link
-                      key={product.id}
-                      href={product.href}
-                      className='group flex flex-col rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper)] p-6 transition-[border-color,box-shadow] duration-[var(--dur-base)] hover:border-[var(--color-accent)]/40 hover:shadow-[0_12px_32px_var(--color-shadow-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
-                      <div className='flex items-center gap-4'>
-                        <div className='flex size-14 shrink-0 items-center justify-center rounded-xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] p-2'>
-                          <Image src={product.imageUrl} alt='' width={56} height={56} className='size-full object-contain' />
-                        </div>
-                        <div className='min-w-0 flex-1'>
-                          <p className='font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-ink)]'>
-                            {product.title}
-                          </p>
-                          <p className='text-xs font-semibold text-[var(--color-accent-strong)]'>
-                            Orbitra product · {product.status}
-                          </p>
-                        </div>
-                        <ArrowUpRight className='size-5 shrink-0 text-[var(--color-ink-subtle)] transition-colors group-hover:text-[var(--color-accent)]' aria-hidden />
-                      </div>
-                      <p className='mt-4 leading-relaxed text-[var(--color-ink)]'>{product.demonstrates}</p>
-                      <p className='mt-3 text-sm leading-relaxed text-[var(--color-ink-subtle)]'>
-                        {PRODUCT_STATUS_NOTES[product.status]}
-                      </p>
-                    </Link>
-                  ))}
+                <div className='mt-14'>
+                  <h3 className='t-h3'>Orbitra’s own products</h3>
+                  <div className='mt-6 grid gap-6 lg:grid-cols-2'>
+                    {evidenceProducts.map((product) => (
+                      <ProductTile key={product.id} product={product} showDemonstrates />
+                    ))}
+                  </div>
+                  <ul className='mt-6 grid gap-1'>
+                    {[...new Set(evidenceProducts.map((product) => product.status))].map((status) => (
+                      <li key={status} className='t-note'>
+                        <span className='font-semibold text-[var(--color-ink)]'>{status}:</span>{' '}
+                        {PRODUCT_STATUS_NOTES[status]}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ) : null}
             </div>
           </section>
         ) : null}
 
-        <section className='border-t border-[var(--color-rule)] py-16 md:py-24'>
-          <div className='container mx-auto max-w-4xl px-6'>
-            <p className='section-eyebrow mb-3'>Common questions</p>
-            <h2 className={H2_CLASS}>
-              About {page.name.toLowerCase()} with Orbitra
-            </h2>
-            <dl className='mt-8 divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]'>
-              {faqs.map((faq) => (
-                <div key={faq.question} className='py-6'>
-                  <dt className='font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-ink)]'>{faq.question}</dt>
-                  <dd className='mt-2 leading-relaxed text-[var(--color-ink-muted)]'>{faq.answer}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className='mt-12 rounded-2xl bg-[var(--color-accent-muted)] p-6 md:p-8'>
-              <h2 className='font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--color-ink)]'>Tell us what you are trying to fix</h2>
-              <p className='mt-3 max-w-2xl leading-relaxed text-[var(--color-ink-muted)]'>
-                Share the business problem and what you have tried so far. There
-                is no commitment, and you do not need a technical brief.
-              </p>
-              <Link href={contactHref} className='btn-cta btn-cta-lg btn-brand group mt-6 inline-flex gap-2'>
+        {/* Questions. */}
+        <section className='section band-tint'>
+          <div className='shell grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16'>
+            <h2 className='t-h2'>Questions about {page.name.toLowerCase()}</h2>
+            <FaqList faqs={faqs} />
+          </div>
+        </section>
+
+        {/* Close. */}
+        <section className='section'>
+          <div className='shell'>
+            <div className='band-field grid gap-8 rounded-[var(--radius-xl)] p-8 md:p-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end'>
+              <div>
+                <h2 className='t-h2 text-[var(--color-field-ink)]'>Tell us what you’re trying to fix</h2>
+                <p className='t-lead mt-4 text-[var(--color-field-muted)]'>
+                  No commitment, and you don’t need a technical brief.
+                </p>
+              </div>
+              <Link href={contactHref} className='btn-cta btn-cta-lg btn-brand self-start lg:self-end'>
                 Discuss your project
-                <ArrowRight className='h-4 w-4 transition-transform group-hover:translate-x-0.5' aria-hidden />
+                <ArrowRight className='btn-arrow size-4' aria-hidden />
               </Link>
             </div>
 
-            <nav aria-label='Other services' className='mt-12'>
-              <p className='section-eyebrow mb-4'>Other services</p>
-              <ul className='grid gap-3 sm:grid-cols-3'>
-                {otherServices.map((other) => (
-                  <li key={other.slug}>
-                    <Link
-                      href={`/${other.slug}`}
-                      className='group flex h-full items-center justify-between gap-3 rounded-xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] px-4 py-3 text-sm font-semibold text-[var(--color-ink)] transition-colors hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent-strong)]'>
-                      {other.linkLabel}
-                      <ArrowRight className='size-4 shrink-0 transition-transform group-hover:translate-x-0.5' aria-hidden />
-                    </Link>
-                  </li>
-                ))}
+            <nav aria-labelledby='other-services' className='mt-16'>
+              <h2 id='other-services' className='t-h3'>
+                Other services
+              </h2>
+              <ul className='mt-6 grid gap-4 sm:grid-cols-3'>
+                {otherServices.map((other) => {
+                  const Icon = SERVICE_ICONS[other.scene];
+                  return (
+                    <li key={other.slug}>
+                      <Link
+                        href={`/${other.slug}`}
+                        className='group flex h-full items-center gap-4 rounded-[var(--radius-lg)] bg-[var(--color-paper-3)] p-5 transition-colors hover:bg-[var(--color-accent-soft)]'>
+                        <Icon className='size-6 shrink-0 text-[var(--color-accent)]' aria-hidden />
+                        <span className='flex-1 text-[length:var(--text-base)] font-semibold'>{other.name}</span>
+                        <ArrowRight className='btn-arrow size-4 shrink-0 group-hover:translate-x-1' aria-hidden />
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           </div>

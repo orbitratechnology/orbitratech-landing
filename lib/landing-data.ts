@@ -35,7 +35,7 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
     description:
       'A focused 1:1 calling app for private voice and video conversations with almost no friction.',
     demonstrates:
-      'Real-time voice and video between devices: signalling, presence, call states, and a relay fallback for restrictive networks.',
+      'Live voice and video calls between phones, including a backup route for networks that block direct calls.',
     features: ['Voice calling', 'Video calling', 'Private by design'],
     imageUrl: '/callnet-logo.png',
     imageAlt: 'Callnet logo',
@@ -48,7 +48,7 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
     description:
       'Mobile app connecting workers with opportunities - job matching, profiles, and daily task management.',
     demonstrates:
-      'A two-sided mobile marketplace: worker profiles, location-based search, direct contact, and reputation.',
+      'A mobile marketplace with two sides: worker profiles, search by location, direct contact, and reputation.',
     features: ['Job matching', 'Worker profiles', 'Task management'],
     imageUrl: '/worknet-logo.png',
     imageAlt: 'Worknet logo',
@@ -65,7 +65,7 @@ export const LANDING_PRODUCTS: LandingProduct[] = [
     description:
       'Secure B2B network and Workspace for gem traders - discovery, trading, and market insights in one place.',
     demonstrates:
-      'A B2B network with private business records: inventory, certificates, receivables and payables, and verification signals.',
+      'A business network with private records: stock, certificates, money owed in and out, and trust signals.',
     features: [
       'B2B Gem trading',
       'Workspace',

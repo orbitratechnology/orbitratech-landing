@@ -2,11 +2,12 @@
 
 import { AnimatedBeam } from '@/components/ui/animated-beam'
 import { ScrollReveal } from '@/components/motion/ScrollReveal'
+import { PAYMENT_LOGOS, TECHNOLOGY_LOGOS, type BrandLogo } from '@/lib/brand-logos'
 import { cn } from '@/lib/utils'
 import {
   Bell,
   CreditCard,
-  Database,
+  FolderLock,
   Package,
   Smartphone,
   Users,
@@ -23,45 +24,15 @@ type FlowNode = {
 }
 
 const INPUT_NODES: FlowNode[] = [
-  {
-    id: 'customers',
-    label: 'Customers',
-    caption: 'Web & mobile buyers',
-    Icon: Smartphone,
-  },
-  {
-    id: 'team',
-    label: 'Your team',
-    caption: 'Staff & admin users',
-    Icon: Users,
-  },
-  {
-    id: 'operations',
-    label: 'Operations',
-    caption: 'Orders, stock & fulfilment',
-    Icon: Package,
-  },
+  { id: 'customers', label: 'Customers', caption: 'On the web and on phones', Icon: Smartphone },
+  { id: 'team', label: 'Your team', caption: 'Staff and managers', Icon: Users },
+  { id: 'operations', label: 'Operations', caption: 'Orders, stock, delivery', Icon: Package },
 ]
 
 const OUTPUT_NODES: FlowNode[] = [
-  {
-    id: 'payments',
-    label: 'Payments',
-    caption: 'Cards, wallets & local gateways',
-    Icon: CreditCard,
-  },
-  {
-    id: 'database',
-    label: 'Database',
-    caption: 'Secure customer & order data',
-    Icon: Database,
-  },
-  {
-    id: 'alerts',
-    label: 'Alerts',
-    caption: 'Email & order notifications',
-    Icon: Bell,
-  },
+  { id: 'payments', label: 'Payments', caption: 'Cards, wallets, PayHere', Icon: CreditCard },
+  { id: 'records', label: 'Records', caption: 'Customers and orders, kept safe', Icon: FolderLock },
+  { id: 'alerts', label: 'Alerts', caption: 'Emails and order updates', Icon: Bell },
 ]
 
 function subscribeReducedMotion(onStoreChange: () => void) {
@@ -93,23 +64,34 @@ function FlowNodeCard({
     <div
       ref={nodeRef}
       className={cn(
-        'integration-node relative z-10 flex min-w-0 items-center gap-3 rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] px-3 py-2.5 shadow-[0_4px_20px_var(--color-shadow-soft)] sm:gap-3.5 sm:px-4 sm:py-3',
-        align === 'right' && 'sm:flex-row-reverse sm:text-right',
+        'relative z-10 flex min-w-0 items-center gap-4 rounded-[var(--radius-lg)] bg-[var(--color-paper-3)] px-5 py-4',
+        align === 'right' && 'md:flex-row-reverse md:text-right',
       )}>
-      <div className='flex size-10 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-muted)] sm:size-11'>
-        <Icon
-          className='size-[1.125rem] text-[var(--color-accent)] sm:size-5'
-          aria-hidden
-        />
-      </div>
+      <Icon className='size-6 shrink-0 text-[var(--color-accent)]' aria-hidden />
       <div className='min-w-0'>
-        <p className='font-[family-name:var(--font-display)] text-[length:var(--text-sm)] font-semibold text-[var(--color-ink)]'>
-          {node.label}
-        </p>
-        <p className='mt-0.5 text-[length:var(--text-xs)] leading-snug text-[var(--color-ink-muted)] sm:text-[length:var(--text-sm)]'>
-          {node.caption}
-        </p>
+        <p className='text-[length:var(--text-base)] font-semibold text-[var(--color-ink)]'>{node.label}</p>
+        <p className='t-note'>{node.caption}</p>
       </div>
+    </div>
+  )
+}
+
+function LogoRow({ title, logos }: { title: string; logos: BrandLogo[] }) {
+  return (
+    <div>
+      <h3 className='t-label text-[var(--color-ink-muted)]'>{title}</h3>
+      <ul className='mt-5 flex flex-wrap items-center gap-x-8 gap-y-6'>
+        {logos.map((logo) => (
+          <li key={logo.id} title={logo.caption ?? logo.name}>
+            {logo.src.endsWith('.png') || logo.src.endsWith('.webp') ? (
+              <Image src={logo.src} alt={logo.name} width={96} height={28} className='h-6 w-auto object-contain' />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={logo.src} alt={logo.name} className='h-6 w-auto max-w-[6.5rem] object-contain' loading='lazy' decoding='async' />
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
@@ -123,10 +105,10 @@ export default function IntegrationFlow() {
   const teamRef = useRef<HTMLDivElement>(null)
   const operationsRef = useRef<HTMLDivElement>(null)
   const paymentsRef = useRef<HTMLDivElement>(null)
-  const databaseRef = useRef<HTMLDivElement>(null)
+  const recordsRef = useRef<HTMLDivElement>(null)
   const alertsRef = useRef<HTMLDivElement>(null)
   const inputRefs = [customersRef, teamRef, operationsRef]
-  const outputRefs = [paymentsRef, databaseRef, alertsRef]
+  const outputRefs = [paymentsRef, recordsRef, alertsRef]
 
   const reducedMotion = useSyncExternalStore(
     subscribeReducedMotion,
@@ -134,137 +116,79 @@ export default function IntegrationFlow() {
     getReducedMotionServerSnapshot,
   )
 
-  const inputCurvatures = [40, 0, -40]
-  const outputCurvatures = [40, 0, -40]
+  const curvatures = [40, 0, -40]
 
   return (
-    <section
-      id='integration'
-      className='deferred-section relative overflow-hidden border-t border-[var(--color-rule)] py-20 md:py-28'>
-      <div
-        className='pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/25 to-transparent'
-        aria-hidden
-      />
-      <div
-        className='pointer-events-none absolute inset-0 opacity-40'
-        aria-hidden
-        style={{
-          background:
-            'radial-gradient(ellipse 70% 50% at 50% 50%, color-mix(in oklch, var(--color-surface-tint) 65%, transparent), transparent 72%)',
-        }}
-      />
-
-      <div className='container relative mx-auto max-w-6xl px-6'>
-        <ScrollReveal className='mx-auto max-w-2xl text-center'>
-          <p className='section-eyebrow mb-3'>How it connects</p>
-          <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] [overflow-wrap:anywhere] md:text-[length:var(--text-display-s)]'>
-            One platform. Every system wired in.
-          </h2>
-          <p className='mt-4 text-[length:var(--text-lg)] leading-relaxed text-[var(--color-ink-muted)]'>
-            We build your website or app as the hub - then connect payments,
-            data, and notifications so your business runs on software,
-            not spreadsheets.
+    <section id='integration' className='section relative overflow-hidden'>
+      <div className='shell'>
+        <ScrollReveal className='grid gap-5 lg:grid-cols-2 lg:items-end'>
+          <h2 className='t-h2'>Connected to the tools you already use</h2>
+          <p className='t-lead text-[var(--color-ink-muted)]'>
+            Your website or app sits in the middle. Payments, records and alerts
+            plug into it, so the business runs on software, not spreadsheets.
           </p>
         </ScrollReveal>
 
         <div
           ref={containerRef}
-          className='relative mx-auto mt-14 hidden min-h-[22rem] max-w-5xl md:mt-16 md:block md:min-h-[26rem] lg:min-h-[28rem]'>
-          <div className='grid h-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-6 lg:gap-10'>
-            <div className='flex flex-col justify-center gap-6 lg:gap-8'>
+          className='relative mx-auto mt-16 max-w-5xl md:mt-20'>
+          <div className='grid gap-4 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center md:gap-12'>
+            <div className='flex flex-col gap-4 md:gap-7'>
               {INPUT_NODES.map((node, index) => (
-                <FlowNodeCard
-                  key={node.id}
-                  nodeRef={inputRefs[index]}
-                  node={node}
-                  align='left'
-                />
+                <FlowNodeCard key={node.id} nodeRef={inputRefs[index]} node={node} align='left' />
               ))}
             </div>
 
-            <div
-              ref={hubRef}
-              className='relative z-10 flex flex-col items-center justify-center px-2'>
-              <div className='flex size-[5.5rem] items-center justify-center rounded-3xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] shadow-[0_8px_32px_var(--color-shadow-soft)] ring-4 ring-[var(--color-paper)] lg:size-24'>
-                <Image
-                  src='/orbitra_logo.png'
-                  alt='Orbitra Tech'
-                  width={72}
-                  height={72}
-                  className='size-14 lg:size-16'
-                  draggable={false}
-                />
+            <div ref={hubRef} className='relative z-10 order-first flex flex-col items-center py-4 md:order-none md:py-0'>
+              <div className='rounded-full bg-[var(--color-accent-soft)] p-2.5'>
+                <div className='flex size-24 items-center justify-center rounded-full bg-[var(--color-paper-2)] lg:size-28'>
+                  <Image src='/orbitra_logo.png' alt='' width={72} height={72} className='size-16' draggable={false} />
+                </div>
               </div>
-              <p className='mt-3 max-w-[8rem] text-center font-[family-name:var(--font-display)] text-[length:var(--text-sm)] font-semibold text-[var(--color-ink)]'>
-                Your digital product
+              <p className='mt-4 max-w-[9rem] text-center font-[family-name:var(--font-display)] text-[length:var(--text-lg)] font-semibold leading-tight'>
+                Your website or app
               </p>
             </div>
 
-            <div className='flex flex-col justify-center gap-5 lg:gap-6'>
+            <div className='flex flex-col gap-4 md:gap-7'>
               {OUTPUT_NODES.map((node, index) => (
-                <FlowNodeCard
-                  key={node.id}
-                  nodeRef={outputRefs[index]}
-                  node={node}
-                  align='right'
-                />
+                <FlowNodeCard key={node.id} nodeRef={outputRefs[index]} node={node} align='right' />
               ))}
             </div>
           </div>
 
-          {INPUT_NODES.map((node, index) => (
-            <AnimatedBeam
-              key={`in-${node.id}`}
-              containerRef={containerRef}
-              fromRef={inputRefs[index]}
-              toRef={hubRef}
-              curvature={inputCurvatures[index]}
-              delay={index * 0.35}
-              duration={4.5}
-              animate={!reducedMotion}
-            />
-          ))}
-
-          {OUTPUT_NODES.map((node, index) => (
-            <AnimatedBeam
-              key={`out-${node.id}`}
-              containerRef={containerRef}
-              fromRef={hubRef}
-              toRef={outputRefs[index]}
-              curvature={outputCurvatures[index]}
-              reverse
-              delay={0.2 + index * 0.35}
-              duration={4.5}
-              animate={!reducedMotion}
-            />
-          ))}
-        </div>
-
-        <div className='mt-12 space-y-8 md:hidden'>
-          <div className='flex flex-col items-center'>
-            <div className='flex size-20 items-center justify-center rounded-3xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] shadow-[0_8px_24px_var(--color-shadow-soft)]'>
-              <Image
-                src='/orbitra_logo.png'
-                alt='Orbitra Tech'
-                width={56}
-                height={56}
-                className='size-14'
-                draggable={false}
+          <div className='hidden md:block'>
+            {INPUT_NODES.map((node, index) => (
+              <AnimatedBeam
+                key={`in-${node.id}`}
+                containerRef={containerRef}
+                fromRef={inputRefs[index]}
+                toRef={hubRef}
+                curvature={curvatures[index]}
+                delay={index * 0.35}
+                duration={4.5}
+                animate={!reducedMotion}
               />
-            </div>
-            <p className='mt-3 font-[family-name:var(--font-display)] text-[length:var(--text-base)] font-semibold text-[var(--color-ink)]'>
-              Your digital product
-            </p>
-          </div>
-
-          <div className='grid min-w-0 grid-cols-1 gap-3'>
-            <p className='text-center text-[length:var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-ink-subtle)]'>
-              Connected touchpoints
-            </p>
-            {[...INPUT_NODES, ...OUTPUT_NODES].map((node) => (
-              <FlowNodeCard key={node.id} node={node} align='left' />
+            ))}
+            {OUTPUT_NODES.map((node, index) => (
+              <AnimatedBeam
+                key={`out-${node.id}`}
+                containerRef={containerRef}
+                fromRef={hubRef}
+                toRef={outputRefs[index]}
+                curvature={curvatures[index]}
+                reverse
+                delay={0.2 + index * 0.35}
+                duration={4.5}
+                animate={!reducedMotion}
+              />
             ))}
           </div>
+        </div>
+
+        <div className='mt-20 grid gap-12 rounded-[var(--radius-xl)] bg-[var(--color-paper-3)] p-7 md:mt-28 md:p-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]'>
+          <LogoRow title='Ways your customers can pay' logos={PAYMENT_LOGOS} />
+          <LogoRow title='Platforms we build with (tools, not clients)' logos={TECHNOLOGY_LOGOS} />
         </div>
       </div>
     </section>

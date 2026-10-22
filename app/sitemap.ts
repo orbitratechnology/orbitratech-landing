@@ -5,7 +5,7 @@ import { SERVICE_PAGES } from '@/lib/service-pages'
 
 // Update when page content changes. A lastmod that changes on every request
 // is ignored by search engines, so keep these dates honest.
-const CONTENT_UPDATED = new Date('2026-10-20')
+const CONTENT_UPDATED = new Date('2026-10-22')
 const LEGAL_UPDATED = new Date('2026-10-07')
 
 const LEGAL_PATHS = [
