@@ -97,6 +97,11 @@ const organizationJsonLd = {
   '@id': ORG_ID,
   name: 'Orbitra Tech',
   legalName: 'Orbitra Tech (Pvt) Ltd',
+  identifier: {
+    '@type': 'PropertyValue',
+    propertyID: 'Sri Lanka company registration number',
+    value: 'PV 00362568',
+  },
   url: siteUrl('/'),
   logo: `${SITE_URL}/orbitra_logo.png`,
   image: `${SITE_URL}/orbitra_logo.png`,
@@ -123,15 +128,25 @@ const organizationJsonLd = {
       url: `${SITE_URL}/${page.slug}`,
     },
   })),
-  contactPoint: {
-    '@type': 'ContactPoint',
-    telephone: PHONE_E164,
-    email: CONTACT_EMAIL,
-    contactType: 'sales',
-    areaServed: 'Worldwide',
-    availableLanguage: ['English', 'Sinhala'],
-    url: `https://wa.me/${WHATSAPP_PHONE}`,
-  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: PHONE_E164,
+      email: CONTACT_EMAIL,
+      contactType: 'sales',
+      areaServed: 'Worldwide',
+      availableLanguage: ['English', 'Sinhala'],
+      url: `https://wa.me/${WHATSAPP_PHONE}`,
+    },
+    {
+      '@type': 'ContactPoint',
+      name: 'Data protection contact (Bilal Ibn Suhair, CEO)',
+      email: CONTACT_EMAIL,
+      telephone: PHONE_E164,
+      contactType: 'data protection',
+      url: siteUrl('/privacy-policy'),
+    },
+  ],
   sameAs: SAME_AS,
   founder: [
     {
