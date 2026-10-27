@@ -7,6 +7,7 @@ import { SERVICE_PAGES } from '@/lib/service-pages'
 // is ignored by search engines, so keep these dates honest.
 const CONTENT_UPDATED = new Date('2026-10-20')
 const LEGAL_UPDATED = new Date('2026-10-07')
+const PRIVACY_UPDATED = new Date('2026-10-25')
 
 const LEGAL_PATHS = [
   '/worknet/privacy-policy',
@@ -36,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     })),
+    {
+      url: `${SITE_URL}/privacy-policy`,
+      lastModified: PRIVACY_UPDATED,
+      changeFrequency: 'yearly',
+      priority: 0.4,
+    },
     ...LEGAL_PATHS.map((path) => ({
       url: `${SITE_URL}${path}`,
       lastModified: LEGAL_UPDATED,

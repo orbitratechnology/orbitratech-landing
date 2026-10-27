@@ -147,8 +147,15 @@ export default async function Footer() {
         </div>
 
         <div className='mt-12 flex flex-col items-center justify-between gap-3 border-t border-[var(--color-rule)] pt-8 text-center text-sm text-[var(--color-ink-subtle)] md:flex-row md:text-left'>
-          <p>© {year} Orbitra Tech. All rights reserved.</p>
-          <p>Engineered in Sri Lanka</p>
+          <p>© {year} Orbitra Tech (Pvt) Ltd. All rights reserved.</p>
+          <div className='flex flex-wrap items-center justify-center gap-x-4 gap-y-2'>
+            <Link
+              href='/privacy-policy'
+              className='font-semibold transition-colors hover:text-[var(--color-ink)]'>
+              Privacy Policy
+            </Link>
+            <p>Engineered in Sri Lanka</p>
+          </div>
         </div>
       </div>
     </footer>

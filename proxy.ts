@@ -42,6 +42,12 @@ ${LANDING_PRODUCTS.map((product) => `- [${product.title}](${SITE_URL}${product.h
 
 - Based in Beruwala, Sri Lanka (UTC+5:30); works remotely with clients worldwide
 - Founder-led: clients work directly with the founders who scope and build the project
+- Legal entity: Orbitra Tech (Pvt) Ltd, Sri Lanka company number PV 00362568
+
+## Privacy
+
+- [Privacy Policy](${SITE_URL}/privacy-policy) — what personal data Orbitra Tech collects, why, who it is shared with, and your rights under Sri Lanka's Personal Data Protection Act No. 9 of 2022. Orbitra Tech never sells personal data.
+- Privacy requests: ${CONTACT_EMAIL} with the subject "Privacy request"
 
 ## Contact
 

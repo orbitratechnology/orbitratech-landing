@@ -14,6 +14,8 @@ type GemFortLegalPageProps = {
   description: string;
   asideTitle: string;
   navItems: LegalNavItem[];
+  backHref?: string;
+  backLabel?: string;
   children: ReactNode;
 };
 
@@ -23,16 +25,18 @@ export default async function GemFortLegalPage({
   description,
   asideTitle,
   navItems,
+  backHref = '/gemfort',
+  backLabel = 'Back to GemFort',
   children,
 }: GemFortLegalPageProps) {
   return (
     <div className='min-h-screen overflow-x-hidden bg-[var(--color-paper)] text-[var(--color-ink)]'>
       <div className='mx-auto max-w-[1100px] px-6 py-16 md:py-20'>
         <Link
-          href='/gemfort'
+          href={backHref}
           className='mb-12 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-ink-muted)] underline-offset-4 transition-colors hover:text-[var(--color-accent-strong)] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
           <span aria-hidden>←</span>
-          Back to GemFort
+          {backLabel}
         </Link>
 
         <header className='mb-16 border-b border-[var(--color-rule)] pb-10 md:mb-20'>
