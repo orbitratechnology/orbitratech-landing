@@ -31,6 +31,8 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
+  // Legal pages have no markdown twin; the summary is the meta description.
+  other: { 'ai-summary': DESCRIPTION },
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: TITLE,

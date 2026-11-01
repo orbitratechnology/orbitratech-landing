@@ -1,4 +1,4 @@
-import { CONTENT_UPDATED, LEGAL_UPDATED } from '@/lib/constants';
+import { CONTENT_UPDATED, LEGAL_UPDATED, PRIVACY_UPDATED } from '@/lib/constants';
 import { PRODUCT_STATUS_NOTES } from '@/lib/landing-data';
 import { PRODUCT_DETAILS } from '@/lib/product-data';
 import { SERVICE_PAGES } from '@/lib/service-pages';
@@ -56,6 +56,7 @@ const LEGAL_SKIP_REASON =
 
 /** Public routes deliberately left without a markdown twin, with the reason. */
 export const MARKDOWN_SKIPPED: { path: string; title: string; reason: string; lastModified: Date }[] = [
+  { path: '/privacy-policy', title: 'Orbitra Tech privacy policy', reason: LEGAL_SKIP_REASON, lastModified: PRIVACY_UPDATED },
   { path: '/worknet/privacy-policy', title: 'Worknet privacy policy', reason: LEGAL_SKIP_REASON, lastModified: LEGAL_UPDATED },
   { path: '/worknet/terms-and-conditions', title: 'Worknet terms and conditions', reason: LEGAL_SKIP_REASON, lastModified: LEGAL_UPDATED },
   { path: '/gemfort/privacy-policy', title: 'GemFort privacy policy', reason: LEGAL_SKIP_REASON, lastModified: LEGAL_UPDATED },

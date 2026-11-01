@@ -95,8 +95,8 @@ const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': ORG_ID,
-  name: 'Orbitra Tech',
-  legalName: 'Orbitra Tech (Pvt) Ltd',
+  name: SITE_NAME,
+  legalName: LEGAL_NAME,
   identifier: {
     '@type': 'PropertyValue',
     propertyID: 'Sri Lanka company registration number',
@@ -147,7 +147,7 @@ const organizationJsonLd = {
       url: siteUrl('/privacy-policy'),
     },
   ],
-  sameAs: SAME_AS,
+  sameAs: SOCIAL_LINKS,
   founder: [
     {
       '@type': 'Person',

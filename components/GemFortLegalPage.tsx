@@ -33,7 +33,7 @@ export default async function GemFortLegalPage({
     <div className='min-h-screen overflow-x-hidden bg-[var(--color-paper)] text-[var(--color-ink)]'>
       <div className='mx-auto max-w-[1100px] px-6 py-16 md:py-20'>
         <Link
-          href='/gemfort'
+          href={backHref}
           className='btn-link mb-12'>
           <span aria-hidden>←</span>
           {backLabel}
