@@ -1,13 +1,7 @@
 import type { MetadataRoute } from 'next'
-import { SITE_URL } from '@/lib/constants'
+import { CONTENT_UPDATED, LEGAL_UPDATED, PRIVACY_UPDATED, SITE_URL } from '@/lib/constants'
 import { LANDING_PRODUCTS } from '@/lib/landing-data'
 import { SERVICE_PAGES } from '@/lib/service-pages'
-
-// Update when page content changes. A lastmod that changes on every request
-// is ignored by search engines, so keep these dates honest.
-const CONTENT_UPDATED = new Date('2026-10-20')
-const LEGAL_UPDATED = new Date('2026-10-07')
-const PRIVACY_UPDATED = new Date('2026-10-25')
 
 const LEGAL_PATHS = [
   '/worknet/privacy-policy',

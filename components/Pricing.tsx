@@ -1,31 +1,10 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { PRICING_COST_FACTORS, PRICING_QUOTE_STEPS } from '@/lib/home-content';
 import { ScrollReveal } from './motion/ScrollReveal';
 
-const QUOTE_STEPS = [
-  {
-    title: 'Free first conversation',
-    body: 'Tell us the problem and what you have tried so far. No brief or preparation needed.',
-  },
-  {
-    title: 'Written scope and fixed price',
-    body: 'What is included, what is not, the milestones, and the total — in writing, before any work starts.',
-  },
-  {
-    title: 'Build to the agreed scope',
-    body: 'You review the work at each milestone. If something needs to change, we agree the change and its cost with you first.',
-  },
-] as const;
-
-const COST_FACTORS = [
-  'Number of pages, screens, or features',
-  'Design complexity and custom interactions',
-  'Integrations with payments, accounting, or existing systems',
-  'Content: who writes the copy and supplies photos',
-  'Security, privacy, and compliance requirements',
-  'Hosting, maintenance, and support after launch',
-  'Third-party services and licences',
-] as const;
+const QUOTE_STEPS = PRICING_QUOTE_STEPS;
+const COST_FACTORS = PRICING_COST_FACTORS;
 
 export default function Pricing() {
   return (

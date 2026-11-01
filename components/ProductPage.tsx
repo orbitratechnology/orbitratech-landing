@@ -296,7 +296,7 @@ export default function ProductPage({ product }: { product: ProductDetails }) {
                 </Link>
                 <Link
                   href='/#products'
-                  className='btn-cta btn-cta-lg border border-[var(--color-paper-3)]/30 bg-transparent text-[var(--color-paper)] hover:bg-[var(--color-paper)]/10'>
+                  className='btn-cta btn-cta-lg btn-inverse'>
                   See all products
                 </Link>
               </div>

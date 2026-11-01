@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
-import type { ProductStatus } from './landing-data';
+import { PRODUCT_STATUS_NOTES, type ProductStatus } from './landing-data';
+import { markdownAlternates } from './page-metadata';
 
 export type ProductIcon =
   | 'briefcase'
@@ -453,8 +454,9 @@ export function createProductMetadata(product: ProductDetails): Metadata {
   return {
     title,
     description: product.description,
-    alternates: {
-      canonical: product.path,
+    alternates: markdownAlternates(product.path),
+    other: {
+      'ai-summary': `${product.description} Status: ${product.status}. ${PRODUCT_STATUS_NOTES[product.status]}`,
     },
     openGraph: {
       type: 'website',

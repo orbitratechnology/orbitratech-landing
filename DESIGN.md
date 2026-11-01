@@ -59,7 +59,10 @@
 
 ## Components and states
 
-- Button hierarchy: primary filled, secondary outlined, tertiary text; hover, active, focus, and disabled states come from the existing CTA system
+- Button hierarchy: primary filled, secondary outlined, tertiary text. All buttons come from the `.btn-*` classes in `app/globals.css`; `buttonVariants` in `components/ui/button.tsx` maps onto the same classes
+  - Sizes: `.btn-cta` 44px, `.btn-cta-lg` 48px, `.btn-icon` 44px circle; `.btn-cta-fluid` goes full width below 640px
+  - Variants: `.btn-brand` (one per view), `.btn-whatsapp` (only for actions that open WhatsApp), `.btn-outline` (secondary on paper), `.btn-inverse` (secondary on ink bands), `.btn-ghost` (utility controls), `.btn-link` (tertiary text, 44px hit area without layout change)
+  - States: hover darkens the fill and lifts 1px, active settles to scale 0.98, focus-visible draws a 2px focus outline offset 2px (paper on ink bands), disabled sits at 48% opacity; reduced motion keeps colour changes only
 - Inputs: none on these pages
 - Tables: none on these pages
 - Overlays: none on these pages
@@ -131,4 +134,5 @@
 
 ## Changelog
 
+- 2026-10-31: unified buttons into one `.btn-*` system with softer shadows, inverse, ghost, icon, and link variants, and removed the hero glass outline button.
 - 2026-09-04: established the editorial utility direction for Worknet, GemFort, and Hermade detail pages and documented the product-specific diagram rule.

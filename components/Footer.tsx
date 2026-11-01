@@ -60,8 +60,8 @@ export default async function Footer() {
                   target='_blank'
                   rel='noopener noreferrer'
                   aria-label={label}
-                  className='rounded-full border border-[var(--color-rule)] p-3 text-[var(--color-ink-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
-                  <Icon className='h-5 w-5' />
+                  className='btn-cta btn-icon btn-outline'>
+                  <Icon className='h-5 w-5' aria-hidden />
                 </a>
               ))}
             </div>

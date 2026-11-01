@@ -9,10 +9,14 @@ import GemFortLegalPage, {
   type LegalNavItem,
 } from '@/components/GemFortLegalPage';
 
+const description =
+  'Request deletion of your GemFort account and associated personal data.';
+
 export const metadata: Metadata = {
   title: { absolute: 'Delete your GemFort account | GemFort by Orbitra Tech' },
-  description:
-    'Request deletion of your GemFort account and associated personal data.',
+  description,
+  // Legal pages have no markdown twin; the summary is the meta description.
+  other: { 'ai-summary': description },
   alternates: {
     canonical: 'https://www.orbitratech.net/gemfort/delete-account',
   },

@@ -2,10 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getCopyrightYear } from '@/lib/copyright-year';
 
+const description =
+  'Terms and Conditions for Worknet - Read about our service overview, user eligibility, account responsibilities, and legal disclaimers.';
+
 export const metadata: Metadata = {
   title: { absolute: 'Terms & Conditions | Worknet by Orbitra Tech' },
-  description:
-    'Terms and Conditions for Worknet - Read about our service overview, user eligibility, account responsibilities, and legal disclaimers.',
+  description,
+  // Legal pages have no markdown twin; the summary is the meta description.
+  other: { 'ai-summary': description },
   alternates: {
     canonical: 'https://www.orbitratech.net/worknet/terms-and-conditions',
   },
@@ -19,7 +23,7 @@ export default async function TermsAndConditions() {
       <div className='max-w-[1100px] mx-auto px-6 py-20 relative'>
         <Link
           href='/'
-          className='mb-12 inline-block text-sm font-medium text-slate-600 underline-offset-4 hover:text-sky-600 hover:underline'>
+          className='btn-link mb-12'>
           ← Back to home
         </Link>
 

@@ -11,10 +11,14 @@ import GemFortLegalPage, {
   type LegalNavItem,
 } from '@/components/GemFortLegalPage';
 
+const description =
+  'Privacy Policy for GemFort, including GemNet, GemTrack, account data, public profiles, workspace records, contacts, location, uploads, and deletion.';
+
 export const metadata: Metadata = {
   title: { absolute: 'Privacy Policy | GemFort by Orbitra Tech' },
-  description:
-    'Privacy Policy for GemFort, including GemNet, GemTrack, account data, public profiles, workspace records, contacts, location, uploads, and deletion.',
+  description,
+  // Legal pages have no markdown twin; the summary is the meta description.
+  other: { 'ai-summary': description },
   alternates: {
     canonical: 'https://www.orbitratech.net/gemfort/privacy-policy',
   },

@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react'
 
+import { Button } from '@/components/ui/button'
+
 export default function Error({
   error,
   reset,
@@ -24,12 +26,9 @@ export default function Error({
       <p className='mt-4 max-w-md text-[var(--color-ink-muted)]'>
         Please try again. If the problem persists, contact Orbitra Tech support.
       </p>
-      <button
-        type='button'
-        onClick={reset}
-        className='mt-8 rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90'>
+      <Button size='lg' onClick={reset} className='mt-8'>
         Try again
-      </button>
+      </Button>
     </main>
   )
 }

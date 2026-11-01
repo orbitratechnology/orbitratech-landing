@@ -1,4 +1,5 @@
 import { RESPONSE_TIME, WHATSAPP_URL } from '@/lib/constants';
+import { HERO_TRUST_POINTS } from '@/lib/home-content';
 import { ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,11 +8,7 @@ import { WhatsAppIcon } from './ui/whatsapp-icon';
 
 const HERO_BG = '/hero-bg.png';
 
-const TRUST_POINTS = [
-  'Fixed scope and price, agreed in writing before work starts',
-  'You work directly with the founders who build it',
-  'Client work in Sri Lanka, Australia, and the UK',
-] as const;
+const TRUST_POINTS = HERO_TRUST_POINTS;
 
 export default function Hero() {
   return (

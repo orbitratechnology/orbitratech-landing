@@ -6,23 +6,22 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/:path*',
+        // HTML pages only. Markdown responses set their own canonical Link
+        // header, and a config header would overwrite it, so skip .md URLs,
+        // /api/*, and requests that ask for markdown.
+        source: '/((?!api/|.*\\.md$).*)',
+        missing: [{ type: 'header', key: 'accept', value: '.*text/markdown.*' }],
         headers: [
           {
             key: 'Link',
             value: [
-              '</llms.txt>; rel="llms-txt"; type="text/plain"',
+              '</llms.txt>; rel="describedby"; type="text/plain"',
+              '</llms-full.txt>; rel="describedby"; type="text/plain"',
+              '</ai.txt>; rel="describedby"; type="text/plain"',
               '</sitemap.xml>; rel="sitemap"; type="application/xml"',
               '</robots.txt>; rel="robots"; type="text/plain"',
             ].join(', '),
           },
-        ],
-      },
-      {
-        source: '/llms.txt',
-        headers: [
-          { key: 'Content-Type', value: 'text/plain; charset=utf-8' },
-          { key: 'Cache-Control', value: 'public, max-age=3600, must-revalidate' },
         ],
       },
     ]

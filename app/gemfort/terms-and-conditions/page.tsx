@@ -9,10 +9,14 @@ import GemFortLegalPage, {
   type LegalNavItem,
 } from '@/components/GemFortLegalPage';
 
+const description =
+  'Terms and Conditions for GemFort, including GemNet, GemTrack, public listings, verification, user content, third-party services, account deletion, and liability.';
+
 export const metadata: Metadata = {
   title: { absolute: 'Terms and Conditions | GemFort by Orbitra Tech' },
-  description:
-    'Terms and Conditions for GemFort, including GemNet, GemTrack, public listings, verification, user content, third-party services, account deletion, and liability.',
+  description,
+  // Legal pages have no markdown twin; the summary is the meta description.
+  other: { 'ai-summary': description },
   alternates: {
     canonical: 'https://www.orbitratech.net/gemfort/terms-and-conditions',
   },

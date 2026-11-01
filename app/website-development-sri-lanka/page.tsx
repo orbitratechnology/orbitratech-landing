@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ServiceLandingPage from '@/components/ServiceLandingPage';
+import { markdownAlternates } from '@/lib/page-metadata';
 import { SERVICE_PAGE_BY_SLUG } from '@/lib/service-pages';
 
 const page = SERVICE_PAGE_BY_SLUG['website-development-sri-lanka'];
@@ -7,7 +8,8 @@ const page = SERVICE_PAGE_BY_SLUG['website-development-sri-lanka'];
 export const metadata: Metadata = {
   title: page.metaTitle,
   description: page.description,
-  alternates: { canonical: `/${page.slug}` },
+  alternates: markdownAlternates(`/${page.slug}`),
+  other: { 'ai-summary': page.summary },
   openGraph: {
     title: `${page.metaTitle} | Orbitra Tech`,
     description: page.description,

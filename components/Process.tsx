@@ -5,28 +5,15 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useRef } from 'react';
+import { PROCESS_STEPS } from '@/lib/home-content';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const STEPS = [
-  {
-    icon: MessageCircle,
-    title: 'Discovery call',
-    body: 'Tell us your goals on WhatsApp, email, or a call. We scope what you need and send a fixed price.',
-  },
-  {
-    icon: PenLine,
-    title: 'Design & build',
-    body: 'We prototype, iterate, and ship with clear milestones - no surprise invoices.',
-  },
-  {
-    icon: Rocket,
-    title: 'Launch & support',
-    body: 'Go live with training and handover. Stay on for updates as your business grows.',
-  },
-] as const;
+const STEP_ICONS = [MessageCircle, PenLine, Rocket] as const;
+
+const STEPS = PROCESS_STEPS.map((step, i) => ({ ...step, icon: STEP_ICONS[i] }));
 
 export default function Process() {
   const sectionRef = useRef<HTMLElement>(null);

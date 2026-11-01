@@ -76,7 +76,7 @@ export function ProjectCard({ project }: { project: ClientProject }) {
               href={project.url}
               target='_blank'
               rel='noopener noreferrer'
-              className='inline-flex max-w-full items-center gap-2 text-sm font-semibold text-[var(--color-accent-strong)] transition-colors hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+              className='btn-link'>
               <span className='truncate'>
                 {project.status ? 'Preview' : 'Visit'} {project.displayUrl}
               </span>

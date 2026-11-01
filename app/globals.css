@@ -284,144 +284,263 @@ body {
   color: var(--color-accent);
 }
 
-/* Hallmark · component: cta · genre: modern-minimal · theme: Plain
- * states: default · hover · focus · active · disabled
- * contrast: pass
+/* Hallmark · component: button · genre: modern-minimal · theme: Plain
+ * One button system for the site. Markup composes a size with a variant:
+ *   size:    .btn-cta (44px) · .btn-cta-lg (48px) · .btn-icon (44px circle)
+ *   variant: .btn-brand · .btn-whatsapp · .btn-outline · .btn-inverse · .btn-ghost
+ *   text:    .btn-link (tertiary, no size class)
+ * `buttonVariants` in components/ui/button.tsx maps onto these classes.
+ * Lives in the components layer so Tailwind utilities (margins, gap, display)
+ * can still adjust placement per use.
+ * states: default · hover · active · focus-visible · disabled · contrast: pass
  */
 
-.btn-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 2.75rem;
-  padding: 0.625rem 1.25rem;
-  border: 1px solid transparent;
-  border-radius: var(--radius-full);
-  font-family: var(--font-display);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  line-height: 1.25;
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-  touch-action: manipulation;
-  box-shadow: var(--shadow-cta-rest);
-  transition:
-    transform var(--dur-base) var(--ease-out),
-    background var(--dur-base) var(--ease-out),
-    border-color var(--dur-base) var(--ease-out),
-    box-shadow var(--dur-base) var(--ease-out),
-    color var(--dur-base) var(--ease-out);
-}
-
-.service-detail-link {
-  white-space: normal;
-  text-align: center;
-}
-
-@media (max-width: 639px) {
-  .service-detail-link {
-    width: 100%;
-  }
-}
-
-.btn-cta-lg {
-  min-height: 3rem;
-  padding: 0.875rem 1.75rem;
-  font-size: var(--text-base);
-}
-
-.btn-cta-fluid {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .btn-cta-fluid-sm {
-    width: auto;
-  }
-}
-
-.btn-cta:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
-}
-
-.btn-cta:disabled,
-.btn-cta[aria-disabled='true'] {
-  cursor: not-allowed;
-  opacity: 0.48;
-  pointer-events: none;
-  transform: none;
-  box-shadow: none;
-}
-
-.btn-whatsapp {
-  background: var(--color-whatsapp);
-  color: var(--color-paper-2);
-  box-shadow: var(--shadow-cta-primary-rest);
-}
-
-.btn-whatsapp:hover {
-  background: var(--color-whatsapp-strong);
-  box-shadow: var(--shadow-cta-primary-hover);
-  transform: translateY(-1px);
-}
-
-.btn-whatsapp:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-cta-active);
-}
-
-.btn-brand {
-  background: var(--color-accent);
-  color: var(--color-paper-2);
-  box-shadow: var(--shadow-cta-accent-rest);
-}
-
-.btn-brand:hover {
-  background: var(--color-accent-strong);
-  box-shadow: var(--shadow-cta-accent-hover);
-  transform: translateY(-1px);
-}
-
-.btn-brand:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-cta-active);
-}
-
-.btn-outline {
-  border-color: var(--color-rule);
-  background: var(--color-paper-2);
-  color: var(--color-ink);
-  box-shadow: var(--shadow-cta-outline-rest);
-}
-
-.btn-outline:hover {
-  border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-rule));
-  background: var(--color-paper-2);
-  box-shadow: var(--shadow-cta-outline-hover);
-  transform: translateY(-1px);
-}
-
-.btn-outline:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-cta-outline-rest);
-}
-
-@media (prefers-reduced-motion: reduce) {
+@layer components {
   .btn-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.625rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition:
-      background var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out),
       border-color var(--dur-fast) var(--ease-out),
-      box-shadow var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-base) var(--ease-out),
       color var(--dur-fast) var(--ease-out);
   }
 
-  .btn-whatsapp:hover,
-  .btn-brand:hover,
-  .btn-outline:hover {
+  .btn-cta svg {
+    flex-shrink: 0;
+  }
+
+  .btn-cta:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-cta:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .btn-cta:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  .btn-cta:disabled,
+  .btn-cta[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.48;
+    pointer-events: none;
     transform: none;
+    box-shadow: none;
+  }
+
+  .btn-cta-lg {
+    min-height: 3rem;
+    padding: 0.75rem 1.75rem;
+    font-size: var(--text-base);
+  }
+
+  .btn-icon {
+    width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0;
+  }
+
+  .btn-cta-fluid {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .btn-cta-fluid-sm {
+      width: auto;
+    }
+  }
+
+  .service-detail-link {
+    white-space: normal;
+    text-align: center;
+  }
+
+  @media (max-width: 639px) {
+    .service-detail-link {
+      width: 100%;
+    }
+  }
+
+  /* Filled: brand blue for the main action on a view. */
+  .btn-brand {
+    background: var(--color-accent);
+    color: var(--color-paper-2);
+    box-shadow: var(--shadow-cta-accent-rest);
+  }
+
+  .btn-brand:hover {
+    background: var(--color-accent-strong);
+    box-shadow: var(--shadow-cta-accent-hover);
+  }
+
+  .btn-brand:active {
+    box-shadow: var(--shadow-cta-active);
+  }
+
+  /* Filled: WhatsApp green, only for actions that open WhatsApp. */
+  .btn-whatsapp {
+    background: var(--color-whatsapp);
+    color: var(--color-paper-2);
+    box-shadow: var(--shadow-cta-primary-rest);
+  }
+
+  .btn-whatsapp:hover {
+    background: var(--color-whatsapp-strong);
+    box-shadow: var(--shadow-cta-primary-hover);
+  }
+
+  .btn-whatsapp:active {
+    box-shadow: var(--shadow-cta-active);
+  }
+
+  /* Outlined: secondary actions on paper surfaces. */
+  .btn-outline {
+    border-color: var(--color-rule);
+    background: var(--color-paper-2);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-cta-outline-rest);
+  }
+
+  .btn-outline:hover {
+    border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-rule));
+    background: var(--color-paper-3);
+    box-shadow: var(--shadow-cta-outline-hover);
+  }
+
+  .btn-outline:active {
+    background: color-mix(in oklch, var(--color-ink) 6%, var(--color-paper-3));
+    box-shadow: none;
+  }
+
+  .btn-outline.btn-icon {
+    color: var(--color-ink-muted);
+  }
+
+  .btn-outline.btn-icon:hover {
+    border-color: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  /* Outlined on ink: secondary actions inside dark bands. */
+  .btn-inverse {
+    border-color: color-mix(in oklch, var(--color-paper) 30%, transparent);
+    background: transparent;
+    color: var(--color-paper);
+  }
+
+  .btn-inverse:hover {
+    border-color: color-mix(in oklch, var(--color-paper) 50%, transparent);
+    background: color-mix(in oklch, var(--color-paper) 10%, transparent);
+  }
+
+  .btn-inverse:active {
+    background: color-mix(in oklch, var(--color-paper) 16%, transparent);
+  }
+
+  .btn-inverse:focus-visible {
+    outline-color: var(--color-paper);
+  }
+
+  /* Borderless: utility controls such as the menu toggle. */
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink-muted);
+  }
+
+  .btn-ghost:hover {
+    background: var(--color-paper-3);
+    color: var(--color-ink);
+    transform: none;
+  }
+
+  .btn-ghost:active {
+    background: color-mix(in oklch, var(--color-ink) 6%, var(--color-paper-3));
+  }
+
+  /* Tertiary: inline text action. The ::after hit area gives a 44px target
+   * without changing layout. */
+  .btn-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--color-accent-strong);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    touch-action: manipulation;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      text-decoration-color var(--dur-fast) var(--ease-out);
+  }
+
+  .btn-link::after {
+    content: '';
+    position: absolute;
+    inset: -0.75rem -0.5rem;
+  }
+
+  .btn-link svg {
+    flex-shrink: 0;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  .btn-link:hover {
+    color: var(--color-ink);
+    text-decoration-color: currentColor;
+  }
+
+  .btn-link:hover svg {
+    transform: translate(1px, -1px);
+  }
+
+  .btn-link:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-cta,
+    .btn-cta:hover,
+    .btn-cta:active,
+    .btn-link:hover svg {
+      transform: none;
+    }
+
+    /* Trailing arrows nudge on hover via Tailwind `translate` utilities. */
+    .btn-cta svg {
+      translate: none !important;
+    }
   }
 }
 
@@ -439,27 +558,6 @@ body {
   box-shadow:
     0 1px 2px color-mix(in oklch, var(--color-shadow-soft) 75%, transparent),
     inset 0 1px 0 color-mix(in oklch, var(--color-paper-2) 90%, transparent);
-}
-
-.hero-intro .btn-outline {
-  border-color: rgb(255 255 255 / 0.38);
-  background: rgb(255 255 255 / 0.18);
-  backdrop-filter: blur(24px) saturate(1.75);
-  -webkit-backdrop-filter: blur(24px) saturate(1.75);
-  box-shadow:
-    0 4px 24px rgb(15 23 42 / 0.06),
-    inset 0 1px 0 rgb(255 255 255 / 0.55);
-}
-
-.hero-intro .btn-outline:hover {
-  border-color: color-mix(
-    in oklch,
-    var(--color-accent) 35%,
-    rgb(255 255 255 / 0.38)
-  );
-  background: rgb(255 255 255 / 0.28);
-  backdrop-filter: blur(24px) saturate(1.75);
-  -webkit-backdrop-filter: blur(24px) saturate(1.75);
 }
 
 ::selection {

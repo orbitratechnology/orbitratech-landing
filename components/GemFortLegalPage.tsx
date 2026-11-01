@@ -33,8 +33,8 @@ export default async function GemFortLegalPage({
     <div className='min-h-screen overflow-x-hidden bg-[var(--color-paper)] text-[var(--color-ink)]'>
       <div className='mx-auto max-w-[1100px] px-6 py-16 md:py-20'>
         <Link
-          href={backHref}
-          className='mb-12 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-ink-muted)] underline-offset-4 transition-colors hover:text-[var(--color-accent-strong)] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]'>
+          href='/gemfort'
+          className='btn-link mb-12'>
           <span aria-hidden>←</span>
           {backLabel}
         </Link>

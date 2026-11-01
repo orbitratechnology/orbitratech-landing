@@ -1,34 +1,10 @@
 import { Check, MapPin, Target } from 'lucide-react';
+import { ABOUT_FACTS, ABOUT_PRINCIPLES } from '@/lib/home-content';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
 
-// Plain facts about how Orbitra works. Do not add client counts, project
-// totals, or satisfaction scores here unless they can be verified and linked
-// to evidence (named clients, case studies, or published reviews).
-const FACTS = [
-  {
-    title: 'Founder-led',
-    body: 'You talk directly to the people who scope and build your project.',
-  },
-  {
-    title: 'One team, every platform',
-    body: 'Web, iOS, Android, and the back end they share.',
-  },
-  {
-    title: 'Fixed scope',
-    body: 'Price and milestones agreed in writing before work starts.',
-  },
-  {
-    title: 'UTC+5:30',
-    body: 'Overlaps working hours in the Gulf, Europe, and much of Asia-Pacific.',
-  },
-] as const;
-
-const PRINCIPLES = [
-  'Fixed, transparent pricing agreed before work starts',
-  'Software your staff can use without a manual',
-  'Local context with production-grade engineering',
-] as const;
+const FACTS = ABOUT_FACTS;
+const PRINCIPLES = ABOUT_PRINCIPLES;
 
 export default function About() {
   return (

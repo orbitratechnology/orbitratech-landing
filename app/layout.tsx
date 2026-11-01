@@ -2,9 +2,14 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import {
+  ADDRESS,
   CONTACT_EMAIL,
+  LEGAL_NAME,
   PHONE_E164,
+  SITE_DESCRIPTION,
+  SITE_NAME,
   SITE_URL,
+  SOCIAL_LINKS,
   WHATSAPP_PHONE,
   siteUrl,
 } from '@/lib/constants';
@@ -33,8 +38,7 @@ export const viewport: Viewport = {
   themeColor: '#fafbfd',
 };
 
-const DESCRIPTION =
-  'Websites, mobile apps, online stores, and business automation software for growing companies in Sri Lanka and worldwide. Fixed scope, agreed upfront.';
+const DESCRIPTION = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -74,22 +78,18 @@ export const metadata: Metadata = {
     },
   },
   category: 'technology',
+  // Pages with their own summary override this.
+  other: { 'ai-summary': DESCRIPTION },
 };
 
 const ORG_ID = `${SITE_URL}/#organization`;
 
-const ADDRESS = {
+const POSTAL_ADDRESS = {
   '@type': 'PostalAddress',
-  streetAddress: '198/3 Sheikh Jamaldeen Road',
-  addressLocality: 'Beruwala',
-  addressCountry: 'LK',
+  streetAddress: ADDRESS.street,
+  addressLocality: ADDRESS.locality,
+  addressCountry: ADDRESS.countryCode,
 };
-
-const SAME_AS = [
-  'https://www.linkedin.com/in/orbitra-tech-org-7206523a6',
-  'https://www.facebook.com/profile.php?id=61586622600161',
-  'https://github.com/orbitratechnology',
-];
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -108,7 +108,7 @@ const organizationJsonLd = {
   description: DESCRIPTION,
   email: CONTACT_EMAIL,
   telephone: PHONE_E164,
-  address: ADDRESS,
+  address: POSTAL_ADDRESS,
   areaServed: [
     { '@type': 'Country', name: 'Sri Lanka' },
     'Worldwide (remote)',
@@ -172,7 +172,7 @@ const websiteJsonLd = {
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
   url: siteUrl('/'),
-  name: 'Orbitra Tech',
+  name: SITE_NAME,
   description: DESCRIPTION,
   publisher: { '@id': ORG_ID },
 };

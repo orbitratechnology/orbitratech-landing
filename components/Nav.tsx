@@ -89,7 +89,7 @@ export default function Nav() {
         <button
           type='button'
           onClick={toggleMenu}
-          className='ml-auto inline-flex rounded-full p-2.5 text-[var(--color-ink-muted)] transition-colors hover:bg-[var(--color-paper-3)] hover:text-[var(--color-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)] lg:hidden'
+          className='btn-cta btn-icon btn-ghost ml-auto lg:hidden'
           aria-expanded={open}
           aria-controls='mobile-nav'
           aria-haspopup='dialog'

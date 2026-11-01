@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import Nav from '@/components/Nav'
 import { SectionPlaceholder } from '@/components/SectionPlaceholder'
+import { markdownAlternates } from '@/lib/page-metadata'
 
 const Technologies = dynamic(() => import('@/components/Technologies'), {
   loading: () => <SectionPlaceholder minHeight='14rem' />,
@@ -72,7 +73,11 @@ function DeferredSection({
 
 // Self-canonical for the homepage only; child routes set their own.
 export const metadata: Metadata = {
-  alternates: { canonical: '/' },
+  alternates: markdownAlternates('/'),
+  other: {
+    'ai-summary':
+      'Homepage of Orbitra Tech, a founder-led software studio in Beruwala, Sri Lanka, that builds websites, mobile apps, online stores, and business automation for a fixed price agreed before work starts. Lists its services, client work, own products, process, pricing approach, FAQ, founders, and contact details.',
+  },
 }
 
 export default function Home() {

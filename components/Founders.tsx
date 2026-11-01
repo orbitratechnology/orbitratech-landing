@@ -1,50 +1,39 @@
 import { Globe, Mail } from 'lucide-react';
 import Image from 'next/image';
 import { FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FOUNDERS as FOUNDER_PROFILES } from '@/lib/home-content';
 import { ScrollReveal } from './motion/ScrollReveal';
 import { BeamCard } from './ui/beam-card';
 
-const FOUNDERS = [
-  {
-    name: 'Bilal',
-    role: 'Co-Founder & CEO',
-    bio: 'Leads client strategy, commercial development, and delivery - building Orbitra from zero into a full-service digital engineering firm.',
-    onYourProject:
-      'Your main point of contact: scoping, quotes, timelines, and keeping delivery on track.',
-    image: '/bilal.png',
-    socials: [
-      {
-        icon: FaLinkedin,
-        url: 'https://www.linkedin.com/in/mohamed-suhair-bilal-ahamed-bb5766344/',
-        label: 'LinkedIn',
-      },
-      {
-        icon: Mail,
-        url: 'mailto:bilalibnsuhair@gmail.com',
-        label: 'Email',
-      },
-    ],
-  },
-  {
-    name: 'Adhham',
-    role: 'Co-Founder & CTO',
-    bio: 'Architects native mobile and modern web systems - every build meets the bar we would ship for our own products.',
-    onYourProject:
-      'Owns the technical decisions: architecture, code quality, and how your web and mobile apps are built and released.',
-    image: '/adhham.png',
-    website: 'https://adhham.dev',
-    socials: [
-      { icon: FaTwitter, url: 'https://x.com/AdhhamDev', label: 'Twitter' },
-      {
-        icon: FaLinkedin,
-        url: 'https://www.linkedin.com/in/adhham',
-        label: 'LinkedIn',
-      },
-      { icon: Mail, url: 'mailto:adhham.dev.mail@gmail.com', label: 'Email' },
-      { icon: Globe, url: 'https://adhham.dev', label: 'Website' },
-    ],
-  },
-] as const;
+const SOCIALS = {
+  Bilal: [
+    {
+      icon: FaLinkedin,
+      url: 'https://www.linkedin.com/in/mohamed-suhair-bilal-ahamed-bb5766344/',
+      label: 'LinkedIn',
+    },
+    {
+      icon: Mail,
+      url: 'mailto:bilalibnsuhair@gmail.com',
+      label: 'Email',
+    },
+  ],
+  Adhham: [
+    { icon: FaTwitter, url: 'https://x.com/AdhhamDev', label: 'Twitter' },
+    {
+      icon: FaLinkedin,
+      url: 'https://www.linkedin.com/in/adhham',
+      label: 'LinkedIn',
+    },
+    { icon: Mail, url: 'mailto:adhham.dev.mail@gmail.com', label: 'Email' },
+    { icon: Globe, url: 'https://adhham.dev', label: 'Website' },
+  ],
+} as const;
+
+const FOUNDERS = FOUNDER_PROFILES.map((founder) => ({
+  ...founder,
+  socials: SOCIALS[founder.name],
+}));
 
 export default function Founders() {
   return (

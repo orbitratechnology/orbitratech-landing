@@ -56,7 +56,7 @@ WhatsApp: https://wa.me/94702495311`;
       </pre>
       <Link
         href="/"
-        className="btn-cta btn-cta-lg inline-flex items-center justify-center rounded-md px-6 py-2.5 text-sm font-medium">
+        className="btn-cta btn-cta-lg btn-brand">
         Back to homepage
       </Link>
     </main>

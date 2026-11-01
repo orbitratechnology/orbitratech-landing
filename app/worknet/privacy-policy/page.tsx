@@ -2,10 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getCopyrightYear } from '@/lib/copyright-year';
 
+const description =
+  'Privacy Policy for Worknet - Find local help fast. Learn how we collect, use, and protect your data.';
+
 export const metadata: Metadata = {
   title: { absolute: 'Privacy Policy | Worknet by Orbitra Tech' },
-  description:
-    'Privacy Policy for Worknet - Find local help fast. Learn how we collect, use, and protect your data.',
+  description,
+  // Legal pages have no markdown twin; the summary is the meta description.
+  other: { 'ai-summary': description },
   alternates: {
     canonical: 'https://www.orbitratech.net/worknet/privacy-policy',
   },
@@ -19,7 +23,7 @@ export default async function PrivacyPolicy() {
       <div className='max-w-[1100px] mx-auto px-6 py-20 relative'>
         <Link
           href='/'
-          className='mb-12 inline-block text-sm font-medium text-slate-600 underline-offset-4 hover:text-sky-600 hover:underline'>
+          className='btn-link mb-12'>
           ← Back to home
         </Link>
 
