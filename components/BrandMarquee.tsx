@@ -118,7 +118,7 @@ export function BrandMarquee({
               reverse={!reverse}
               className='mt-3 [--duration:42s] [--marquee-gap:0.875rem] sm:[--marquee-gap:1rem] md:mt-4'
               aria-hidden>
-              {[...logos].reverse().map((logo) => (
+              {logos.toReversed().map((logo) => (
                 <BrandLogoTile key={`${logo.id}-alt`} logo={logo} />
               ))}
             </Marquee>

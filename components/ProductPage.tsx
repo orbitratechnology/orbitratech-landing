@@ -90,7 +90,7 @@ export default function ProductPage({ product }: { product: ProductDetails }) {
   );
 
   return (
-    <div className='min-h-screen overflow-x-clip bg-[var(--color-paper)]'>
+    <div className='min-h-dvh overflow-x-clip bg-[var(--color-paper)]'>
       <ProductSchema product={product} />
 
       <header className='border-b border-[var(--color-rule)] bg-[var(--color-paper)]/85 px-6 py-5 backdrop-blur-sm'>

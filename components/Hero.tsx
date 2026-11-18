@@ -17,7 +17,8 @@ export default function Hero() {
         src={HERO_BG}
         alt=''
         fill
-        priority
+        loading='eager'
+        fetchPriority='high'
         sizes='100vw'
         className='pointer-events-none object-cover object-center'
         aria-hidden

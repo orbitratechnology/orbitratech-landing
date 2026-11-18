@@ -15,7 +15,10 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // The scrolled shadow is a CSS scroll-driven animation (.site-nav in
+  // globals.css). Only browsers without scroll timelines need this listener.
   useEffect(() => {
+    if (CSS.supports('(animation-timeline: scroll()) and (animation-range: 0% 100%)')) return;
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -44,10 +47,9 @@ export default function Nav() {
     <header className='fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6'>
       <nav
         className={cn(
-          'mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full px-4 py-2.5 transition-[background,border-color,box-shadow,backdrop-filter] duration-[var(--dur-base)] md:px-5',
+          'site-nav mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full px-4 py-2.5 transition-[background,border-color,box-shadow,backdrop-filter] duration-[var(--dur-base)] md:px-5',
           'backdrop-blur-md',
-          scrolled
-           && 'shadow-[0_4px_24px_rgb(15_23_42/0.08)]'
+          scrolled && 'site-nav--scrolled'
         )}
         aria-label='Primary'>
         <Link href='/' className='flex shrink-0 items-center gap-2.5'>
@@ -57,7 +59,7 @@ export default function Nav() {
             width={40}
             height={40}
             className='h-9 w-9 md:h-10 md:w-10'
-            priority
+            loading='eager'
           />
           <span className='hidden font-[family-name:var(--font-display)] text-sm font-semibold tracking-tight text-[var(--color-ink)] sm:inline'>
             Orbitra Tech
@@ -103,8 +105,12 @@ export default function Nav() {
         id='mobile-nav'
         aria-label='Mobile navigation'
         className='mobile-nav-dialog lg:hidden'
+        // Light dismiss: Esc or a tap on the backdrop closes the menu.
+        closedby='any'
         onClose={() => setOpen(false)}
         onClick={(event) => {
+          // Also covers the dialog's transparent padding around the panel, and
+          // is the backdrop-click fallback where `closedby` is unsupported.
           if (event.target === dialogRef.current) {
             closeMenu();
           }

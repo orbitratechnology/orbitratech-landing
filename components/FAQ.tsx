@@ -18,6 +18,7 @@ export default function FAQ() {
   return (
     <section
       id='faq'
+      aria-labelledby='faq-heading'
       className='deferred-section relative scroll-mt-28 border-t border-[var(--color-rule)] py-20 md:py-28'>
       <script
         type='application/ld+json'
@@ -26,7 +27,9 @@ export default function FAQ() {
       <div className='container mx-auto max-w-4xl px-6'>
         <ScrollReveal className='mx-auto mb-10 max-w-2xl text-center'>
           <p className='section-eyebrow mb-3'>Questions</p>
-          <h2 className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>
+          <h2
+            id='faq-heading'
+            className='font-[family-name:var(--font-display)] text-[length:var(--text-3xl)] font-bold tracking-tight text-[var(--color-ink)] md:text-[length:var(--text-display-s)]'>
             What people ask before hiring us
           </h2>
         </ScrollReveal>

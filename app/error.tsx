@@ -16,7 +16,7 @@ export default function Error({
   }, [error])
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-center px-6 text-center'>
+    <main className='flex min-h-dvh flex-col items-center justify-center px-6 text-center'>
       <p className='text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]'>
         Something went wrong
       </p>

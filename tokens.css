@@ -10,13 +10,16 @@
   --color-surface-tint: oklch(96% 0.025 235);
   --color-ink: oklch(24% 0.04 260);
   --color-ink-muted: oklch(35% 0.02 260);
-  --color-ink-subtle: oklch(62% 0.015 260);
+  /* 54% keeps ≥4.5:1 text contrast on every paper/tint surface. */
+  --color-ink-subtle: oklch(54% 0.015 260);
   --color-accent: oklch(52% 0.16 240);
   --color-accent-strong: oklch(45% 0.17 240);
   --color-accent-muted: oklch(52% 0.16 240 / 0.1);
   --color-focus: oklch(52% 0.16 240);
   --color-rule: oklch(91% 0.012 240);
   --color-success: oklch(52% 0.14 155);
+  --color-danger: oklch(50% 0.19 27);
+  --color-danger-muted: oklch(50% 0.19 27 / 0.06);
   --color-whatsapp: oklch(52% 0.14 155);
   --color-whatsapp-strong: oklch(45% 0.15 155);
   --color-whatsapp-muted: oklch(52% 0.14 155 / 0.12);

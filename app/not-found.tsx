@@ -21,7 +21,7 @@ This path does not exist on **orbitratech.net**.
 WhatsApp: https://wa.me/94702495311`;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-6 py-16 text-center">
+    <main className="flex min-h-dvh flex-col items-center justify-center px-6 py-16 text-center">
       <p className="mb-2 text-sm font-medium text-[var(--color-ink-subtle)]">404</p>
       <h1 className="mb-4 font-[family-name:var(--font-display)] text-3xl font-bold text-[var(--color-ink)] md:text-4xl">
         Page not found

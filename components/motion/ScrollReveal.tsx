@@ -1,93 +1,40 @@
-'use client';
+import type { CSSProperties, ReactNode } from 'react';
 
-import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useRef, type ReactNode } from 'react';
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { cn } from '@/lib/utils';
 
 type ScrollRevealProps = {
   children: ReactNode;
   className?: string;
+  /**
+   * Offsets where the reveal starts within the element's entry into the
+   * viewport, in the same units the old time-based API used (0.1 ≈ 10% of
+   * the entry range). Use it to stagger siblings that enter together.
+   */
   delay?: number;
-  y?: number;
-  scrub?: boolean | number;
-  staggerChildren?: string;
+  /** Reveal each direct child in turn instead of the wrapper as a whole. */
+  staggerChildren?: boolean;
 };
 
+/**
+ * Fades and lifts content in as it scrolls into view.
+ *
+ * Driven entirely by CSS scroll-driven animations (`animation-timeline: view()`
+ * in globals.css), so it ships no JavaScript, runs off the main thread, and
+ * never hides server-rendered content waiting for hydration. Browsers without
+ * view timelines, and users who prefer reduced motion, see the content as-is.
+ */
 export function ScrollReveal({
   children,
   className,
   delay = 0,
-  y = 36,
-  scrub = false,
-  staggerChildren,
+  staggerChildren = false,
 }: ScrollRevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      const el = ref.current;
-      if (!el) return;
-
-      const mm = gsap.matchMedia();
-
-      mm.add('(prefers-reduced-motion: reduce)', () => {
-        gsap.set(el, { autoAlpha: 1, y: 0, clearProps: 'transform' });
-        if (staggerChildren) {
-          gsap.set(el.querySelectorAll(staggerChildren), {
-            autoAlpha: 1,
-            y: 0,
-            clearProps: 'transform',
-          });
-        }
-      });
-
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        const targets = staggerChildren
-          ? gsap.utils.toArray<HTMLElement>(staggerChildren, el)
-          : [el];
-
-        const tweenVars = {
-          autoAlpha: 0,
-          y,
-          duration: scrub ? 1 : 0.85,
-          delay,
-          ease: 'power2.out',
-          stagger: staggerChildren ? 0.1 : 0,
-        };
-
-        if (scrub) {
-          gsap.from(targets, {
-            ...tweenVars,
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              end: 'top 45%',
-              scrub: typeof scrub === 'number' ? scrub : 0.6,
-            },
-          });
-          return;
-        }
-
-        gsap.from(targets, {
-          ...tweenVars,
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 88%',
-            once: true,
-          },
-        });
-      });
-
-      return () => mm.revert();
-    },
-    { scope: ref },
-  );
+  const style = delay ? ({ '--reveal-delay': delay } as CSSProperties) : undefined;
 
   return (
-    <div ref={ref} className={className}>
+    <div
+      className={cn(staggerChildren ? 'scroll-reveal-stagger' : 'scroll-reveal', className)}
+      style={style}>
       {children}
     </div>
   );

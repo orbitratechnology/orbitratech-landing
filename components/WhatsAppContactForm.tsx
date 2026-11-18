@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import type { FormEvent } from 'react';
-import { Mail } from 'lucide-react';
+import { useEffect, useId, useRef } from 'react';
+import type { FormEvent, ReactNode } from 'react';
+import { CircleAlert, Mail } from 'lucide-react';
 import { createEmailUrl, createWhatsAppUrl } from '@/lib/constants';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 
 const FIELD_CLASS =
-  'mt-1.5 w-full rounded-xl border border-[var(--color-rule)] bg-[var(--color-paper)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none transition-shadow placeholder:text-[var(--color-ink-subtle)] focus-visible:ring-2 focus-visible:ring-[var(--color-focus)]';
+  'form-field mt-1.5 w-full rounded-xl border border-[var(--color-rule)] bg-[var(--color-paper)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none transition-shadow placeholder:text-[var(--color-ink-subtle)] focus-visible:ring-2 focus-visible:ring-[var(--color-focus)]';
 
 const LABEL_CLASS = 'block text-sm font-semibold text-[var(--color-ink)]';
 
@@ -44,8 +44,124 @@ function field(formData: FormData, name: string) {
   return String(formData.get(name) ?? '').trim();
 }
 
+/**
+ * Error text for a required field. It sits right after the control and is
+ * shown by CSS only while the control matches :user-invalid (globals.css), so
+ * it never appears before the person has interacted or tried to submit.
+ */
+function FieldError({ id, children }: { id: string; children: ReactNode }) {
+  return (
+    <p id={id} className='field-error'>
+      <CircleAlert className='size-4 shrink-0' role='img' aria-label='Error' />
+      <span>{children}</span>
+    </p>
+  );
+}
+
+/**
+ * Keeps aria-invalid and aria-describedby in step with the visual
+ * :user-invalid state, and announces an error that appears when someone
+ * leaves a field. Returns a cleanup function.
+ */
+function syncValidityForAssistiveTech(form: HTMLFormElement, announcer: HTMLElement) {
+  type Field = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+  const isField = (el: EventTarget | null): el is Field =>
+    el instanceof Element && el.matches('input, select, textarea');
+
+  const flagged = new WeakSet<Field>();
+  const announced = new WeakSet<Field>();
+  let announceTimer: ReturnType<typeof setTimeout> | undefined;
+  let announcedField: Field | null = null;
+
+  // List the error (the id in data-error) in aria-describedby only while it is
+  // shown: referenced text is announced even when it is hidden.
+  const linkError = (el: Field, shown: boolean) => {
+    const errorId = el.dataset.error;
+    if (!errorId) return;
+    const ids = (el.getAttribute('aria-describedby') ?? '')
+      .split(/\s+/)
+      .filter((id) => id && id !== errorId);
+    if (shown) ids.push(errorId);
+    if (ids.length) el.setAttribute('aria-describedby', ids.join(' '));
+    else el.removeAttribute('aria-describedby');
+  };
+
+  const announceError = (el: Field) => {
+    const error = el.dataset.error ? document.getElementById(el.dataset.error) : null;
+    if (!error) return;
+    const label = el.labels?.[0]?.textContent?.trim();
+    clearTimeout(announceTimer);
+    announcer.textContent = '';
+    announcedField = el;
+    // Wait until the screen reader has read the field that receives focus next.
+    announceTimer = setTimeout(() => {
+      announcer.textContent = `${label ? `${label}: ` : ''}Error: ${error.textContent?.trim() ?? ''}`;
+    }, 500);
+  };
+
+  const sync = (el: Field, announce = false) => {
+    if (el.matches(':user-invalid')) {
+      if (announce && !announced.has(el)) {
+        announceError(el);
+        announced.add(el);
+      }
+      el.setAttribute('aria-invalid', 'true');
+      linkError(el, true);
+      flagged.add(el);
+    } else if (flagged.has(el) || el.getAttribute('aria-invalid') !== 'true') {
+      el.setAttribute('aria-invalid', 'false');
+      linkError(el, false);
+      flagged.delete(el);
+      announced.delete(el);
+      if (announcedField === el) {
+        clearTimeout(announceTimer);
+        announcer.textContent = '';
+      }
+    }
+  };
+
+  for (const el of form.querySelectorAll<Field>('input, select, textarea')) sync(el);
+
+  const onBlur = (event: Event) => isField(event.target) && sync(event.target, true);
+  const onInput = (event: Event) =>
+    isField(event.target) && event.target.hasAttribute('aria-invalid') && sync(event.target);
+  // A failed submit fires 'invalid' on every failing field; focus then moves to
+  // the first one, which reads its error, so these are not announced.
+  const onInvalid = (event: Event) => {
+    if (!isField(event.target)) return;
+    announced.add(event.target);
+    sync(event.target);
+  };
+
+  form.addEventListener('blur', onBlur, true);
+  form.addEventListener('change', onBlur, true);
+  form.addEventListener('input', onInput);
+  form.addEventListener('invalid', onInvalid, true);
+
+  return () => {
+    clearTimeout(announceTimer);
+    form.removeEventListener('blur', onBlur, true);
+    form.removeEventListener('change', onBlur, true);
+    form.removeEventListener('input', onInput);
+    form.removeEventListener('invalid', onInvalid, true);
+  };
+}
+
 export default function WhatsAppContactForm() {
   const serviceRef = useRef<HTMLSelectElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const announcerRef = useRef<HTMLParagraphElement>(null);
+  const uid = useId();
+  const ids = {
+    name: `${uid}-name`,
+    email: `${uid}-email`,
+    details: `${uid}-details`,
+  };
+
+  useEffect(() => {
+    if (!formRef.current || !announcerRef.current) return;
+    return syncValidityForAssistiveTech(formRef.current, announcerRef.current);
+  }, []);
 
   // Preselect the service a landing page linked with (`/?service=...#contact`).
   useEffect(() => {
@@ -97,32 +213,45 @@ export default function WhatsAppContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='mt-6 space-y-4 text-left'>
+    <form ref={formRef} onSubmit={handleSubmit} className='mt-6 space-y-4 text-left'>
+      <p ref={announcerRef} aria-live='polite' className='sr-only' />
       <div className='grid gap-4 sm:grid-cols-2'>
-        <label className={LABEL_CLASS}>
-          Your name
+        <div>
+          <label htmlFor={ids.name} className={LABEL_CLASS}>
+            Your name
+          </label>
           <input
+            id={ids.name}
             name='name'
             type='text'
             autoComplete='name'
             maxLength={100}
             placeholder='Full name'
             className={FIELD_CLASS}
+            data-error={`${ids.name}-error`}
             required
           />
-        </label>
-        <label className={LABEL_CLASS}>
-          Email address
+          <FieldError id={`${ids.name}-error`}>Enter your name.</FieldError>
+        </div>
+        <div>
+          <label htmlFor={ids.email} className={LABEL_CLASS}>
+            Email address
+          </label>
           <input
+            id={ids.email}
             name='email'
             type='email'
             autoComplete='email'
             maxLength={254}
             placeholder='you@company.com'
             className={FIELD_CLASS}
+            data-error={`${ids.email}-error`}
             required
           />
-        </label>
+          <FieldError id={`${ids.email}-error`}>
+            Enter an email address, like name@company.com.
+          </FieldError>
+        </div>
         <label className={LABEL_CLASS}>
           Business name {OPTIONAL}
           <input
@@ -154,17 +283,24 @@ export default function WhatsAppContactForm() {
           ))}
         </select>
       </label>
-      <label className={LABEL_CLASS}>
-        What are you trying to achieve?
+      <div>
+        <label htmlFor={ids.details} className={LABEL_CLASS}>
+          What are you trying to achieve?
+        </label>
         <textarea
+          id={ids.details}
           name='details'
           rows={4}
           maxLength={1500}
           placeholder='e.g. We get orders through WhatsApp and track them in a spreadsheet. We want customers to order online and staff to see orders in one place.'
           className={`${FIELD_CLASS} resize-y`}
+          data-error={`${ids.details}-error`}
           required
         />
-      </label>
+        <FieldError id={`${ids.details}-error`}>
+          Tell us a little about what you need.
+        </FieldError>
+      </div>
       <div className='grid gap-4 sm:grid-cols-2'>
         <label className={LABEL_CLASS}>
           Timeframe {OPTIONAL}

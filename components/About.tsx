@@ -27,19 +27,18 @@ export default function About() {
         </ScrollReveal>
 
         <ScrollReveal>
-          <dl className='overflow-hidden rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] shadow-[0_1px_2px_var(--color-shadow-soft),0_12px_32px_var(--color-shadow)]'>
-            <div className='grid grid-cols-1 divide-y divide-[var(--color-rule)] sm:grid-cols-2 sm:divide-x lg:grid-cols-4 lg:divide-y-0'>
-              {FACTS.map((fact) => (
-                <div key={fact.title} className='flex flex-col px-6 py-7'>
-                  <dt className='font-[family-name:var(--font-display)] text-xl font-bold tracking-tight text-[var(--color-accent)]'>
-                    {fact.title}
-                  </dt>
-                  <dd className='mt-2 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)]'>
-                    {fact.body}
-                  </dd>
-                </div>
-              ))}
-            </div>
+          {/* Each <div> groups one <dt>/<dd> pair, the only wrapper <dl> allows. */}
+          <dl className='grid grid-cols-1 divide-y divide-[var(--color-rule)] overflow-hidden rounded-2xl border border-[var(--color-rule)] bg-[var(--color-paper-2)] shadow-[0_1px_2px_var(--color-shadow-soft),0_12px_32px_var(--color-shadow)] sm:grid-cols-2 sm:divide-x lg:grid-cols-4 lg:divide-y-0'>
+            {FACTS.map((fact) => (
+              <div key={fact.title} className='flex flex-col px-6 py-7'>
+                <dt className='font-[family-name:var(--font-display)] text-xl font-bold tracking-tight text-[var(--color-accent)]'>
+                  {fact.title}
+                </dt>
+                <dd className='mt-2 text-[length:var(--text-sm)] leading-relaxed text-[var(--color-ink-muted)]'>
+                  {fact.body}
+                </dd>
+              </div>
+            ))}
           </dl>
         </ScrollReveal>
 

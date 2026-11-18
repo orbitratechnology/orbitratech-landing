@@ -19,7 +19,7 @@ export default async function TermsAndConditions() {
   const year = await getCopyrightYear();
 
   return (
-    <div className='min-h-screen bg-slate-50 text-slate-900 overflow-x-hidden'>
+    <div className='min-h-dvh bg-slate-50 text-slate-900 overflow-x-hidden'>
       <div className='max-w-[1100px] mx-auto px-6 py-20 relative'>
         <Link
           href='/'

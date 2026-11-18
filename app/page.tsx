@@ -5,6 +5,7 @@ import { Suspense, type ReactNode } from 'react'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import Nav from '@/components/Nav'
+import { PageMotion } from '@/components/PageMotion'
 import { SectionPlaceholder } from '@/components/SectionPlaceholder'
 import { markdownAlternates } from '@/lib/page-metadata'
 
@@ -56,11 +57,6 @@ const Founders = dynamic(() => import('@/components/Founders'), {
   loading: () => <SectionPlaceholder minHeight='18rem' />,
 })
 
-const PageMotion = dynamic(
-  () => import('@/components/PageMotion').then((mod) => mod.PageMotion),
-  { loading: () => null },
-)
-
 function DeferredSection({
   fallback,
   children,
@@ -83,9 +79,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <DeferredSection fallback={null}>
-        <PageMotion />
-      </DeferredSection>
+      <PageMotion />
       <Nav />
       <main id='content' tabIndex={-1} className='min-w-0 outline-none'>
         <Hero />
