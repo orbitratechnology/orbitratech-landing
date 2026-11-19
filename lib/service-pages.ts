@@ -76,6 +76,7 @@ export const SERVICE_PAGES: ServicePageData[] = [
     evidence: {
       body: 'Business websites we have built for clients. This site is another example: orbitratech.net is designed and built by Orbitra, with server-rendered pages, structured data for search engines, and a mobile-first layout.',
       clientProjectIds: [
+        'al-muallah-travels',
         'nethmi-gem-jewellery',
         'hey-gems-international',
         'rabeeyunil-awwal-mango-garden',

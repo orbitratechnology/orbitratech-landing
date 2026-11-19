@@ -204,7 +204,7 @@ export default function ServiceLandingPage({ page }: { page: ServicePageData }) 
               </div>
               {evidenceProjects.length > 0 ? (
                 <div
-                  className={`mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 ${evidenceProjects.length >= 3 ? 'lg:grid-cols-3' : ''}`}>
+                  className={`mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 ${evidenceProjects.length % 3 === 0 ? 'lg:grid-cols-3' : ''}`}>
                   {evidenceProjects.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                   ))}
