@@ -83,7 +83,7 @@ export const CLIENT_PROJECTS: ClientProject[] = [
     tags: ['Website', 'Travel packages', 'Enquiries'],
     image: {
       src: '/work/al-muallah-travels.webp',
-      alt: 'Al-Muallah Travels & Tours homepage: “Your Sacred Journey With Al-Muallah” over a photo of the Kaaba at dusk, with a journey enquiry bar',
+      alt: 'Al-Muallah Travels & Tours homepage: “Your Sacred Journey With Al-Muallah” over a photo of one of its Umrah groups in Makkah, with a journey enquiry bar',
       device: 'desktop',
     },
   },
